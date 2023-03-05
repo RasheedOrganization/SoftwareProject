@@ -21,7 +21,7 @@ public class SignUpSteps {
     public void iSignUpWithValidDetails() {
         // check if the enterd detalis is true
         System.out.println(1);
-        //hello
+        //hello//
     }
     @Then("I should receive a confirmation email")
     public void iShouldReceiveAConfirmationEmail() {
