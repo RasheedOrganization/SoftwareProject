@@ -1,0 +1,9 @@
+.linear-grad
+{
+    -fx-background-color: linear-gradient(to bottom left, #3CC3BC,#3c83c3);
+}
+.Button
+{
+    -fx-background-color: linear-gradient(to bottom left, #3CC3BC,#3c83c3);
+    -fx-text-fill: #FFFFFF;
+}
