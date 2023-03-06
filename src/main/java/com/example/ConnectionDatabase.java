@@ -8,8 +8,16 @@ import java.sql.Statement;
 
 public class ConnectionDatabase {
     private static ConnectionDatabase Connect;
-    private static Connection ConnectData;
+    private Connection ConnectData;
     private static boolean status = true;
+
+    public Connection getConnectData() {
+        return ConnectData;
+    }
+
+    public void setConnectData(Connection connectData) {
+        ConnectData = connectData;
+    }
 
     private ConnectionDatabase() {
         try {
