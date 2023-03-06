@@ -2,28 +2,36 @@
 Feature: Sign-up
   sign up should be more precise and quick
 
-  @tag1
-  Scenario: Successful sign-up
+  @Unsuccessful
+  Scenario Outline: Unsuccessful Sign-Up
+
+  New user should see a message on screen about this.
+
+    Given I have chosen to sign up
+    When I sign up with an email address '<email>' that has already registered
+    And I sign up with invalid password '<password>' format
+    And I sign up with un match password '<password>' passwordMatch '<passwordMatch>' format
+    And I sign up with invalid name '<name>' format
+    And I sign up with invalid phone '<phone>' format
+    Then I should to told to me a '<message>'
+    Examples:
+      | email                    | password    | passwordMatch | name      | phone      | message                               |
+      | mohammadre1654@gmail.com | 1mohammad   | 1mohammad     | mohammad  | 0592787026 | Email Duplicate                       |
+      | mohammadre1999@gmail.com | 1mohammad   | 1mohammad     | mohammad  | 0592787026 | Password shouldn't start with number  |
+      | mohammadre1999@gmail.com | mohamm      | mohamm        | mohammad  | 0592787026 | Password length should be more than 7 |
+      | mohammadre1999@gmail.com | mohammad1   | mohammad2     | mohammad  | 0592787026 | Password doesn't match                |
+      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 0592787026 | Name shouldn't start with number      |
+      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 1292787026 | Phone should start with 05            |
+
+  @Successful
+  Scenario Outline: Successful sign-up
 
     New user should get a confirmation email and greeted
     personally by the site once signed-in.
 
     Given I have chosen to sign up
-    When I sign up with valid details
-    Then I should receive a confirmation email
-    And I should see a personalized greeting message
-
-    Scenario: Duplicate email
-
-      New user should see a message on screen about this.
-
-      Given I have chosen to sign up
-      When I sign up with an email address that has already registered
-      Then I should to told to me that email has already registered
-      And I should be offered the option to recover my password.
-
-      Scenario: Invalid password
-        New user should see a message on screen: "Use at least 8 characters long , 1 uppercase & 1 lowercase character,1 number"
-        Given I have chosen to sign up
-        When I sign up with invalid password format
-        Then I should see a guide message for the correct password format
+    When I sign up with valid details email '<email>' and password '<password>' and passwordMatch '<passwordMatch>' and name '<name>' and phone '<phone>'
+    Then I should see a personalized greeting message
+    Examples:
+      | email                    | password    | passwordMatch | name      | phone      |
+      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 0592787026 |
