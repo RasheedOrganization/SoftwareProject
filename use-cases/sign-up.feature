@@ -31,7 +31,7 @@ Feature: Sign-up
 
     Given I have chosen to sign up
     When I sign up with valid details email '<email>' and password '<password>' and passwordMatch '<passwordMatch>' and name '<name>' and phone '<phone>'
-    Then I should see a personalized greeting message
+    Then I should see a personalized greeting '<message>'
     Examples:
-      | email                    | password    | passwordMatch | name      | phone      |
-      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 0592787026 |
+      | email                    | password    | passwordMatch | name      | phone      | message     |
+      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 0592787026 | Hello There |

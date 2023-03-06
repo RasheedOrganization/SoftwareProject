@@ -53,9 +53,10 @@ public class SignUpSteps {
         }
     }
 
-    @Then("I should see a personalized greeting message")
-    public void iShouldSeeAPersonalizedGreetingMessage() {
-
+    @Then("I should see a personalized greeting {string}")
+    public void iShouldSeeAPersonalizedGreeting(String string) {
+        // Write code here that turns the phrase above into concrete actions
+        System.out.println(string);
     }
 
 
