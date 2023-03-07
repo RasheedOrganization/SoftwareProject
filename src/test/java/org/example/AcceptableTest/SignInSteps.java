@@ -11,7 +11,6 @@ import java.sql.Statement;
 import static org.junit.Assert.assertEquals;
 
 public class SignInSteps {
-
     private ConnectionDatabase Data;
 
     @Given("I have chosen to sign in")

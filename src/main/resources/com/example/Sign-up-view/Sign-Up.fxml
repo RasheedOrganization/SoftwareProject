@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="356.0" style="-fx-background-color: #ffffff;" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpController">
+   <children>
+      <Label layoutX="120.0" layoutY="14.0" prefHeight="42.0" prefWidth="115.0" text="Sign Up" textAlignment="CENTER" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="121.0" AnchorPane.topAnchor="14.0">
+         <font>
+            <Font name="Calibri Bold" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="UserNameText" layoutX="72.0" layoutY="118.0" prefHeight="34.0" prefWidth="211.0" promptText="Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="118.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <Button fx:id="SignUpButton" layoutX="72.0" layoutY="342.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="211.0" styleClass="button-blue" text="Sign Up" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="342.0">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <AnchorPane layoutY="392.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="356.0" style="-fx-background-color: #e3e3e3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="392.0">
+         <children>
+            <Label layoutX="113.0" layoutY="24.0" text="ALready Member?" />
+            <Label fx:id="Login" layoutX="214.0" layoutY="24.0" text="Login" textFill="#3c9ae2">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <PasswordField fx:id="PasswordText" layoutX="72.0" layoutY="253.0" prefHeight="34.0" prefWidth="211.0" promptText="Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="253.0" />
+      <TextField fx:id="EmailText" layoutX="72.0" layoutY="73.0" prefHeight="34.0" prefWidth="211.0" promptText="Email" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="73.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="ConfirmPasswordText" layoutX="72.0" layoutY="298.0" prefHeight="34.0" prefWidth="211.0" promptText="Confirm Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="298.0" />
+      <TextField fx:id="NameText" layoutX="72.0" layoutY="163.0" prefHeight="34.0" prefWidth="211.0" promptText="Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="163.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="PhoneText" layoutX="72.0" layoutY="208.0" prefHeight="34.0" prefWidth="211.0" promptText="Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="208.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
