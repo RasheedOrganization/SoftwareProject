@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="356.0" style="-fx-background-color: #ffffff;" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.HelloController">
+   <children>
+      <ImageView fitHeight="118.0" fitWidth="118.0" layoutX="119.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="22.0">
+         <image>
+            <Image url="@../Image/account_circle.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="128.0" layoutY="140.0" prefHeight="42.0" prefWidth="112.0" text="Sign In" textAlignment="CENTER" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="140.0">
+         <font>
+            <Font name="Calibri Bold" size="36.0" />
+         </font>
+      </Label>
+      <TextField fx:id="UserNameText" layoutX="72.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="200.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </TextField>
+      <Button fx:id="SignInButton" layoutX="72.0" layoutY="287.0" mnemonicParsing="false" onAction="#SignInClicked" prefHeight="34.0" prefWidth="211.0" styleClass="button-blue" text="Sign In" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="287.0">
+         <font>
+            <Font name="Calibri Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <AnchorPane layoutY="371.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="66.0" prefWidth="356.0" style="-fx-background-color: #e3e3e3;" AnchorPane.bottomAnchor="0.5999999999999943" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="371.0">
+         <children>
+            <Label layoutX="86.0" layoutY="24.0" text="Not a Member?" />
+            <Label fx:id="CreateAnAccount" layoutX="172.0" layoutY="24.0" onMouseClicked="#CreateAnAccountClicked" text="Create an Account" textFill="#3c9ae2">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label fx:id="Forgot" layoutX="190.0" layoutY="330.0" onMouseClicked="#ForgotClicked" text="Forgot Password?" textFill="#3c9ae2" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="71.6" AnchorPane.topAnchor="330.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <PasswordField fx:id="PasswordText" layoutX="72.0" layoutY="244.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="244.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="404.0" prefWidth="326.0" style="-fx-background-color: #ffffff;" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ReportsController">
+   <children>
+      <Button fx:id="FinancialReport" layoutX="54.0" layoutY="157.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Financial Report">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="ProductReport" layoutX="54.0" layoutY="205.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Product Report">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="CustomerReport" layoutX="54.0" layoutY="253.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Customer Report">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="Report" layoutX="54.0" layoutY="301.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Report">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label layoutX="82.0" layoutY="110.0" text="Bubble Cleaning">
+         <font>
+            <Font name="Agency FB Bold" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="94.0" fitWidth="92.0" layoutX="117.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/334969748_1143727506323877_5547492312497452551_n.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BackButton" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="34.0" prefWidth="65.0" style="-fx-background-color: #b9b9b9;" text="⬅" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
