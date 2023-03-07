@@ -48,7 +48,8 @@ public class SignUpSteps {
                     assertEquals(true, true);
                 }
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             assertEquals("Exception in feature",true, false);
         }
     }

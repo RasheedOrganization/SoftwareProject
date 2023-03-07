@@ -7,46 +7,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane prefHeight="494.0" prefWidth="725.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ProductEntryView">
    <children>
-      <AnchorPane prefHeight="495.0" prefWidth="271.0" styleClass="linear-grad" stylesheets="@Product-view.css">
+      <AnchorPane prefHeight="495.0" prefWidth="271.0" style="-fx-background-color: #27ABD8;" stylesheets="@Product-view.css">
          <children>
-            <ImageView fitHeight="175.0" fitWidth="162.0" layoutX="61.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="175.0" fitWidth="162.0" layoutX="55.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imges/house-cleaning.png" />
                </image>
             </ImageView>
-            <Label layoutX="61.0" layoutY="219.0" prefHeight="24.0" prefWidth="162.0" text="Bubble Cleaning">
+            <Label layoutX="60.0" layoutY="231.0" prefHeight="24.0" prefWidth="162.0" text="Bubble Cleaning">
                <font>
-                  <Font name="Snap ITC" size="18.0" />
+                  <Font name="Dosis Regular" size="25.0" />
                </font>
             </Label>
-            <ImageView fitHeight="55.0" fitWidth="65.0" layoutX="14.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="14.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@imges/logout.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <TextField layoutX="363.0" layoutY="108.0" />
-      <TextField layoutX="363.0" layoutY="156.0" stylesheets="@Product-view.css" />
-      <Label layoutX="301.0" layoutY="112.0" prefHeight="18.0" prefWidth="14.0" stylesheets="@Product-view.css" text="ID" />
-      <Label layoutX="297.0" layoutY="160.0" text="Name" />
-      <Button layoutX="414.0" layoutY="379.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="194.0" styleClass="Button" stylesheets="@Product-view.css" text="Enter">
+      <Button layoutX="383.0" layoutY="373.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="194.0" style="-fx-background-color: #27ABD8;" stylesheets="@Product-view.css" text="Enter">
          <font>
-            <Font name="Showcard Gothic" size="22.0" />
+            <Font name="Dosis Medium" size="22.0" />
          </font>
       </Button>
-      <ComboBox layoutX="362.0" layoutY="208.0" prefWidth="150.0" promptText="choose..." />
-      <Label layoutX="297.0" layoutY="212.0" text="Shap-Type" />
-      <TextField layoutX="362.0" layoutY="254.0" prefHeight="26.0" prefWidth="57.0" promptText="width" stylesheets="@Product-view.css" />
-      <TextField layoutX="453.0" layoutY="254.0" prefHeight="26.0" prefWidth="57.0" promptText="hight" stylesheets="@Product-view.css" />
-      <Label layoutX="296.0" layoutY="258.0" text="Dimension" />
-      <Label layoutX="420.0" layoutY="266.0" prefHeight="18.0" prefWidth="22.0" stylesheets="@Product-view.css" text="Cm" textFill="#9e9797" />
-      <Label layoutX="513.0" layoutY="266.0" prefHeight="18.0" prefWidth="22.0" stylesheets="@Product-view.css" text="Cm" textFill="#9e9797" />
-      <AnchorPane layoutX="271.0" prefHeight="46.0" prefWidth="456.0" style="-fx-background-color: #41bbbe;" stylesheets="@Product-view.css" />
+      <VBox layoutX="365.0" layoutY="109.0" prefHeight="212.0" prefWidth="230.0">
+         <children>
+            <TextField prefHeight="14.0" prefWidth="124.0" promptText="Product name" />
+            <ComboBox prefHeight="26.0" prefWidth="242.0" promptText="Shape..." />
+            <TextField prefHeight="26.0" prefWidth="57.0" promptText="Width cm" stylesheets="@Product-view.css" />
+            <TextField prefHeight="26.0" prefWidth="57.0" promptText="Hight cm" stylesheets="@Product-view.css" />
+            <TextField prefHeight="26.0" prefWidth="57.0" promptText="Radius cm" stylesheets="@Product-view.css" />
+            <TextField prefHeight="26.0" prefWidth="57.0" promptText="Quantity" stylesheets="@Product-view.css" />
+            <TextField prefHeight="26.0" prefWidth="57.0" promptText="Address" stylesheets="@Product-view.css" />
+            <TextField prefHeight="0.0" prefWidth="230.0" promptText="Phone number" stylesheets="@Product-view.css" />
+         </children>
+      </VBox>
+      <Label layoutX="313.0" layoutY="461.0" text="(+ 972 8) 288 7219" textFill="#003dff" textOverrun="LEADING_ELLIPSIS" underline="true" />
+      <Label layoutX="283.0" layoutY="461.0" prefHeight="18.0" prefWidth="21.0" stylesheets="@Product-view.css" text="Fax:" textFill="#003dff" />
+      <ImageView fitHeight="18.0" fitWidth="14.0" layoutX="530.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imges/placeholder.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="553.0" layoutY="461.0" prefHeight="18.0" prefWidth="131.0" text="Michel Centre, Ramallah" textFill="#003dff" textOverrun="LEADING_ELLIPSIS" underline="true" />
+      <ImageView fitHeight="79.0" fitWidth="91.0" layoutX="448.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@imges/product.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
