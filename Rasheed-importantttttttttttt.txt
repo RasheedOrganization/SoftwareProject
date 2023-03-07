@@ -1,0 +1,126 @@
+create table employee(
+emp_ID varchar2(9) primary key,
+F_name varchar2(20) not null,
+M_name varchar2(20),
+L_name varchar2(20),
+emp_location varchar2(20),
+Employee_type varchar2(20) constraint empType_domin check(Employee_type in('accountant' , 'Janitor' , 'pharmacist' , 'pharmacist_assistant')),
+Manager_Valid varchar2(1),
+Manager_Name varchar2(15),
+payment_method varchar2(1),
+Salary int,
+Payment_Hour int
+);
+
+create table Medicine(
+Code int primary key,
+M_Name varchar2(20) not null,
+price int not null,
+soruce varchar2(20),
+Production_date date not null,
+Expiy_date date,
+Medicine_type varchar2(10) constraint M_type check(Medicine_type IN('tablet' ,'syrub' ,'cream'))
+);
+
+create table Patient(
+P_name varchar2(15) not null,
+P_ID int primary key
+);
+
+create table Medicine_Patient(
+M_code int ,
+P_ID int,
+primary key(M_code,P_ID),
+FOREIGN key (M_code) REFERENCES Medicine(Code),
+FOREIGN key (P_ID) REFERENCES Patient(P_ID)
+);
+
+create table doctor(
+D_ID int primary key,
+D_name varchar2 (15) not null,
+specialty varchar2(15)
+);
+
+create table Prescription(
+PrescriptionNum int primary key,
+Pre_name varchar2(15)  not null,
+D_number int not null,
+RX varchar2(5)  constraint RX_valid check(RX in('no' , 'yes')),
+FOREIGN key(D_number) REFERENCES doctor(D_ID)
+);
+create table DocotrPatient(
+P_num int,
+D_num int,
+primary key (P_num,D_num),
+FOREIGN key(P_num) REFERENCES Patient(P_ID),
+FOREIGN key(D_num) REFERENCES doctor(D_ID)
+);
+
+create table doctorLocation(
+DoctorNum int,
+D_location varchar2(20),
+primary key (DoctorNum,D_location),
+FOREIGN key(DoctorNum) REFERENCES doctor(D_ID)
+);
+
+
+
+
+Insert statments :::
+
+
+INSERT INTO doctor values(10,'rasheed','dermatologist');
+INSERT INTO doctor values(20,'ahmad','pediatric');
+INSERT INTO doctor values(30,'rehan','cardiologist');
+INSERT INTO doctor values(40,'ezzzzo','kidology');
+INSERT INTO doctor values(50,'alfredo','brain');
+
+
+INSERT INTO patient values('osama',5024723);
+INSERT INTO patient values('marek',5043332);
+INSERT INTO patient values('sameer',4075064);
+INSERT INTO patient values('falah',4075564);
+INSERT INTO patient values('tamimi',4075464);
+
+INSERT INTO doctorlocation values(10,'jenin');
+INSERT INTO doctorlocation values(20,'nablus');
+INSERT INTO doctorlocation values(30,'ramallah');
+INSERT INTO doctorlocation values(40,'ramallah');
+INSERT INTO doctorlocation values(50,'ramallah');
+
+INSERT INTO docotrpatient VALUES (5024723,10);
+INSERT INTO docotrpatient VALUES (5043332,20);                  
+INSERT INTO docotrpatient VALUES (4075064,30);
+INSERT INTO docotrpatient VALUES (5043332,40);
+INSERT INTO docotrpatient VALUES (4075464,50);
+
+
+insert into prescription values(1000,'acamol',10,'yes');
+insert into prescription values(2000,'paracitamol',20,'yes');
+insert into prescription values(3000,'asbrin',30,'yes');
+insert into prescription values(4000,'zinatiol',40,'yes');
+insert into prescription values(5000,'examoltaion',50,'yes');
+
+insert into medicine values(1011,'acaomlll',50,'hendawi',date '2019-10-10',date'2022-11-11','syrub');
+insert into medicine values(1012,'baraa',110,'rehan',date '2019-11-10',date'2022-10-11','syrub');
+insert into medicine values(1013,'ac',500,'complex',date '2019-10-1',date'2022-11-9','syrub');
+insert into medicine values(1014,'aaacream',5,'najah',date '2019-10-10',date'2022-11-11','syrub');
+insert into medicine values(1015,'acxxsyrub',10,'hei',date '2019-2-10',date'2022-1-11','syrub');
+
+insert into medicine_patient values(1011,5024723);
+insert into medicine_patient values(1012,5043332);
+insert into medicine_patient values(1013,5024723);
+insert into medicine_patient values(1014,4075464);
+insert into medicine_patient values(1015,4075464);
+
+
+insert into employee values(120,'rasheeddd','sahem','hindaweee','jenin','Janitor','0',NULL,'0',3000,NULL);
+insert into employee values(121,'sami','sahem','hinde','jenin','accountant','0',NULL,'0',3000,NULL);
+insert into employee values(122,'mahmomd','ahmad','caraji','jenin',' pharmacist_assistant','0',NULL,'0',3000,NULL);
+insert into employee values(123,'taha','zaed','sade','jenin','pharmacist','0',NULL,'0',3000,NULL);
+insert into employee values(124,'maen','omar','ashayer','jenin','pharmacist','1','ahmad','1',NULL,20);
+
+
+
+
+              
