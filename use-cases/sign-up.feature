@@ -15,13 +15,13 @@ Feature: Sign-up
     And I sign up with invalid phone '<phone>' format
     Then I should to told to me a '<message>'
     Examples:
-      | email                    | password    | passwordMatch | name      | phone      | message                               |
-      | mohammadre1654@gmail.com | 1mohammad   | 1mohammad     | mohammad  | 0592787026 | Email Duplicate                       |
-      | mohammadre1999@gmail.com | 1mohammad   | 1mohammad     | mohammad  | 0592787026 | Password shouldn't start with number  |
-      | mohammadre1999@gmail.com | mohamm      | mohamm        | mohammad  | 0592787026 | Password length should be more than 7 |
-      | mohammadre1999@gmail.com | mohammad1   | mohammad2     | mohammad  | 0592787026 | Password doesn't match                |
-      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 0592787026 | Name shouldn't start with number      |
-      | mohammadre1999@gmail.com | mohammad1   | mohammad1     | 1mohammad | 1292787026 | Phone should start with 05            |
+      | email                    | password  | passwordMatch | name      | phone      | message                               |
+      | mohammadre1654@gmail.com | 1mohammad | 1mohammad     | mohammad  | 0592787026 | Email Duplicate                       |
+      | mohammadre1999@gmail.com | 1mohammad | 1mohammad     | mohammad  | 0592787026 | Password shouldn't start with number  |
+      | mohammadre1999@gmail.com | mohamm    | mohamm        | mohammad  | 0592787026 | Password length should be more than 7 |
+      | mohammadre1999@gmail.com | mohammad1 | mohammad2     | mohammad  | 0592787026 | Password doesn't match                |
+      | mohammadre1999@gmail.com | mohammad1 | mohammad1     | 1mohammad | 0592787026 | Name shouldn't start with number      |
+      | mohammadre1999@gmail.com | mohammad1 | mohammad1     | 1mohammad | 1292787026 | Phone should start with 05            |
 
   @Successful
   Scenario Outline: Successful sign-up
