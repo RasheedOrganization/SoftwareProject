@@ -3,36 +3,34 @@
     product entry must be correct and accurate
 
     @Unsuccessful
-    Scenario Outline: I have chosen to enter the product details
+    Scenario Outline: Unsuccessful Product-entry
     the worker should see an error message on the screen
 
-      Given I filled product details
-      When I enter an invalid Shape type '<shapeType>'
-      And I enter an invalid Phone number format'<PhoneNumber>'
-      And I enter an invalid name format'<name>'
-      And I enter an empty Address'<address>'
-      And I enter an invalid Height format'<Height>'
-      And I enter an invalid Width format'<Width>'
-      And I enter an invalid Radius format'<Radius>'
-      And I enter an invalid Quantity format'<Quantity>'
-      Then I should tell the worker a warning message'<message>'
+      Given I filled the product details
+      When I enter an invalid Phone number '<PhoneNumber>' format
+      And I enter an invalid name '<name>' format
+      And I enter an empty '<address>' Address
+      And I enter an empty '<Area>' Area
+      And I enter an empty '<Quantity>' Quantity
+      And I enter an invalid Quantity '<Quantity>' format
+      And I enter an invalid Area '<Area>' format
+      Then I should show a warning message '<message>'
       Examples:
-        | shapeType   | PhoneNumber | name   | address | Height | Width | Radius | Quantity | message                                             |
-        | Cube        | 97059251755 | pillow | Jenin   | 20     | 30    |        | 1        | Shape type must only be in 'Rectangular , Circular' |
-        | Rectangular | 975684126   | carpet | Nablus  | 10     | 20    |        | 1        | Please enter a valid Phone Number                   |
-        | Circular    | 97059251756 | carpet |         |        |       | 1      | 2        | Address can't be empty                              |
-        | Rectangular | 97059251757 | carpet | Jenin   | as     |       |        |          | Height can only be a number                         |
-        | Rectangular | 97059251758 | carpet | Nablus  | be     |       |        |          | Width can only be a number                          |
-        | Circular    | 97059251743 | carpet | Jenin   |        |       | asd    |          | Radius can only be a number                         |
-        | Circular    | 97059251711 | carpet | Jenin   |        |       | 1      |          | Quantity can't be empty                             |
-        | Rectangular | 97056251721 | 14     | Jenin   | 12     | 3     |        | 4        | Name can't contain digits                           |
+        | PhoneNumber | name   | address | Quantity | Area | message                           |
+        | 975684126   | carpet | Nablus  | 1        | 300  | Please enter a valid Phone Number |
+        | 97059251756 | carpet |         | 2        | 200  | Address can't be empty            |
+        | 97059251711 | carpet | Jenin   |          | 30   | Quantity can't be empty           |
+        | 97056251721 | 14     | Jenin   | 4        | 200  | Name can't contain digits         |
+        | 97056251744 | carpet | Jenin   | 2        |      | Area can't be empty               |
+        | 97056251755 | carpet | Jenin   | a        | 45   | Quantity must contain Digits only |
+        | 97056251777 | carpet | Jenin   | 2        | na   | Area must contain Digits only     |
 
     @Successful
     Scenario Outline: Successful Product-entry
 
-      Given I filled product details
-      When I entered details with valid  shape type'<shapeType>' and phone number'<PhoneNumber>' and name'<name>' and address'<address>' and '<Height>' and'<Width>' and'<Radius>'and quantity'<Quantity>'
-      Then I should see a message expressing validation'<message>'
+      Given I filled the product details
+      When I entered details with valid  phone number '<PhoneNumber>' and name '<name>' and address '<address>' and quantity '<Quantity>' and area '<Area>'
+      Then I should see a message expressing validation '<message>'
       Examples:
-        | shapeType | PhoneNumber | name   | address | Height | Width | Radius | Quantity | message              |
-        | Cube      | 97059251755 | pillow | Jenin   | 20     | 30    |        | 1        | Successful Insertion |
+        | PhoneNumber | name   | address | Quantity | Area | message              |
+        | 97056251710 | carpet | Nablus  | 4        | 300  | Successful insertion |
