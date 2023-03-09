@@ -35,7 +35,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Button fx:id="BTN_Entry" layoutX="408.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#BTN_EntercClicked" prefHeight="43.0" prefWidth="150.0" styleClass="button-blue" stylesheets="@Product-view.css" text="Enter">
+      <Button fx:id="BTN_Entry" layoutX="408.0" layoutY="391.0" mnemonicParsing="false" onMouseClicked="#BTN_EnterClicked" prefHeight="43.0" prefWidth="150.0" style="-fx-background-radius: 10;" styleClass="button-blue" stylesheets="@Product-view.css" text="Enter">
          <font>
             <Font name="Dosis Medium" size="22.0" />
          </font>
@@ -56,11 +56,11 @@
             <Image url="@imges/product.png" />
          </image>
       </ImageView>
-      <TextField fx:id="TF_Pname" layoutX="383.0" layoutY="114.0" prefHeight="26.0" prefWidth="194.0" promptText="Product name" styleClass="text-field-gray" stylesheets="@Product-view.css" />
-      <TextField fx:id="TF_Parea" layoutX="382.0" layoutY="158.0" prefHeight="26.0" prefWidth="194.0" promptText="Area cm²" styleClass="text-field-gray" stylesheets="@Product-view.css" />
-      <TextField fx:id="TF_Pquantity" layoutX="383.0" layoutY="202.0" prefHeight="26.0" prefWidth="194.0" promptText="Quantity" styleClass="text-field-gray" stylesheets="@Product-view.css" />
-      <TextField fx:id="TF_Paddress" layoutX="382.0" layoutY="246.0" prefHeight="26.0" prefWidth="194.0" promptText="Address" styleClass="text-field-gray" stylesheets="@Product-view.css" />
-      <TextField fx:id="TF_PphoneNumber" layoutX="382.0" layoutY="290.0" prefHeight="26.0" prefWidth="194.0" promptText="Phone number" styleClass="text-field-gray" stylesheets="@Product-view.css" />
+      <TextField fx:id="TF_Pname" layoutX="383.0" layoutY="114.0" prefHeight="26.0" prefWidth="194.0" promptText="Product name" style="-fx-background-radius: 8;" styleClass="text-field-gray" stylesheets="@Product-view.css" />
+      <TextField fx:id="TF_Parea" layoutX="382.0" layoutY="158.0" prefHeight="26.0" prefWidth="194.0" promptText="Area cm²" style="-fx-background-radius: 8;" styleClass="text-field-gray" stylesheets="@Product-view.css" />
+      <TextField fx:id="TF_Pquantity" layoutX="383.0" layoutY="202.0" prefHeight="26.0" prefWidth="194.0" promptText="Quantity" style="-fx-background-radius: 8;" styleClass="text-field-gray" stylesheets="@Product-view.css" />
+      <TextField fx:id="TF_Paddress" layoutX="382.0" layoutY="246.0" prefHeight="26.0" prefWidth="194.0" promptText="Address" style="-fx-background-radius: 8;" styleClass="text-field-gray" stylesheets="@Product-view.css" />
+      <TextField fx:id="TF_PphoneNumber" layoutX="382.0" layoutY="290.0" prefHeight="26.0" prefWidth="194.0" promptText="Phone number" style="-fx-background-radius: 8;" styleClass="text-field-gray" stylesheets="@Product-view.css" />
       <Label layoutX="383.0" layoutY="97.0" text="Product name" textFill="#565151" />
       <Label layoutX="383.0" layoutY="140.0" text="Area cm²" textFill="#565151" />
       <Label layoutX="383.0" layoutY="184.0" text="Quantity" textFill="#565151" />

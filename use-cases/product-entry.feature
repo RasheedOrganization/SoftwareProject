@@ -20,7 +20,7 @@
         | 975684126   | carpet | Nablus  | 1        | 300  | Please enter a valid Phone Number |
         | 97059251756 | carpet |         | 2        | 200  | Address can't be empty            |
         | 97059251711 | carpet | Jenin   |          | 30   | Quantity can't be empty           |
-        | 97056251721 | 14     | Jenin   | 4        | 200  | Name can't contain digits         |
+        | 97059251789 | 14     | Jenin   | 4        | 200  | Name can't contain digits         |
         | 97056251744 | carpet | Jenin   | 2        |      | Area can't be empty               |
         | 97056251755 | carpet | Jenin   | a        | 45   | Quantity must contain Digits only |
         | 97056251777 | carpet | Jenin   | 2        | na   | Area must contain Digits only     |
