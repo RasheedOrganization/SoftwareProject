@@ -71,7 +71,7 @@ public class HelloController implements Initializable {
                 if(Email.equals(string)) {
                     String Password = rs.getString(2);
                     if(Password.equals(PasswordText.getText())) {
-                        Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
+                        Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) UserNameText.getScene().getWindow();
                         stage.setScene(scene);

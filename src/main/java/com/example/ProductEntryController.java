@@ -84,7 +84,7 @@ public class ProductEntryController implements Initializable{
                 Parent root=(Parent) fxmlLoader.load();
                 Stage stage=new Stage();
                 stage.setTitle("Invoice");
-                stage .setScene(new Scene(root));
+                stage.setScene(new Scene(root));
                 stage.show();
                 TF_Parea.setText("");
                 TF_Pname.setText("");
