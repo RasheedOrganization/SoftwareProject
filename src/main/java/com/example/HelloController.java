@@ -38,11 +38,18 @@ public class HelloController implements Initializable {
     private TextField UserNameText;
 
 
-    private ConnectionDatabase Data;
+    private ConnectionDatabase Data = ConnectionDatabase.getInstance();
 
     @FXML
     void CreateAnAccountClicked(MouseEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) CreateAnAccount.getScene().getWindow();
+            stage.setScene(scene);
+        }catch (Exception e) {
+            System.out.println("Exception in CreateAnAccountClicked");
+        }
     }
 
     @FXML
@@ -53,7 +60,6 @@ public class HelloController implements Initializable {
     @FXML
     void SignInClicked(ActionEvent event) {
         try {
-            Data = ConnectionDatabase.getInstance();
             Connection con = Data.getConnectData();
             String all = "select email_user, password from user_table";
             Statement stmt = con.createStatement();
