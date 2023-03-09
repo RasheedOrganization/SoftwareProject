@@ -1,14 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.Invoice-view.Invoice"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="456.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.InvoiceController">
+   <children>
+      <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="615.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Product-view/imges/house-cleaning.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="570.0" layoutY="78.0" startX="-544.4000244140625" startY="-1.52587890625E-5" />
+      <Label layoutX="25.0" layoutY="14.0" prefHeight="24.0" prefWidth="162.0" text="Bubble Cleaning">
+         <font>
+            <Font name="Dosis Regular" size="25.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" layoutX="569.0" layoutY="394.0" startX="-544.4000244140625" startY="-1.52587890625E-5" />
+      <Label layoutX="308.0" layoutY="31.0" prefHeight="43.0" prefWidth="111.0" text="Invoice" textFill="#4e4e4e">
+         <font>
+            <Font name="Century" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="25.0" layoutY="395.0" prefHeight="18.0" prefWidth="111.0" text="Terms &amp; Condition:" textFill="#a10404" />
+      <Label layoutX="25.0" layoutY="413.0" prefHeight="18.0" prefWidth="162.0" text="Payment is due within 15 days" />
+      <Label layoutX="511.0" layoutY="417.0" prefHeight="18.0" prefWidth="50.0" text="Routing:" />
+      <Label layoutX="561.0" layoutY="417.0" prefHeight="18.0" prefWidth="71.0" text="0599261922" textFill="#0062ff" />
+      <Label layoutX="511.0" layoutY="395.0" prefHeight="18.0" prefWidth="92.0" text="Account number:" />
+      <Label layoutX="607.0" layoutY="395.0" prefHeight="18.0" prefWidth="71.0" text="1234567890" textFill="#0062ff" />
+      <Label layoutX="362.0" layoutY="146.0" prefHeight="20.0" prefWidth="98.0" text="Received date :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="378.0" layoutY="292.0" prefHeight="18.0" prefWidth="68.0" text="TOTAL :">
+         <font>
+            <Font name="Forte" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="Total_price" layoutX="462.0" layoutY="288.0" prefHeight="18.0" prefWidth="68.0" text="35.7$">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="362.0" layoutY="170.0" prefHeight="20.0" prefWidth="98.0" text="Delivery date :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="362.0" layoutY="194.0" prefHeight="20.0" prefWidth="98.0" text="Address :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="363.0" layoutY="243.0" prefHeight="20.0" prefWidth="98.0" text="DISCOUNT : ">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="R_Date" layoutX="470.0" layoutY="146.0" prefHeight="20.0" prefWidth="131.0" text="2\3\2023">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="D_Date" layoutX="470.0" layoutY="170.0" prefHeight="20.0" prefWidth="131.0" text="11\3\2023">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Address" layoutX="470.0" layoutY="194.0" prefHeight="20.0" prefWidth="131.0" text="Jenin">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="Discount" layoutX="470.0" layoutY="243.0" prefHeight="20.0" prefWidth="131.0" text="2.0$">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="100.0" layoutX="462.0" layoutY="279.0" startX="-100.0" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="100.0" layoutX="462.0" layoutY="323.0" startX="-100.0" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="-78.5" endY="36.5" layoutX="641.0" layoutY="286.0" startX="-78.5" startY="-6.5" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="-289.5" endY="26.5" layoutX="651.0" layoutY="296.0" startX="-289.5" startY="-16.5" />
+      <Label layoutX="362.0" layoutY="218.0" prefHeight="20.0" prefWidth="98.0" text="Customer :">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="User" layoutX="470.0" layoutY="218.0" prefHeight="20.0" prefWidth="131.0" text="Rasheed">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="Table_viwe" layoutX="39.0" layoutY="105.0" prefHeight="232.0" prefWidth="296.0" stylesheets="@InvoiceStyle.css">
+        <columns>
+          <TableColumn fx:id="PN_colom" prefWidth="92.79995346069336" text="Product name" />
+          <TableColumn fx:id="Area_colom" prefWidth="60.7999267578125" text="Area" />
+            <TableColumn fx:id="Quantity_colom" prefWidth="61.59999084472656" text="Quantity" />
+            <TableColumn fx:id="Price_colom" minWidth="0.0" prefWidth="80.00001525878906" text="Price" />
+        </columns>
+         <styleClass>
+            <String fx:value="cell" />
+            <String fx:value="column-header" />
+            <String fx:value="column-header-background" />
+            <String fx:value="decrement-button" />
+            <String fx:value="increment-button" />
+            <String fx:value="filler" />
+            <String fx:value="label" />
+            <String fx:value="scroll-bar" />
+            <String fx:value="table-row-cell" />
+            <String fx:value="track" />
+            <String fx:value="thumb" />
+         </styleClass>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <DropShadow height="9.36" radius="2.4099999999999997" spread="0.32" width="2.28">
+               <color>
+                  <Color red="0.22081871330738068" green="0.25417155027389526" blue="0.621052622795105" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TableView>
+   </children>
 </AnchorPane>
