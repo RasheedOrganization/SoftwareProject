@@ -1,4 +1,4 @@
-package com.example.TableView;
+package com.example;
 
 public class Invoice {
 private String ProductName;

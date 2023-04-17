@@ -1,20 +1,22 @@
 package com.example;
 
-import com.example.TableView.Invoice;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 
@@ -29,7 +31,8 @@ public class InvoiceController implements Initializable {
 
     @FXML
     private Label R_Date;
-
+    @FXML
+    private Label LocalPrice;
     @FXML
     private Label Total_price;
 
@@ -49,6 +52,8 @@ public class InvoiceController implements Initializable {
 
     @FXML
     private TableView<Invoice> Table_viwe;
+
+    public double Discountcalc=0;
     private ConnectionDatabase Data;
 
 
@@ -59,8 +64,6 @@ public class InvoiceController implements Initializable {
         Price_colom.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("price"));
 
         Table_viwe.setItems(ProductEntryController.LIST);
-        //Table_viwe.getItems().addAll(ProductEntryController.LIST);
-        System.out.print(ProductEntryController.LIST.get(1).getArea());
         InitializeHelper();
     }
     private void InitializeHelper()
@@ -68,24 +71,60 @@ public class InvoiceController implements Initializable {
         try {
             Data=ConnectionDatabase.getInstance();
             Connection con = Data.getConnectData();
+
             String str="SELECT SYSDATE from USER_TABLE";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             rs.next();
             R_Date.setText(rs.getString(1));
-            str="SELECT SYSDATE+3 from USER_TABLE";
+            str="SELECT SYSDATE+7 from USER_TABLE";
             rs = stmt.executeQuery(str);
             rs.next();
             D_Date.setText(rs.getString(1));
+            User.setText(HelloController.UserNamee);
+            Address.setText(ProductEntryController.location);
+
+
+            String dis="SELECT count(CUSTOMER_EMAIL) FROM PRODUCT WHERE CUSTOMER_EMAIL='"+HelloController.GmailCounter+"'";
+            Statement sss=con.createStatement();
+            ResultSet count=sss.executeQuery(dis);
+            count.next();
+            Discountcalc=count.getDouble(1);
+            System.out.println(Discountcalc);
+
         }
         catch (Exception e)
         {
             System.out.println("Exception in invoice");
         }
-        Discount.setText("0.00$");
-        Total_price.setText(Double.toString(ProductEntryController.LocalPrice)+"$");
+
+        if(Discountcalc<=10)Discountcalc=0.00;
+
+        else if(Discountcalc<=20)Discountcalc=ProductEntryController.LocalPrice*0.1;
+
+        else Discountcalc=ProductEntryController.LocalPrice*0.2;
+
+        if(ProductEntryController.LocalPrice>=1000)Discountcalc=ProductEntryController.LocalPrice*0.02;
+        Discount.setText(Double.toString(Discountcalc)+"$");
+        Total_price.setText(Double.toString(ProductEntryController.LocalPrice-Discountcalc)+"$");
+        LocalPrice.setText(Double.toString(ProductEntryController.LocalPrice)+"$");
         ProductEntryController.LocalPrice=0;
+        Discountcalc=0;
 
     }
 
-}
+    public void BackAndClear(MouseEvent event) {
+        ProductEntryController.LIST.clear();
+        Table_viwe.setItems(ProductEntryController.LIST);
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) Discount.getScene().getWindow();
+            stage.setScene(scene);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in Logout Clicked");
+        }
+    }
+    }
+
