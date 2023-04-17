@@ -62,7 +62,7 @@ public class HelloController implements Initializable {
     void SignInClicked(ActionEvent event) {
         try {
             Connection con = Data.getConnectData();
-            String all = "select email_user, password,NAME_USER from user_table";
+            String all = "select email_user, password,NAME_USER,ADMIN_FLAG from user_table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
@@ -72,9 +72,13 @@ public class HelloController implements Initializable {
                 if(Email.equals(string)) {
                     String Password = rs.getString(2);
                     if(Password.equals(PasswordText.getText())) {
+                        String WhereToGo;
                         GmailCounter=rs.getString(1);
                         UserNamee=rs.getString(3);
-                        Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
+                        if(rs.getString(4).equals("true"))
+                            WhereToGo="Sign-up-view/Reports.fxml";
+                        else WhereToGo="Product-view/Product-entry-view.fxml";
+                        Parent root = FXMLLoader.load(getClass().getResource(WhereToGo));
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) UserNameText.getScene().getWindow();
                         stage.setScene(scene);

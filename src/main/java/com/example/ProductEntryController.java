@@ -60,7 +60,7 @@ public class ProductEntryController implements Initializable{
 
     public void LogoutBtnClicked(MouseEvent mouseEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/hello-view.fxml"));
             Scene scene = new Scene(root);
             Stage stage =(Stage) (((Node)mouseEvent.getSource()).getScene().getWindow());
             stage.setScene(scene);
