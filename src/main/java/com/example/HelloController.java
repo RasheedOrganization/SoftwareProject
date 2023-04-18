@@ -36,26 +36,33 @@ public class HelloController implements Initializable {
 
     @FXML
     private TextField UserNameText;
+    static String GmailCounter;
+    static String UserNamee;
 
-
-    private ConnectionDatabase Data;
+    private ConnectionDatabase Data = ConnectionDatabase.getInstance();
 
     @FXML
     void CreateAnAccountClicked(MouseEvent event) {
-
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) CreateAnAccount.getScene().getWindow();
+            stage.setScene(scene);
+        }catch (Exception e) {
+            System.out.println("Exception in CreateAnAccountClicked");
+        }
     }
 
     @FXML
     void ForgotClicked(MouseEvent event) {
-
+            JOptionPane.showMessageDialog(null,"احلف انك ناسي ... على كلن فش تفوت على حسابك روح على مغسلة تانية");
     }
 
     @FXML
     void SignInClicked(ActionEvent event) {
         try {
-            Data = ConnectionDatabase.getInstance();
             Connection con = Data.getConnectData();
-            String all = "select email_user, password from user_table";
+            String all = "select email_user, password,NAME_USER,ADMIN_FLAG from user_table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
@@ -65,7 +72,13 @@ public class HelloController implements Initializable {
                 if(Email.equals(string)) {
                     String Password = rs.getString(2);
                     if(Password.equals(PasswordText.getText())) {
-                        Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
+                        String WhereToGo;
+                        GmailCounter=rs.getString(1);
+                        UserNamee=rs.getString(3);
+                        if(rs.getString(4).equals("true"))
+                            WhereToGo="Sign-up-view/Reports.fxml";
+                        else WhereToGo="Product-view/Product-entry-view.fxml";
+                        Parent root = FXMLLoader.load(getClass().getResource(WhereToGo));
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) UserNameText.getScene().getWindow();
                         stage.setScene(scene);
