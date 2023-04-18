@@ -16,6 +16,7 @@ import javafx.stage.*;
 import javax.swing.*;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
 
@@ -50,11 +51,91 @@ public class ProductEntryController implements Initializable{
     static ObservableList<Invoice> LIST = FXCollections.observableArrayList();
     static String location;
     static double LocalPrice=0;
+    static int DevDate=0;
+    private int StatusCounter=0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
         ComboBox_Clothes.setItems(list);
+        StatusHelper();
     }
+
+
+    public void StatusHelper(){
+        try {
+            int WaitToTreatment=0;
+            String tempDate;
+            data = ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
+
+            String s="SELECT SYSDATE from USER_TABLE";
+            Statement ss=con.createStatement();
+            ResultSet sss=ss.executeQuery(s);
+            sss.next();
+            tempDate=sss.getString(1);
+
+            String stmt="SELECT productID,STATUS,STRINGDATE from product";
+            Statement stmtt = con.createStatement();
+            ResultSet rs = stmtt.executeQuery(stmt);
+            while(rs.next())
+            {
+                int flag=0;
+                if(rs.getString(2).equals("IN_TREATMENT"))
+                {
+                    String[] Split = rs.getString(3).split("-");
+                    String[] tempDateSplit = tempDate.split("-");
+                    if (Split[1].equals(tempDateSplit[1]))
+                    {
+                        if ( Integer.parseInt(tempDateSplit[0])-Integer.parseInt(Split[0]) > 2 )
+                        {
+                            flag=1;
+                        }
+                    }
+                    else
+                    {
+                        if(Integer.parseInt(tempDateSplit[0])+(30-Integer.parseInt(Split[0])) >2 )
+                            flag=1;
+                    }
+
+                    if(flag!=0)
+                    {
+                        String update="update product set status='" + "COMPLETE'" + "where productID="+rs.getInt(1);
+                        Statement stmtUpdate=con.createStatement();
+                        stmtUpdate.executeUpdate(update);
+                        if(StatusCounter>=1)StatusCounter--;
+                        WaitToTreatment++;
+                    }
+                    else
+                    {
+                        StatusCounter++;
+                    }
+
+
+                }
+            }
+
+            ResultSet RS=stmtt.executeQuery(stmt);
+            while(RS.next())
+            {
+                if(WaitToTreatment==0)break;
+                if(RS.getString(2).equals("WAITING"))
+                {
+                    String updatee = "update product set status='" + "IN_TREATMENT'" + "where productID="+RS.getInt(1);
+                    Statement stmtUpdate = con.createStatement();
+                    stmtUpdate.executeUpdate(updatee);
+                    WaitToTreatment--;
+                }
+            }
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("iam here in Status Counter idiot");
+        }
+
+    }
+
+
 
 
 
@@ -172,10 +253,23 @@ public class ProductEntryController implements Initializable{
                     clothType = null;
                 }
 
-                String all = "INSERT INTO Product values(Prouct_ID_sequence.NEXTVAL," + "'" + name + "'," + "'" + area + "'," + "'" + quantity + "',"
-                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + WellCleaned + "'," + "'" + Customer_email + "')";
-                Statement stmt = con.createStatement();
-                stmt.executeUpdate(all);
+
+                String WhatIsStatus=null,CurrentDate;
+                String str="SELECT SYSDATE from USER_TABLE";
+                Statement stmtt = con.createStatement();
+                ResultSet rss = stmtt.executeQuery(str);
+                rss.next();
+                CurrentDate=rss.getString(1);
+
+                if(StatusCounter<=10)
+                {
+                    WhatIsStatus="IN_TREATMENT";
+                    StatusCounter++;
+                }
+                else WhatIsStatus="WAITING";
+
+
+
                 double price = 0;
                 if (Check_Use.isSelected()) {
                     if (ComboBox_Clothes.getValue().equals("Pants")) price = Double.parseDouble(quantity) * 5;
@@ -195,7 +289,10 @@ public class ProductEntryController implements Initializable{
                 LIST.add(
                         new Invoice(name, Double.parseDouble(area), Double.parseDouble(quantity), price)
                 );
-
+                String all = "INSERT INTO Product values(Prouct_ID_sequence.NEXTVAL," + "'" + name + "'," + "'" + area + "'," + "'" + quantity + "',"
+                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + WellCleaned + "'," + "'" + Customer_email + "'," + "'"+WhatIsStatus+"',"+price+",'"+"false"+"',"+"'"+CurrentDate+"')";
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(all);
                 TF_Parea.setText("");
                 TF_Pname.setText("");
                 TF_Pquantity.setText("");
