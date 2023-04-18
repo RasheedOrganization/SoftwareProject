@@ -122,4 +122,17 @@ public class ReportsController implements Initializable {
 
         }
     }
+
+    public void ViewClicked(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) FinancialReport.getScene().getWindow();
+            stage.setScene(scene);
+        }
+        catch (Exception e) {
+
+        }
+
+    }
 }

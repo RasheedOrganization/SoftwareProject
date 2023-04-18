@@ -10,6 +10,7 @@ module com.example.softwareproject1 {
     requires AnimateFX;
     requires jasperreports;
 
+
     opens com.example to javafx.fxml;
     exports com.example;
 }

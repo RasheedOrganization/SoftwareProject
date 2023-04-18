@@ -58,7 +58,9 @@ public class ProductEntryController implements Initializable{
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
         ComboBox_Clothes.setItems(list);
         StatusHelper();
+       // SendEmail();
     }
+
 
 
     public void StatusHelper(){
