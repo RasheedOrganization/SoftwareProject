@@ -47,6 +47,24 @@ public class ReportsController implements Initializable {
     private Button Report;
     ConnectionDatabase data = ConnectionDatabase.getInstance();
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
+    public void ViewClicked(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) FinancialReport.getScene().getWindow();
+            stage.setScene(scene);
+        }
+        catch (Exception e) {
+            System.out.println("Exception in Business view button");
+        }
+
+    }
     @FXML
     void ReportClicked(ActionEvent event) {
         try {
@@ -106,33 +124,6 @@ public class ReportsController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    }
 
-    public void AddClicked(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) FinancialReport.getScene().getWindow();
-            stage.setScene(scene);
-        }
-        catch (Exception e) {
-
-        }
-    }
-
-    public void ViewClicked(ActionEvent actionEvent) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) FinancialReport.getScene().getWindow();
-            stage.setScene(scene);
-        }
-        catch (Exception e) {
-
-        }
-
-    }
 }

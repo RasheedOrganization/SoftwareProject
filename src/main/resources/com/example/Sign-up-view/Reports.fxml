@@ -6,28 +6,27 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="494.0" prefWidth="326.0" style="-fx-background-color: #ffffff;" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ReportsController">
+<AnchorPane prefHeight="437.0" prefWidth="326.0" style="-fx-background-color: #ffffff;" stylesheets="@../Style/Style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.ReportsController">
    <children>
-      <Button fx:id="FinancialReport" layoutX="53.0" layoutY="157.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Financial Report">
+      <Button fx:id="FinancialReport" layoutX="53.0" layoutY="157.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Financial Report">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="ProductReport" layoutX="53.0" layoutY="205.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Product Report">
+      <Button fx:id="ProductReport" layoutX="53.0" layoutY="205.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Product Report">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="CustomerReport" layoutX="53.0" layoutY="253.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Customer Report">
+      <Button fx:id="CustomerReport" layoutX="53.0" layoutY="253.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Customer Report">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="Report" layoutX="53.0" layoutY="301.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Report">
+      <Button fx:id="Report" layoutX="53.0" layoutY="301.0" mnemonicParsing="false" onAction="#ReportClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Report">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -42,7 +41,7 @@
             <Image url="@../Image/334969748_1143727506323877_5547492312497452551_n.png" />
          </image>
       </ImageView>
-      <Button fx:id="BackButton" layoutX="14.0" layoutY="449.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="34.0" prefWidth="65.0" style="-fx-background-color: #b9b9b9;" text="⬅" textFill="WHITE">
+      <Button fx:id="BackButton" layoutX="14.0" layoutY="399.0" mnemonicParsing="false" onAction="#BackClicked" prefHeight="34.0" prefWidth="65.0" style="-fx-background-color: #b9b9b9;" text="⬅" textFill="WHITE">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -50,14 +49,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="BTN_Add" layoutX="53.0" layoutY="351.0" mnemonicParsing="false" onAction="#AddClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Add Product">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <Circle fill="DODGERBLUE" layoutX="-4.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-      <VBox layoutX="-217.0" layoutY="57.0" prefHeight="237.0" prefWidth="122.0" />
-      <Button fx:id="BTN_GEN" layoutX="53.0" layoutY="401.0" mnemonicParsing="false" onAction="#ViewClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" text="Business view">
+      <Button fx:id="BTN_GEN" layoutX="53.0" layoutY="350.0" mnemonicParsing="false" onAction="#ViewClicked" prefHeight="38.0" prefWidth="218.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Business view">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

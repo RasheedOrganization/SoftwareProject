@@ -26,7 +26,12 @@ public class BusinessController implements Initializable {
     @FXML
     private Button BTN_C;
 
-
+    @FXML
+    private TextField TF_PN;
+    @FXML
+    private TextField TF_ID;
+    @FXML
+    private TextField TF_NAME;
     @FXML
     private Button BTN_P;
 
@@ -240,5 +245,59 @@ public class BusinessController implements Initializable {
     }
 
     public void BTN_ADD_Clicked(ActionEvent actionEvent) {
+        if(Product_TV.isVisible())
+        {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) TF_search.getScene().getWindow();
+                stage.setScene(scene);
+            }
+            catch (Exception e) {
+                System.out.println("Exception in Product add button");
+            }
+        }
+        else if(Worker_TV.isVisible())
+        {
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("Business-view/WorkerAdd.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) TF_search.getScene().getWindow();
+                stage.setScene(scene);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Exception in Worker add button");
+            }
+        }
+        else if(Customer_TV.isVisible())
+        {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) TF_search.getScene().getWindow();
+                stage.setScene(scene);
+            }
+            catch (Exception e) {
+                System.out.println("Exception in Customer add button");
+            }
+        }
+    }
+
+
+
+
+
+    public void BTN_LOGOUT_B(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage =(Stage) (((Node)event.getSource()).getScene().getWindow());
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e) {
+            System.out.println("Exception in Logout2 Clicked");
+        }
     }
 }
