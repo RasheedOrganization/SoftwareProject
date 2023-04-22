@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="506.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.BusinessController">
+   <children>
+      <Button fx:id="BTN_P" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_P_CLICKED" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Product">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="BTN_C" layoutX="32.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_C_Clicked" prefHeight="45.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Customer">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Button fx:id="BTN_W" layoutX="355.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_W_CLICKED" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Workers">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <ImageView fitHeight="62.0" fitWidth="58.0" layoutX="648.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/334969748_1143727506323877_5547492312497452551_n.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="16.0" layoutY="237.0" prefHeight="230.0" prefWidth="690.0" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+         <children>
+            <TableView fx:id="Customer_TV" layoutX="9.0" layoutY="13.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css" visible="false">
+              <columns>
+                <TableColumn fx:id="TV_CUSTOMR_NAME" prefWidth="165.59997940063477" text="NAME" />
+                  <TableColumn fx:id="TV_CUSTOMR_Email" prefWidth="236.7999725341797" text="Email" />
+                  <TableColumn fx:id="TV_CUSTOMR_Phone" prefWidth="258.4000244140625" text="Phone" />
+              </columns>
+               <styleClass>
+                  <String fx:value="table-view" />
+                  <String fx:value="table-row-cell" />
+               </styleClass>
+            </TableView>
+            <TableView fx:id="Product_TV" layoutX="9.0" layoutY="13.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css">
+               <columns>
+                  <TableColumn fx:id="TV_P_ID" prefWidth="75.19998550415039" text="ID" />
+                  <TableColumn fx:id="TV_P_name" prefWidth="98.39999389648438" text="ProductName" />
+                  <TableColumn fx:id="TV_P_area" prefWidth="99.99998474121094" text="ProductArea" />
+                  <TableColumn fx:id="TV_P_quantity" prefWidth="68.79998779296875" text="Quantity" />
+                  <TableColumn fx:id="TV_P_address" prefWidth="70.4000244140625" text="Address" />
+                  <TableColumn fx:id="TV_P_status" prefWidth="72.79998779296875" text="Status" />
+                  <TableColumn fx:id="TV_P_date" prefWidth="84.0" text="Date" />
+                  <TableColumn fx:id="TV_P_price" prefWidth="96.800048828125" text="price" />
+               </columns>
+               <styleClass>
+                  <String fx:value="table-view" />
+                  <String fx:value="table-row-cell" />
+               </styleClass>
+            </TableView>
+            <TableView fx:id="Worker_TV" layoutX="10.0" layoutY="12.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css" visible="false">
+               <columns>
+                  <TableColumn fx:id="TV_W_ID" prefWidth="165.59997940063477" text="ID" />
+                  <TableColumn fx:id="TV_W_name" prefWidth="158.40000915527344" text="Name" />
+                  <TableColumn fx:id="TV_W_phone" prefWidth="182.39996337890625" text="Phone" />
+                  <TableColumn fx:id="TV_W_flag" prefWidth="160.79998779296875" text="Availablility" />
+               </columns>
+               <styleClass>
+                  <String fx:value="table-view" />
+                  <String fx:value="table-row-cell" />
+               </styleClass>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Label layoutX="305.0" layoutY="14.0" prefHeight="51.0" prefWidth="138.0" text="Business view">
+         <font>
+            <Font name="Dosis Regular" size="25.0" />
+         </font>
+      </Label>
+      <Line endX="126.39996337890625" endY="-12.800003051757812" layoutX="580.0" layoutY="88.0" startX="-559.2000122070312" startY="-12.800003051757812" />
+      <ImageView fx:id="BT_LOGOUT" fitHeight="23.0" fitWidth="25.0" layoutX="14.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/reply.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <TextField fx:id="TF_search" layoutX="58.0" layoutY="202.0" promptText="search..." />
+      <ImageView fx:id="BT_search" fitHeight="23.0" fitWidth="23.0" layoutX="27.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/search.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <Circle fill="DODGERBLUE" layoutX="-11.0" layoutY="-11.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
+      <Button fx:id="BTN_ADD" layoutX="421.0" layoutY="192.0" mnemonicParsing="false" onAction="#BTN_ADD_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #22dd68;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="BTN_DELETE" layoutX="562.0" layoutY="192.0" mnemonicParsing="false" onAction="#BTN_Delete_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #e0371f;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Delete">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
