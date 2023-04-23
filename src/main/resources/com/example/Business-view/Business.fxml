@@ -100,12 +100,12 @@
          </cursor>
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="-11.0" layoutY="-11.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="BTN_ADD" layoutX="421.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_ADD_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #22dd68;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
+      <Button fx:id="BTN_ADD" layoutX="421.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_ADD_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #6ab04c;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="BTN_DELETE" layoutX="562.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_Delete_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #e0371f;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Delete">
+      <Button fx:id="BTN_DELETE" layoutX="562.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_Delete_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #d32f2f;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
