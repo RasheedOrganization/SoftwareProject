@@ -13,7 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
+import javax.swing.*;
 import javax.swing.text.html.ImageView;
 import java.net.URL;
 import java.sql.Connection;
@@ -241,7 +241,75 @@ public class BusinessController implements Initializable {
         WorkerHelper();
     }
 
-    public void BTN_Delete_Clicked(ActionEvent actionEvent) {
+    public void BTN_Delete_Clicked(ActionEvent actionEvent)
+    {
+        if(Product_TV.isVisible())
+        {
+                try{
+                    Data=ConnectionDatabase.getInstance();
+                    Connection con = Data.getConnectData();
+                    String P_ID=Product_TV.getSelectionModel().getSelectedItem().getID();
+                    String str="DELETE FROM Product WHERE EMAIL_USER='"+P_ID+"'";
+                    Statement stmt = con.createStatement();
+                    int deleted = stmt.executeUpdate(str);
+                    if(deleted > 0)
+                        JOptionPane.showMessageDialog(null , "Deleted successfully");
+                    else
+                        JOptionPane.showMessageDialog(null , "Nothing deleted");
+
+                }
+                catch (Exception e)
+                {
+                    System.out.println("Exception in Product delete");
+                }
+
+                Product_TV.getItems().removeAll(Product_TV.getSelectionModel().getSelectedItem());
+
+        }
+        else if(Worker_TV.isVisible())
+        {
+            try{
+                Data=ConnectionDatabase.getInstance();
+                Connection con = Data.getConnectData();
+                String W_ID=Worker_TV.getSelectionModel().getSelectedItem().getID();
+                String str="DELETE FROM WORKERS WHERE ID='"+W_ID+"'";
+                Statement stmt = con.createStatement();
+                int deleted = stmt.executeUpdate(str);
+                if(deleted > 0)
+                    JOptionPane.showMessageDialog(null , "Deleted successfully");
+                else
+                    JOptionPane.showMessageDialog(null , "Nothing deleted");
+
+            }
+            catch (Exception e)
+            {
+                System.out.println("Exception in Worker delete");
+            }
+
+            Worker_TV.getItems().removeAll(Worker_TV.getSelectionModel().getSelectedItem());
+        }
+        else if(Customer_TV.isVisible())
+        {
+            try{
+                Data=ConnectionDatabase.getInstance();
+                Connection con = Data.getConnectData();
+                String C_Email=Customer_TV.getSelectionModel().getSelectedItem().getEmail();
+                String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+C_Email+"'";
+                Statement stmt = con.createStatement();
+                int deleted = stmt.executeUpdate(str);
+                if(deleted > 0)
+                    JOptionPane.showMessageDialog(null , "Deleted successfully");
+                else
+                    JOptionPane.showMessageDialog(null , "Nothing deleted");
+
+            }
+            catch (Exception e)
+            {
+                System.out.println("Exception in Customer delete");
+            }
+
+            Customer_TV.getItems().removeAll(Customer_TV.getSelectionModel().getSelectedItem());
+        }
     }
 
     public void BTN_ADD_Clicked(ActionEvent actionEvent) {

@@ -1,5 +1,5 @@
 package com.example;
-
+import com.example.ConnectionDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.Statement;
+
 public class WorkerController {
     @FXML
     private TextField TF_PN;
@@ -17,8 +20,23 @@ public class WorkerController {
     private TextField TF_ID;
     @FXML
     private TextField TF_NAME;
+    private ConnectionDatabase Data;
     public void Worker_insert(ActionEvent actionEvent) {
+        try{
+            Data=ConnectionDatabase.getInstance();
+            Connection con = Data.getConnectData();
 
+            String str="INSERT INTO WORKERS VALUES('"+TF_ID.getText()+"',"+"'"+TF_NAME.getText()+"',"+"'"+TF_PN.getText()+"',"+"'"+"false')";
+            Statement stmt = con.createStatement();
+            stmt.executeUpdate(str);
+            TF_PN.setText("");
+            TF_NAME.setText("");
+            TF_ID.setText("");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception in Insert");
+        }
 
     }
 
