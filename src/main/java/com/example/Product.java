@@ -2,10 +2,10 @@ package com.example;
 
 public class Product {
     private String ID;
-    private float price;
+    private double price;
     private String name,area,quantity,address,status,date;
 
-    public Product(String id, float price, String name, String area, String quantity, String address, String status, String date) {
+    public Product(String id, double price, String name, String area, String quantity, String address, String status, String date) {
         this.ID = id;
         this.price = price;
         this.name = name;
@@ -24,11 +24,11 @@ public class Product {
         this.ID = ID;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

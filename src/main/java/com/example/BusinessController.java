@@ -2,6 +2,8 @@ package com.example;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -142,7 +144,132 @@ public class BusinessController implements Initializable {
         Product_TV.setVisible(false);
         Worker_TV.setVisible(false);
 
+
+
+
+
+
+
+
+
     }
+
+    private void WorkerSearch() {
+        FilteredList<Worker>filter=new FilteredList<>(W_LIST, b ->true);
+        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+            filter.setPredicate(worker->{
+                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                {
+                    return true;
+                }
+                String searchKey=NewVal.toLowerCase();
+                if(worker.getID().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(worker.getName().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(worker.getPhone().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(worker.getAvailability().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            });
+
+        });
+        SortedList<Worker> sortedData=new SortedList<>(filter);
+        sortedData.comparatorProperty().bind(Worker_TV.comparatorProperty());
+        Worker_TV.setItems(sortedData);
+
+
+    }
+    private void ProductSearch() {
+        FilteredList<Product>filter=new FilteredList<>(P_LIST, b ->true);
+        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+            filter.setPredicate(product->{
+                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                {
+                    return true;
+                }
+                String searchKey=NewVal.toLowerCase();
+                if(product.getID().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getName().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getAddress().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getArea().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getStatus().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getQuantity().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(product.getDate().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            });
+
+        });
+        SortedList<Product> sortedData=new SortedList<>(filter);
+        sortedData.comparatorProperty().bind(Product_TV.comparatorProperty());
+        Product_TV.setItems(sortedData);
+    }
+    private void CustomerSearch() {
+        FilteredList<Customer>filter=new FilteredList<>(C_LIST, b ->true);
+        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+            filter.setPredicate(customer->{
+                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                {
+                    return true;
+                }
+                String searchKey=NewVal.toLowerCase();
+                if(customer.getName().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(customer.getEmail().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else if(customer.getPhone().toLowerCase().indexOf(searchKey) > -1)
+                {
+                    return true;
+                }
+                else
+                    return false;
+
+            });
+
+        });
+        SortedList<Customer> sortedData=new SortedList<>(filter);
+        sortedData.comparatorProperty().bind(Customer_TV.comparatorProperty());
+        Customer_TV.setItems(sortedData);
+    }
+
 
     private void CustomerHelper() {
         C_LIST.clear();
@@ -167,6 +294,7 @@ public class BusinessController implements Initializable {
         Customer_TV.setVisible(true);
         Product_TV.setVisible(false);
         Worker_TV.setVisible(false);
+        CustomerSearch();
     }
     private void ProductHelper() {
         P_LIST.clear();
@@ -202,6 +330,7 @@ public class BusinessController implements Initializable {
         Customer_TV.setVisible(false);
         Product_TV.setVisible(true);
         Worker_TV.setVisible(false);
+        ProductSearch();
     }
     private void WorkerHelper() {
         W_LIST.clear();
@@ -226,6 +355,7 @@ public class BusinessController implements Initializable {
         Customer_TV.setVisible(false);
         Product_TV.setVisible(false);
         Worker_TV.setVisible(true);
+        WorkerSearch();
     }
 
 
@@ -249,19 +379,20 @@ public class BusinessController implements Initializable {
                     Data=ConnectionDatabase.getInstance();
                     Connection con = Data.getConnectData();
                     String P_ID=Product_TV.getSelectionModel().getSelectedItem().getID();
-                    String str="DELETE FROM Product WHERE EMAIL_USER='"+P_ID+"'";
+                    String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
                     Statement stmt = con.createStatement();
                     int deleted = stmt.executeUpdate(str);
                     if(deleted > 0)
                         JOptionPane.showMessageDialog(null , "Deleted successfully");
                     else
                         JOptionPane.showMessageDialog(null , "Nothing deleted");
-
                 }
                 catch (Exception e)
                 {
                     System.out.println("Exception in Product delete");
                 }
+
+                ProductEntryController.StatusHelper();
 
                 Product_TV.getItems().removeAll(Product_TV.getSelectionModel().getSelectedItem());
 
@@ -366,6 +497,19 @@ public class BusinessController implements Initializable {
         }
         catch (Exception e) {
             System.out.println("Exception in Logout2 Clicked");
+        }
+    }
+
+    public void BTN_chart_Clicked(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Business-view/Chart.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage =(Stage) (((Node)event.getSource()).getScene().getWindow());
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e) {
+            System.out.println("Exception in chart Clicked");
         }
     }
 }
