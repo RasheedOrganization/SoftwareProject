@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="484.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Chart">
+   <children>
+      <Label layoutX="157.0" layoutY="116.0" prefHeight="26.0" prefWidth="60.0" text="ITEMS">
+         <font>
+            <Font name="Gadugi" size="21.0" />
+         </font>
+      </Label>
+      <Line endX="369.0" endY="-7.62939453125E-6" layoutX="376.0" layoutY="89.0" startX="-376.0" startY="-7.62939453125E-6" />
+      <ImageView fitHeight="48.0" fitWidth="51.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/334969748_1143727506323877_5547492312497452551_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="340.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/data-scientist.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="377.0" layoutY="160.0" prefHeight="306.0" prefWidth="360.0" style="-fx-background-color: #E2E5DE;">
+         <children>
+            <PieChart fx:id="C_chart" layoutX="11.0" layoutY="8.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@chart2.css" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="9.0" layoutY="160.0" prefHeight="306.0" prefWidth="360.0" style="-fx-background-color: #E2E5DE;">
+         <children>
+            <PieChart fx:id="C_chart1" layoutX="21.0" layoutY="8.0" prefHeight="290.0" prefWidth="314.0" />
+            <PieChart fx:id="I_chart" layoutX="8.0" layoutY="9.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@Chart.css" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="684.0" layoutY="21.0" onMouseClicked="#BackFromChart" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Image/reply.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="17.0" layoutY="55.0" prefHeight="34.0" prefWidth="158.0" text="Bubble Cleaning">
+         <font>
+            <Font name="Dosis Regular" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="519.0" layoutY="116.0" prefHeight="31.0" prefWidth="74.0" text="CASHE">
+         <font>
+            <Font name="Gadugi" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

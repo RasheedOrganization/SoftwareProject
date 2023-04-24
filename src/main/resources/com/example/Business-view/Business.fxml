@@ -110,5 +110,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Button fx:id="BTN_ADD1" layoutX="279.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_chart_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #f39c12;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Chart">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

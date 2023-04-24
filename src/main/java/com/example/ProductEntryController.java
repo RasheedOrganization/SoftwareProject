@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 
 public class ProductEntryController implements Initializable{
-    private ConnectionDatabase data;
+    private static ConnectionDatabase data;
     @FXML
     TextField TF_Pname;
     @FXML
@@ -52,7 +52,7 @@ public class ProductEntryController implements Initializable{
     static String location;
     static double LocalPrice=0;
     static int DevDate=0;
-    private int StatusCounter=0;
+    private static int StatusCounter=0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
@@ -63,7 +63,7 @@ public class ProductEntryController implements Initializable{
 
 
 
-    public void StatusHelper(){
+    public static void StatusHelper(){
         try {
             int WaitToTreatment=0;
             String tempDate;
@@ -84,18 +84,21 @@ public class ProductEntryController implements Initializable{
                 int flag=0;
                 if(rs.getString(2).equals("IN_TREATMENT"))
                 {
-                    String[] Split = rs.getString(3).split("-");
-                    String[] tempDateSplit = tempDate.split("-");
+                    String[] SpaceSplit=rs.getString(3).split(" ");
+                    String[] SpaceSplitTemp=tempDate.split(" ");
+
+                    String[] Split = SpaceSplit[0].split("-");
+                    String[] tempDateSplit = SpaceSplitTemp[0].split("-");
                     if (Split[1].equals(tempDateSplit[1]))
                     {
-                        if ( Integer.parseInt(tempDateSplit[0])-Integer.parseInt(Split[0]) > 2 )
+                        if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(Split[2]) > 2 )
                         {
                             flag=1;
                         }
                     }
                     else
                     {
-                        if(Integer.parseInt(tempDateSplit[0])+(30-Integer.parseInt(Split[0])) >2 )
+                        if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(Split[2])) >2 )
                             flag=1;
                     }
 
@@ -106,6 +109,8 @@ public class ProductEntryController implements Initializable{
                         stmtUpdate.executeUpdate(update);
                         if(StatusCounter>=1)StatusCounter--;
                         WaitToTreatment++;
+                        int f=1;
+                        WorkerRest(f);
                     }
                     else
                     {
@@ -126,6 +131,8 @@ public class ProductEntryController implements Initializable{
                     Statement stmtUpdate = con.createStatement();
                     stmtUpdate.executeUpdate(updatee);
                     WaitToTreatment--;
+                    int f=2;
+                    WorkerRest(f);
                 }
             }
 
@@ -137,9 +144,53 @@ public class ProductEntryController implements Initializable{
 
     }
 
+    private static void WorkerRest(int f) {
+        String W_flag="",IDString="";
+        if(f==1)
+        {
+            W_flag="false";
+        }
+        else if(f==2)
+        {
+            W_flag="true";
+        }
+        try {
+            data = ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
+
+            String s = "SELECT ID,WORKFLAG from WORKERS";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(s);
+            while(rs.next())
+            {
+                if(f==1) {
+                    if (rs.getString(2).equals("false"))
+                    {
+                        IDString=rs.getString(1);
+                        break;
+                    }
+
+                }
+                else if(f==2)
+                {
+                    if (rs.getString(2).equals("true"))
+                    {
+                        IDString=rs.getString(1);
+                        break;
+                    }
+                }
+            }
+            String update = "UPDATE WORKERS set WORKFLAG='"+W_flag+"' WHERE ID='"+IDString+"'";
+            Statement stmtt = con.createStatement();
+            stmtt.executeUpdate(update);
 
 
-
+        }
+        catch (Exception e)
+        {
+            System.out.println("Exception in worker flag method");
+        }
+    }
 
     public void LogoutBtnClicked(MouseEvent mouseEvent) {
         try {
@@ -175,6 +226,7 @@ public class ProductEntryController implements Initializable{
     }
 
     public void AddProductClicked(MouseEvent mouseEvent) {
+        StatusHelper();
         try {
             String   name=TF_Pname.getText()
                     ,area=TF_Parea.getText()
@@ -263,7 +315,7 @@ public class ProductEntryController implements Initializable{
                 rss.next();
                 CurrentDate=rss.getString(1);
 
-                if(StatusCounter<=10)
+                if(StatusCounter<10)
                 {
                     WhatIsStatus="IN_TREATMENT";
                     StatusCounter++;

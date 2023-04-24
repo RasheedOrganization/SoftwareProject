@@ -269,6 +269,8 @@ public class BusinessController implements Initializable {
         sortedData.comparatorProperty().bind(Customer_TV.comparatorProperty());
         Customer_TV.setItems(sortedData);
     }
+
+
     private void CustomerHelper() {
         C_LIST.clear();
         try {
@@ -294,7 +296,6 @@ public class BusinessController implements Initializable {
         Worker_TV.setVisible(false);
         CustomerSearch();
     }
-
     private void ProductHelper() {
         P_LIST.clear();
         try {
@@ -378,19 +379,20 @@ public class BusinessController implements Initializable {
                     Data=ConnectionDatabase.getInstance();
                     Connection con = Data.getConnectData();
                     String P_ID=Product_TV.getSelectionModel().getSelectedItem().getID();
-                    String str="DELETE FROM Product WHERE EMAIL_USER='"+P_ID+"'";
+                    String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
                     Statement stmt = con.createStatement();
                     int deleted = stmt.executeUpdate(str);
                     if(deleted > 0)
                         JOptionPane.showMessageDialog(null , "Deleted successfully");
                     else
                         JOptionPane.showMessageDialog(null , "Nothing deleted");
-
                 }
                 catch (Exception e)
                 {
                     System.out.println("Exception in Product delete");
                 }
+
+                ProductEntryController.StatusHelper();
 
                 Product_TV.getItems().removeAll(Product_TV.getSelectionModel().getSelectedItem());
 
@@ -495,6 +497,19 @@ public class BusinessController implements Initializable {
         }
         catch (Exception e) {
             System.out.println("Exception in Logout2 Clicked");
+        }
+    }
+
+    public void BTN_chart_Clicked(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Business-view/Chart.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage =(Stage) (((Node)event.getSource()).getScene().getWindow());
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e) {
+            System.out.println("Exception in chart Clicked");
         }
     }
 }
