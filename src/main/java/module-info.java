@@ -9,6 +9,7 @@ module com.example.softwareproject1 {
     requires java.desktop;
     requires AnimateFX;
     requires jasperreports;
+    requires java.mail;
 
 
     opens com.example to javafx.fxml;

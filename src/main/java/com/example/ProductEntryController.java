@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -53,6 +54,7 @@ public class ProductEntryController implements Initializable{
     static double LocalPrice=0;
     static int DevDate=0;
     private static int StatusCounter=0;
+    public static ArrayList<String>MailNames=new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
@@ -76,7 +78,7 @@ public class ProductEntryController implements Initializable{
             sss.next();
             tempDate=sss.getString(1);
 
-            String stmt="SELECT productID,STATUS,STRINGDATE from product";
+            String stmt="SELECT productID,STATUS,STRINGDATE,CUSTOMER_EMAIL from product";
             Statement stmtt = con.createStatement();
             ResultSet rs = stmtt.executeQuery(stmt);
             while(rs.next())
@@ -111,6 +113,12 @@ public class ProductEntryController implements Initializable{
                         WaitToTreatment++;
                         int f=1;
                         WorkerRest(f);
+
+
+                        String updateEmail="update product set EMAIL_FLAG='" + "true'" + "where productID="+rs.getInt(1);
+                        stmtUpdate.executeUpdate(updateEmail);
+
+                        MailNames.add(rs.getString(4));
                     }
                     else
                     {
@@ -119,6 +127,10 @@ public class ProductEntryController implements Initializable{
 
 
                 }
+
+                Mail m=new Mail();
+                m.RasheedEmail(MailNames);
+                MailNames.clear();
             }
 
             ResultSet RS=stmtt.executeQuery(stmt);
