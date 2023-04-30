@@ -48,7 +48,7 @@
             <Font name="Forte" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Total_price" layoutX="462.0" layoutY="288.0" prefHeight="18.0" prefWidth="68.0" text="35.7$">
+      <Label fx:id="Total_price" layoutX="462.0" layoutY="288.0" prefHeight="27.0" prefWidth="131.0" text="00.0$">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -68,36 +68,36 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="R_Date" layoutX="470.0" layoutY="116.0" prefHeight="20.0" prefWidth="131.0" text="2\3\2023">
+      <Label fx:id="R_Date" layoutX="470.0" layoutY="116.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="D_Date" layoutX="470.0" layoutY="140.0" prefHeight="20.0" prefWidth="131.0" text="11\3\2023">
+      <Label fx:id="D_Date" layoutX="470.0" layoutY="140.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Address" layoutX="470.0" layoutY="164.0" prefHeight="20.0" prefWidth="131.0" text="Jenin">
+      <Label fx:id="Address" layoutX="470.0" layoutY="164.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Discount" layoutX="470.0" layoutY="213.0" prefHeight="20.0" prefWidth="131.0" text="2.0$">
+      <Label fx:id="Discount" layoutX="470.0" layoutY="213.0" prefHeight="22.0" prefWidth="162.0" text="00.0$">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="100.0" layoutX="462.0" layoutY="279.0" startX="-100.0" />
-      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="100.0" layoutX="462.0" layoutY="323.0" startX="-100.0" />
-      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="-78.5" endY="36.5" layoutX="641.0" layoutY="286.0" startX="-78.5" startY="-6.5" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="130.0" layoutX="462.0" layoutY="279.0" startX="-100.0" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="130.0" layoutX="462.0" layoutY="323.0" startX="-100.0" />
+      <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="-78.5" endY="36.5" layoutX="671.0" layoutY="286.0" startX="-78.5" startY="-6.5" />
       <Line blendMode="DARKEN" cache="true" depthTest="ENABLE" endX="-289.5" endY="26.5" layoutX="651.0" layoutY="296.0" startX="-289.5" startY="-16.5" />
       <Label layoutX="362.0" layoutY="188.0" prefHeight="20.0" prefWidth="98.0" text="Customer :">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="User" layoutX="470.0" layoutY="188.0" prefHeight="20.0" prefWidth="131.0" text="Rasheed">
+      <Label fx:id="User" layoutX="470.0" layoutY="188.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
@@ -143,7 +143,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LocalPrice" layoutX="469.0" layoutY="237.0" prefHeight="20.0" prefWidth="131.0" text="2.0$">
+      <Label fx:id="LocalPrice" layoutX="469.0" layoutY="237.0" prefHeight="22.0" prefWidth="162.0" text="00.0$">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>

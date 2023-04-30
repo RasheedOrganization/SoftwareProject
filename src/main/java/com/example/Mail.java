@@ -1,4 +1,6 @@
 package com.example;
+import javafx.scene.control.PasswordField;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
