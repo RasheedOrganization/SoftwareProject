@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -41,6 +42,9 @@
          <image>
             <Image url="@../Image/reply.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Label layoutX="17.0" layoutY="55.0" prefHeight="34.0" prefWidth="158.0" text="Bubble Cleaning">
          <font>

@@ -48,14 +48,14 @@
             </TableView>
             <TableView fx:id="Product_TV" layoutX="9.0" layoutY="13.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css">
                <columns>
-                  <TableColumn fx:id="TV_P_ID" prefWidth="75.19998550415039" text="ID" />
-                  <TableColumn fx:id="TV_P_name" prefWidth="98.39999389648438" text="ProductName" />
+                  <TableColumn fx:id="TV_P_ID" prefWidth="46.39999771118164" text="ID" />
+                  <TableColumn fx:id="TV_P_name" prefWidth="127.19998168945312" text="ProductName" />
                   <TableColumn fx:id="TV_P_area" prefWidth="99.99998474121094" text="ProductArea" />
                   <TableColumn fx:id="TV_P_quantity" prefWidth="68.79998779296875" text="Quantity" />
                   <TableColumn fx:id="TV_P_address" prefWidth="70.4000244140625" text="Address" />
                   <TableColumn fx:id="TV_P_status" prefWidth="72.79998779296875" text="Status" />
-                  <TableColumn fx:id="TV_P_date" prefWidth="84.0" text="Date" />
-                  <TableColumn fx:id="TV_P_price" prefWidth="96.800048828125" text="price" />
+                  <TableColumn fx:id="TV_P_date" prefWidth="108.00006103515625" text="Date" />
+                  <TableColumn fx:id="TV_P_price" prefWidth="72.7999267578125" text="price" />
                </columns>
                <styleClass>
                   <String fx:value="table-view" />

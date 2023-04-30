@@ -7,7 +7,7 @@ public class Product {
 
     public Product(String id, double price, String name, String area, String quantity, String address, String status, String date) {
         this.ID = id;
-        this.price = price;
+        this.price = Math.round(price * 1000) / 1000.0;
         this.name = name;
         this.area = area;
         this.quantity = quantity;
