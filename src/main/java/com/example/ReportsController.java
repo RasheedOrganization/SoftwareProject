@@ -57,7 +57,7 @@ public class ReportsController implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) FinancialReport.getScene().getWindow();
+            Stage stage = (Stage) BackButton.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (Exception e) {
@@ -65,58 +65,13 @@ public class ReportsController implements Initializable {
         }
 
     }
-    @FXML
-    void ReportClicked(ActionEvent event) {
-        try {
-
-            Connection con = data.getConnectData();
-            String qry;
-            if(event.getSource() == FinancialReport) {
-                qry = "select name_project from project where project_id = ";
-            }
-            else if(event.getSource() == ProductReport) {
-                qry = "select name_project from project where project_id = ";
-            }
-            else if(event.getSource() == CustomerReport) {
-                qry = "select name_project from project where project_id = ";
-            }
-            else {
-                qry = "select name_project from project where project_id = ";
-            }
-            Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(qry);
-            rs.next();
-            Map<String, Object> parameter = new HashMap<String, Object>();
-            //parameter.put("ProjectP1", searchPID.getText());
-            //parameter.put("ProjectP2", TextReportPro.getText());
-            //parameter.put("ProjectP3", rs.getString(1));//rs.getString(1)
-
-
-            InputStream input = new FileInputStream(new File("projectReport.jrxml"));
-            JasperDesign jd = JRXmlLoader.load(input);
-            JasperReport jr = JasperCompileManager.compileReport(jd);
-            JasperPrint jp = JasperFillManager.fillReport(jr, parameter, con);
-            //as pdf dirictly
-           /* OutputStream os=new FileOutputStream(new File("EmplyeeSUM.pdf"));
-            JasperExportManager.exportReportToPdfStream(jp,os);
-            os.close();
-            input.close();*/
-            //as JFrame
-            JFrame frame = new JFrame("Report");
-            frame.getContentPane().add(new JRViewer(jp));
-            frame.pack();
-            frame.setVisible(true);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     @FXML
     void BackClicked(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/hello-view.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) FinancialReport.getScene().getWindow();
+            Stage stage = (Stage) BackButton.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (Exception e) {
