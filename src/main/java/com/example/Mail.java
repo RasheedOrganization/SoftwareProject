@@ -1,4 +1,6 @@
 package com.example;
+import javafx.scene.control.PasswordField;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -40,8 +42,18 @@ public class Mail
     }
 
     private MimeMessage draftEmail(ArrayList<String> names) throws AddressException, MessagingException, IOException {
-        String emailSubject = "Your product is completed";
-        String emailBody = "Come to the store and take the product as possible as you can";
+        String emailSubject = "Product Ready for Delivery";
+        String emailBody = "Dear Customer...\n" +
+                "\n" +
+                "I am pleased to inform you that your product is now ready for delivery. The product has been thoroughly inspected to ensure that it meets our high quality standards.\n" +
+                "\n" +
+                "Please let us know when you would like the product delivered, and provide us with any special delivery instructions that we should be aware of. We will do our best to accommodate your schedule and ensure that the product is delivered safely and on time.\n" +
+                "\n" +
+                "Thank you for choosing our store for your cleaning needs. We appreciate your business and look forward to serving you in the future.\n" +
+                "\n" +
+                "Best regards,\n" +
+                "\n" +
+                "Bubble Cleaning";
         mimeMessage = new MimeMessage(newSession);
 
         for (int i =0 ;i<names.size();i++)

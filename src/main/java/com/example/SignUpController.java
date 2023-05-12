@@ -97,7 +97,7 @@ public class SignUpController implements Initializable {
                 }
                 LocalDate date = Birthdate.getValue();
                 String dateFormat = date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
-                all = "Insert Into user_table values ('" + Name + "','" + Email + "','" + Pass + "','" + dateFormat + "','User')";
+                all = "insert into user_table values ('" + Name + "',"+"'" + Email + "',"+"'" + Pass + "','"+ dateFormat +"',"+"'false',"+"'"+Phone+"')";
                 stmt.executeUpdate(all);
                 //con.commit();
                 //con.close();
@@ -105,8 +105,10 @@ public class SignUpController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = (Stage) Login.getScene().getWindow();
             stage.setScene(scene);
-            } catch (Exception e) {
-                System.out.println("Exception in SignUpClicked");
+            }
+            catch (Exception e)
+            {
+               throw new RuntimeException(e);
             }
         }
     }

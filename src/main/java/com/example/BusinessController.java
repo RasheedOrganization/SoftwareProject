@@ -307,10 +307,11 @@ public class BusinessController implements Initializable {
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next())
             {
+                double f=Math.round(rs.getDouble(2) * 1000) / 1000.0;
                 P_LIST.add(new Product
                         (
                         rs.getString(1),
-                        rs.getFloat(2),
+                        f                         ,
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),

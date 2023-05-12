@@ -6,9 +6,9 @@ private double area,quantity,price;
 
     public Invoice(String productName, double area, double quantity, double price) {
         ProductName = productName;
-        this.area = area;
-        this.quantity = quantity;
-        this.price = price;
+        this.area = Math.round(area * 1000) / 1000.0;;
+        this.quantity = Math.round(quantity * 1000) / 1000.0;
+        this.price = Math.round(price * 1000) / 1000.0;
     }
 
     public String getProductName() {
