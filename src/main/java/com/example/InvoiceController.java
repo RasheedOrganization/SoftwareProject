@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 
 public class InvoiceController implements Initializable {
-    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(InvoiceController.class.getName());
     @FXML
     private Label Address;
     @FXML
@@ -55,7 +55,7 @@ public class InvoiceController implements Initializable {
     @FXML
     private TableView<Invoice> Table_viwe;
 
-    public double Discountcalc=0;
+    private double Discountcalc=0;
     private ConnectionDatabase Data;
 
 
@@ -92,7 +92,7 @@ public class InvoiceController implements Initializable {
             ResultSet count=sss.executeQuery(dis);
             count.next();
             Discountcalc=count.getDouble(1);
-            LOGGER.log(Level.WARNING, String.valueOf(Discountcalc));
+            LOGGER.log(Level.WARNING, Double.toString(Discountcalc));
         }
         catch (Exception e)
         {
