@@ -109,9 +109,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
-                <version>2.6</version>
+                <version>3.9.1.2184</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
