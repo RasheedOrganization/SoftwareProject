@@ -28,9 +28,9 @@ import java.util.logging.Logger;
 
 
 public class BusinessController implements Initializable {
-    private static final String deletedSuccessfully = "Deleted successfully";
-    private static final String nothingDeleted = "Nothing deleted";
-    private static final Logger logger = Logger.getLogger(BusinessController.class.getName());
+    private static final String DELETEDSUCCESSFULLY = "Deleted successfully";
+    private static final String NOTHINGDELETED = "Nothing deleted";
+    private static final Logger LOGGER = Logger.getLogger(BusinessController.class.getName());
     @FXML
     private TableView<Customer> Customer_TV;
 
@@ -263,7 +263,7 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            logger.log(Level.WARNING, "Exception in Customer Table");
+            LOGGER.log(Level.WARNING, "Exception in Customer Table");
         }
         Customer_TV.setVisible(true);
         Product_TV.setVisible(false);
@@ -300,7 +300,7 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            logger.log(Level.WARNING, "Exception in Product Table");
+            LOGGER.log(Level.WARNING, "Exception in Product Table");
         }
         Customer_TV.setVisible(false);
         Product_TV.setVisible(true);
@@ -325,7 +325,7 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            logger.log(Level.WARNING, "Exception in Worker Table");
+            LOGGER.log(Level.WARNING, "Exception in Worker Table");
         }
         Customer_TV.setVisible(false);
         Product_TV.setVisible(false);
@@ -358,13 +358,13 @@ public class BusinessController implements Initializable {
                     Statement stmt = con.createStatement();
                     int deleted = stmt.executeUpdate(str);
                     if(deleted > 0)
-                        JOptionPane.showMessageDialog(null , deletedSuccessfully);
+                        JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
                     else
-                        JOptionPane.showMessageDialog(null , nothingDeleted);
+                        JOptionPane.showMessageDialog(null , NOTHINGDELETED);
                 }
                 catch (SQLException e)
                 {
-                    logger.log(Level.WARNING, "Exception in Product delete");
+                    LOGGER.log(Level.WARNING, "Exception in Product delete");
                 }
 
                 ProductEntryController.StatusHelper();
@@ -382,14 +382,14 @@ public class BusinessController implements Initializable {
                 Statement stmt = con.createStatement();
                 int deleted = stmt.executeUpdate(str);
                 if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , deletedSuccessfully);
+                    JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
                 else
-                    JOptionPane.showMessageDialog(null , nothingDeleted);
+                    JOptionPane.showMessageDialog(null , NOTHINGDELETED);
 
             }
             catch (SQLException e)
             {
-                logger.log(Level.WARNING, "Exception in Worker delete");
+                LOGGER.log(Level.WARNING, "Exception in Worker delete");
             }
 
             Worker_TV.getItems().removeAll(Worker_TV.getSelectionModel().getSelectedItem());
@@ -404,14 +404,14 @@ public class BusinessController implements Initializable {
                 Statement stmt = con.createStatement();
                 int deleted = stmt.executeUpdate(str);
                 if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , deletedSuccessfully);
+                    JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
                 else
-                    JOptionPane.showMessageDialog(null , nothingDeleted);
+                    JOptionPane.showMessageDialog(null , NOTHINGDELETED);
 
             }
             catch (SQLException e)
             {
-                logger.log(Level.WARNING, "Exception in Customer delete");
+                LOGGER.log(Level.WARNING, "Exception in Customer delete");
             }
 
             Customer_TV.getItems().removeAll(Customer_TV.getSelectionModel().getSelectedItem());
@@ -428,7 +428,7 @@ public class BusinessController implements Initializable {
                 stage.setScene(scene);
             }
             catch (IOException e) {
-                logger.log(Level.WARNING, "Exception in Product add button");
+                LOGGER.log(Level.WARNING, "Exception in Product add button");
             }
         }
         else if(Worker_TV.isVisible())
@@ -441,7 +441,7 @@ public class BusinessController implements Initializable {
             }
             catch (IOException e)
             {
-                logger.log(Level.WARNING, "Exception in Worker add button");
+                LOGGER.log(Level.WARNING, "Exception in Worker add button");
             }
         }
         else if(Customer_TV.isVisible())
@@ -453,7 +453,7 @@ public class BusinessController implements Initializable {
                 stage.setScene(scene);
             }
             catch (IOException e) {
-                logger.log(Level.WARNING, "Exception in Customer add button");
+                LOGGER.log(Level.WARNING, "Exception in Customer add button");
             }
         }
     }
@@ -471,7 +471,7 @@ public class BusinessController implements Initializable {
             stage.show();
         }
         catch (IOException e) {
-            logger.log(Level.WARNING, "Exception in Logout2 Clicked");
+            LOGGER.log(Level.WARNING, "Exception in Logout2 Clicked");
         }
     }
 
@@ -484,7 +484,7 @@ public class BusinessController implements Initializable {
             stage.show();
         }
         catch (IOException e) {
-            logger.log(Level.WARNING, "Exception in chart Clicked");
+            LOGGER.log(Level.WARNING, "Exception in chart Clicked");
         }
     }
 }
