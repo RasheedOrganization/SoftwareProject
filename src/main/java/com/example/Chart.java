@@ -91,7 +91,7 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception");
+            LOGGER.log(Level.WARNING, "Exception in PriceHelp");
         }
     }
 
@@ -115,7 +115,7 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception");
+            LOGGER.log(Level.WARNING, "Exception in CountHelp");
         }
     }
 
@@ -127,7 +127,7 @@ public class Chart implements Initializable {
             stage.setScene(scene);
         }
         catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Exception");
+            LOGGER.log(Level.WARNING, "Exception in BackFromChart");
         }
     }
 }

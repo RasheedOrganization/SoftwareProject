@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HelloController {
-    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(HelloController.class.getName());
 
     @FXML
     private Label CreateAnAccount;
@@ -45,6 +45,12 @@ public class HelloController {
     }
     String getUserNamee() {
         return UserNamee;
+    }
+    void setGmailCounter(String gmail){
+        GmailCounter = gmail;
+    }
+    void setUserNamee(String namee){
+        UserNamee = namee;
     }
     @FXML
     void CreateAnAccountClicked(MouseEvent event) {
@@ -77,8 +83,8 @@ public class HelloController {
                     String Password = rs.getString(2);
                     if(Password.equals(PasswordText.getText())) {
                         String WhereToGo;
-                        GmailCounter=rs.getString(1);
-                        UserNamee=rs.getString(3);
+                        setGmailCounter(rs.getString(1));
+                        setUserNamee(rs.getString(3));
                         if(rs.getString(4).equals("true"))
                             WhereToGo="Sign-up-view/Reports.fxml";
                         else WhereToGo="Product-view/Product-entry-view.fxml";
