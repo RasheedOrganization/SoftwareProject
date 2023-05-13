@@ -3,7 +3,12 @@ package com.example;
 public class Product {
     private String ID;
     private double price;
-    private String name,area,quantity,address,status,date;
+    private String name;
+    private String area;
+    private String quantity;
+    private String address;
+    private String status;
+    private String date;
 
     public Product(String id, double price, String name, String area, String quantity, String address, String status, String date) {
         this.ID = id;

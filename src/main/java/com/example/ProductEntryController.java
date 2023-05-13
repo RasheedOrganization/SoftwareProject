@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -54,7 +55,7 @@ public class ProductEntryController implements Initializable{
     static double LocalPrice=0;
     static int DevDate=0;
     private static int StatusCounter=0;
-    public static ArrayList<String>MailNames=new ArrayList<>();
+    static List<String> MailNames=new ArrayList<>();
 
     static public double getLocalPrice() {
         return LocalPrice;
