@@ -98,8 +98,6 @@ public class BusinessController implements Initializable {
 
 
 
-
-
     private ConnectionDatabase Data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
@@ -346,6 +344,13 @@ public class BusinessController implements Initializable {
         WorkerHelper();
     }
 
+    public void isDeleted(int deleted) {
+        if(deleted > 0)
+            JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
+        else
+            JOptionPane.showMessageDialog(null , NOTHINGDELETED);
+    }
+
     public void BTN_Delete_Clicked(ActionEvent actionEvent)
     {
         if(Product_TV.isVisible())
@@ -356,11 +361,7 @@ public class BusinessController implements Initializable {
                     String P_ID=Product_TV.getSelectionModel().getSelectedItem().getID();
                     String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
                     Statement stmt = con.createStatement();
-                    int deleted = stmt.executeUpdate(str);
-                    if(deleted > 0)
-                        JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
-                    else
-                        JOptionPane.showMessageDialog(null , NOTHINGDELETED);
+                    isDeleted(stmt.executeUpdate(str));
                 }
                 catch (SQLException e)
                 {
@@ -380,12 +381,7 @@ public class BusinessController implements Initializable {
                 String W_ID=Worker_TV.getSelectionModel().getSelectedItem().getID();
                 String str="DELETE FROM WORKERS WHERE ID='"+W_ID+"'";
                 Statement stmt = con.createStatement();
-                int deleted = stmt.executeUpdate(str);
-                if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
-                else
-                    JOptionPane.showMessageDialog(null , NOTHINGDELETED);
-
+                isDeleted(stmt.executeUpdate(str));
             }
             catch (SQLException e)
             {
@@ -402,12 +398,7 @@ public class BusinessController implements Initializable {
                 String C_Email=Customer_TV.getSelectionModel().getSelectedItem().getEmail();
                 String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+C_Email+"'";
                 Statement stmt = con.createStatement();
-                int deleted = stmt.executeUpdate(str);
-                if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
-                else
-                    JOptionPane.showMessageDialog(null , NOTHINGDELETED);
-
+                isDeleted(stmt.executeUpdate(str));
             }
             catch (SQLException e)
             {
@@ -419,8 +410,33 @@ public class BusinessController implements Initializable {
     }
 
     public void BTN_ADD_Clicked(ActionEvent actionEvent) {
-        if(Product_TV.isVisible())
-        {
+        if (!Product_TV.isVisible()) {
+            if(Worker_TV.isVisible())
+            {
+                try{
+                    Parent root = FXMLLoader.load(getClass().getResource("Business-view/WorkerAdd.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) TF_search.getScene().getWindow();
+                    stage.setScene(scene);
+                }
+                catch (IOException e)
+                {
+                    LOGGER.log(Level.WARNING, "Exception in Worker add button");
+                }
+            }
+            else if(Customer_TV.isVisible())
+            {
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) TF_search.getScene().getWindow();
+                    stage.setScene(scene);
+                }
+                catch (IOException e) {
+                    LOGGER.log(Level.WARNING, "Exception in Customer add button");
+                }
+            }
+        } else {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
                 Scene scene = new Scene(root);
@@ -429,31 +445,6 @@ public class BusinessController implements Initializable {
             }
             catch (IOException e) {
                 LOGGER.log(Level.WARNING, "Exception in Product add button");
-            }
-        }
-        else if(Worker_TV.isVisible())
-        {
-            try{
-                Parent root = FXMLLoader.load(getClass().getResource("Business-view/WorkerAdd.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) TF_search.getScene().getWindow();
-                stage.setScene(scene);
-            }
-            catch (IOException e)
-            {
-                LOGGER.log(Level.WARNING, "Exception in Worker add button");
-            }
-        }
-        else if(Customer_TV.isVisible())
-        {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) TF_search.getScene().getWindow();
-                stage.setScene(scene);
-            }
-            catch (IOException e) {
-                LOGGER.log(Level.WARNING, "Exception in Customer add button");
             }
         }
     }

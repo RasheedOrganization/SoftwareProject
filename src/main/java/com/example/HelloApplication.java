@@ -7,11 +7,9 @@ import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class HelloApplication extends Application {
-    //SignUpSteps S;
     @Override
     public void start(Stage stage) throws IOException, MessagingException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Sign-up-view/hello-view.fxml"));

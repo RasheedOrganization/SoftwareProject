@@ -3,10 +3,11 @@ package com.example;
 import oracle.jdbc.pool.OracleDataSource;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConnectionDatabase {
+    private static final Logger LOGGER = Logger.getLogger(ConnectionDatabase.class.getName());
     private static ConnectionDatabase Connect;
     private Connection ConnectData;
     private static boolean status = true;
@@ -26,10 +27,8 @@ public class ConnectionDatabase {
             ods.setUser("mohammad");
             ods.setPassword("123456");
             ConnectData = ods.getConnection();
-            status = true;
         }catch (Exception e) {
-            status = false;
-            System.out.println("Exception in connection");
+            LOGGER.log(Level.WARNING, "Exception");
         }
     }
 

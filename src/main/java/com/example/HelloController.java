@@ -14,33 +14,38 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class HelloController implements Initializable {
+public class HelloController {
+    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
 
     @FXML
     private Label CreateAnAccount;
 
     @FXML
-    private Label Forgot;
-
-    @FXML
     private PasswordField PasswordText;
 
     @FXML
-    private Button SignInButton;
-
-    @FXML
     private TextField UserNameText;
-    static String GmailCounter;
-    static String UserNamee;
+    private static String GmailCounter;
+    private static String UserNamee;
 
     private ConnectionDatabase Data = ConnectionDatabase.getInstance();
 
+    String getGmailCounter() {
+        return GmailCounter;
+    }
+    String getUserNamee() {
+        return UserNamee;
+    }
     @FXML
     void CreateAnAccountClicked(MouseEvent event) {
         try {
@@ -48,8 +53,8 @@ public class HelloController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage = (Stage) CreateAnAccount.getScene().getWindow();
             stage.setScene(scene);
-        }catch (Exception e) {
-            System.out.println("Exception in CreateAnAccountClicked");
+        }catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Exception");
         }
     }
 
@@ -65,7 +70,6 @@ public class HelloController implements Initializable {
             String all = "select email_user, password,NAME_USER,ADMIN_FLAG from user_table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
-            boolean flag = true;
             String string = UserNameText.getText();
             while (rs.next()) {
                 String Email = rs.getString(1);
@@ -82,24 +86,15 @@ public class HelloController implements Initializable {
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) UserNameText.getScene().getWindow();
                         stage.setScene(scene);
-                        flag = false;
-                        break;
+                        return;
                     }
                     JOptionPane.showMessageDialog(null,"Wrong Password");
-                    flag = false;
-                    break;
+                    return;
                 }
             }
-            if (flag) {
-                JOptionPane.showMessageDialog(null,"Wrong Email");
-            }
-        } catch (Exception e) {
-            System.out.println("Exception in SignInClicked");
+            JOptionPane.showMessageDialog(null,"Wrong Email");
+        } catch (SQLException | IOException e) {
+            LOGGER.log(Level.WARNING, "Exception");
         }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 }

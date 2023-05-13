@@ -1,43 +1,41 @@
 package com.example;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import javax.naming.Binding;
-import javax.swing.*;
-import javax.swing.text.html.ImageView;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Chart implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
     @FXML
     private PieChart C_chart;
 
     @FXML
     private PieChart I_chart;
     private ConnectionDatabase Data;
-    int c=0,i=0,w=0;
-    double pw=0,pi=0,pc=0;
+    int c=0;
+    int i=0;
+    int w=0;
+    double pw=0;
+    double pi=0;
+    double pc=0;
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         i=c=w=0;
@@ -91,8 +89,10 @@ public class Chart implements Initializable {
                     pw+=rs.getDouble(2);
             }
         }
-        catch (Exception e)
-        {}
+        catch (SQLException e)
+        {
+            LOGGER.log(Level.WARNING, "Exception");
+        }
     }
 
     private void CountHelp() {
@@ -113,8 +113,10 @@ public class Chart implements Initializable {
                     w++;
             }
         }
-        catch (Exception e)
-        {}
+        catch (SQLException e)
+        {
+            LOGGER.log(Level.WARNING, "Exception");
+        }
     }
 
     public void BackFromChart(MouseEvent event) {
@@ -124,8 +126,8 @@ public class Chart implements Initializable {
             Stage stage = (Stage) I_chart.getScene().getWindow();
             stage.setScene(scene);
         }
-        catch (Exception e) {
-
+        catch (IOException e) {
+            LOGGER.log(Level.WARNING, "Exception");
         }
     }
 }
