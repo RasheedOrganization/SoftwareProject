@@ -53,23 +53,21 @@ public class ProductEntryController implements Initializable{
     static String location;
     static double LocalPrice=0;
     static int DevDate=0;
-    static int WaitToTreatment=0;
-    static int StatusCounter=0;
+    private static int StatusCounter=0;
     public static ArrayList<String>MailNames=new ArrayList<>();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
         ComboBox_Clothes.setItems(list);
         StatusHelper();
-
+       // SendEmail();
     }
 
 
 
     public static void StatusHelper(){
-        int StatusTemp = 0,WaitTemp=0;
         try {
-
+            int WaitToTreatment=0;
             String tempDate;
             data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
@@ -88,7 +86,6 @@ public class ProductEntryController implements Initializable{
                 int flag=0;
                 if(rs.getString(2).equals("IN_TREATMENT"))
                 {
-                    StatusTemp++;
                     String[] SpaceSplit=rs.getString(3).split(" ");
                     String[] SpaceSplitTemp=tempDate.split(" ");
 
@@ -107,50 +104,45 @@ public class ProductEntryController implements Initializable{
                             flag=1;
                     }
 
-                    if(flag==1)
+                    if(flag!=0)
                     {
                         String update="update product set status='" + "COMPLETE'" + "where productID="+rs.getInt(1);
                         Statement stmtUpdate=con.createStatement();
                         stmtUpdate.executeUpdate(update);
-
-                        StatusTemp--;
-                        WaitTemp++;
+                        if(StatusCounter>=1)StatusCounter--;
+                        WaitToTreatment++;
                         int f=1;
                         WorkerRest(f);
 
 
-                        String updateEmail="update PRODUCT set EMAIL_FLAG='" + "true'" + "where PRODUCTID="+rs.getInt(1);
-                        Statement stmtUpdate2=con.createStatement();
-                        stmtUpdate2.executeUpdate(updateEmail);
+                        String updateEmail="update product set EMAIL_FLAG='" + "true'" + "where productID="+rs.getInt(1);
+                        stmtUpdate.executeUpdate(updateEmail);
 
                         MailNames.add(rs.getString(4));
                     }
-
+                    else
+                    {
+                        StatusCounter++;
+                    }
 
 
                 }
 
-            }
-
-            if(!MailNames.isEmpty()) {
-                Mail m = new Mail();
+                Mail m=new Mail();
                 m.RasheedEmail(MailNames);
                 MailNames.clear();
             }
 
-            Statement stmt3 = con.createStatement();
-            ResultSet RS=stmt3.executeQuery(stmt);
+            ResultSet RS=stmtt.executeQuery(stmt);
             while(RS.next())
             {
-                if(WaitTemp==0)break;
+                if(WaitToTreatment==0)break;
                 if(RS.getString(2).equals("WAITING"))
                 {
-                    String updatee2 = "update product set status='" + "IN_TREATMENT'" + "where productID="+RS.getInt(1);
-                    Statement stmtUpdate2 = con.createStatement();
-                    stmtUpdate2.executeUpdate(updatee2);
-
-                    WaitTemp--;
-                    StatusTemp++;
+                    String updatee = "update product set status='" + "IN_TREATMENT'" + "where productID="+RS.getInt(1);
+                    Statement stmtUpdate = con.createStatement();
+                    stmtUpdate.executeUpdate(updatee);
+                    WaitToTreatment--;
                     int f=2;
                     WorkerRest(f);
                 }
@@ -161,10 +153,7 @@ public class ProductEntryController implements Initializable{
         {
             System.out.println("iam here in Status Counter idiot");
         }
-        StatusCounter=StatusTemp;
-        WaitToTreatment=WaitTemp;
-        System.out.println(StatusCounter);
-        System.out.println(WaitToTreatment);
+
     }
 
     private static void WorkerRest(int f) {
@@ -187,7 +176,7 @@ public class ProductEntryController implements Initializable{
             while(rs.next())
             {
                 if(f==1) {
-                    if (rs.getString(2).equals("true"))
+                    if (rs.getString(2).equals("false"))
                     {
                         IDString=rs.getString(1);
                         break;
@@ -196,7 +185,7 @@ public class ProductEntryController implements Initializable{
                 }
                 else if(f==2)
                 {
-                    if (rs.getString(2).equals("false"))
+                    if (rs.getString(2).equals("true"))
                     {
                         IDString=rs.getString(1);
                         break;
@@ -204,8 +193,8 @@ public class ProductEntryController implements Initializable{
                 }
             }
             String update = "UPDATE WORKERS set WORKFLAG='"+W_flag+"' WHERE ID='"+IDString+"'";
-            Statement stmt2 = con.createStatement();
-            stmt2.executeUpdate(update);
+            Statement stmtt = con.createStatement();
+            stmtt.executeUpdate(update);
 
 
         }
@@ -244,7 +233,7 @@ public class ProductEntryController implements Initializable{
                 ComboBox_Clothes.setVisible(false);
         }
         catch (Exception e) {
-            System.out.println("Exception in ENTER Clicked");
+            e.printStackTrace();
         }
     }
 
@@ -279,32 +268,27 @@ public class ProductEntryController implements Initializable{
                     break;
                 }
             }
-            if(quantity.equals(null))
-            {
+            if(quantity.equals(null)){
                 JFrame f=new JFrame();
                 JOptionPane.showMessageDialog(f,"Quantity can't be empty");
                 flag=false;
             }
-            if(area.equals(null))
-            {
+            if(area.equals(null)) {
                 JFrame f=new JFrame();
                 JOptionPane.showMessageDialog(f,"Area can't be empty");
                 flag=false;
             }
-            if(address.equals(null))
-            {
+            if(address.equals(null)) {
                 JFrame f=new JFrame();
                 JOptionPane.showMessageDialog(f,"Address can't be empty");
                 flag=false;
             }
-            if(phone.length()!=12 || (phone.charAt(0)!='9' && phone.charAt(1)!='7'))
-            {
+            if(phone.length()!=12 || (phone.charAt(0)!='9' && phone.charAt(1)!='7')) {
                 JFrame f=new JFrame();
                 JOptionPane.showMessageDialog(f,"Please enter a valid Phone Number");
                 flag=false;
             }
-            for(int i=0;i<name.length();i++)
-            {
+            for(int i=0;i<name.length();i++) {
                 if(Character.isDigit(name.charAt(i)))
                 {
                     JFrame f=new JFrame();
@@ -325,57 +309,41 @@ public class ProductEntryController implements Initializable{
 
                 if (Check_treatment.isSelected())
                     WellCleaned = "true";
-                else
-                    WellCleaned = "false";
-
-                if (Check_Use.isSelected())
-                {
+                else WellCleaned = "false";
+                if (Check_Use.isSelected()) {
                     useFlag = "true";
                     clothType = ComboBox_Clothes.getSelectionModel().getSelectedItem().toString();
                 }
-                else
-                {
+                else {
                     useFlag = "false";
                     clothType = null;
                 }
-                String WhatIsStatus=null,CurrentDate;
 
+
+                String WhatIsStatus=null,CurrentDate;
                 String str="SELECT SYSDATE from USER_TABLE";
                 Statement stmtt = con.createStatement();
                 ResultSet rss = stmtt.executeQuery(str);
                 rss.next();
                 CurrentDate=rss.getString(1);
 
-
-                System.out.println(StatusCounter);
-                System.out.println(WaitToTreatment);
                 if(StatusCounter<10)
                 {
                     WhatIsStatus="IN_TREATMENT";
                     StatusCounter++;
-                    WorkerRest(2);
                 }
-                else
-                {
-                    WhatIsStatus="WAITING";
-                }
-                System.out.println(StatusCounter);
-                System.out.println(WaitToTreatment);
+                else WhatIsStatus="WAITING";
 
 
 
                 double price = 0;
-                if (Check_Use.isSelected())
-                {
+                if (Check_Use.isSelected()) {
                     if (ComboBox_Clothes.getValue().equals("Pants")) price = Double.parseDouble(quantity) * 5;
                     else if (ComboBox_Clothes.getValue().equals("Shirt")) price = Double.parseDouble(quantity) * 5;
                     else if (ComboBox_Clothes.getValue().equals("Jacket")) price = Double.parseDouble(quantity) * 10;
                     else price = Double.parseDouble(quantity) * 1;
-                }
-                else
-                {
+                } else
                     price = Double.parseDouble(quantity) * Double.parseDouble(area) * 0.45;
-                }
 
                 if(Check_treatment.isSelected())
                 {
@@ -402,7 +370,7 @@ public class ProductEntryController implements Initializable{
         }
         catch (Exception e)
         {
-            System.out.println("Exception in ADD Clicked");
+            e.printStackTrace();
         }
 
 

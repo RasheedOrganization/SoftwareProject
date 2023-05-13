@@ -35,7 +35,7 @@ public class Product_Enter_Steps {
     public void i_enter_an_invalid_phone_number_format(String string) {
             if(string.length()!=12 || (string.charAt(0)!='9' && string.charAt(0)!='7'))
             {
-                assertEquals("Please enter a valid Phone Number",true,true);
+                assertEquals("Please enter a valid Phone Number",true,false);
             }
             else {
                 assertEquals(true,true);
@@ -47,7 +47,7 @@ public class Product_Enter_Steps {
             {
                 if(Character.isDigit(string.charAt(i)))
                 {
-                    assertEquals("Name can't contain digits",true,true);
+                    assertEquals("Name can't contain digits",true,false);
                     break;
                 }
             }
@@ -55,17 +55,17 @@ public class Product_Enter_Steps {
     }
     @When("I enter an empty {string} Address")
     public void i_enter_an_empty_address(String string) {
-        if(string.equals(null))assertEquals("Address can't be empty",true,true);
+        if(string.equals(null))assertEquals("Address can't be empty",true,false);
         else assertEquals(true,true);
     }
     @When("I enter an empty {string} Area")
     public void i_enter_an_empty_area(String string) {
-        if(string.equals(null))assertEquals("Area can't be empty",true,true);
+        if(string.equals(null))assertEquals("Area can't be empty",true,false);
         else assertEquals(true,true);
     }
     @When("I enter an empty {string} Quantity")
     public void i_enter_an_empty_quantity(String string) {
-        if(string.equals(null))assertEquals("Quantity can't be empty",true,true);
+        if(string.equals(null))assertEquals("Quantity can't be empty",true,false);
         else assertEquals(true,true);
     }
     @When("I enter an invalid Quantity {string} format")
@@ -74,7 +74,7 @@ public class Product_Enter_Steps {
         {
             if(!Character.isDigit(string.charAt(i)))
             {
-                assertEquals("Quantity must contain Digits only",true,true);
+                assertEquals("Quantity must contain Digits only",true,false);
                 break;
             }
         }
@@ -86,7 +86,7 @@ public class Product_Enter_Steps {
         {
             if(!Character.isDigit(string.charAt(i)))
             {
-                assertEquals("Area must contain Digits only",true,true);
+                assertEquals("Area must contain Digits only",true,false);
                 break;
             }
         }
@@ -95,21 +95,5 @@ public class Product_Enter_Steps {
     @Then("I should show a warning message {string}")
     public void i_should_show_a_warning_message(String string) {
             System.out.println(string);
-    }
-    @Then("I should show a warning message 'Address can't be empty'")
-    public void iShouldShowAWarningMessageAddressCanTBeEmpty() {
-        assertEquals(true,true);
-    }
-    @Then("I should show a warning message 'Quantity can't be empty'")
-    public void iShouldShowAWarningMessageQuantityCanTBeEmpty() {
-        assertEquals(true,true);
-    }
-    @Then("I should show a warning message 'Name can't contain digits'")
-    public void iShouldShowAWarningMessageNameCanTContainDigits() {
-        assertEquals(true,true);
-    }
-    @Then("I should show a warning message 'Area can't be empty'")
-    public void iShouldShowAWarningMessageAreaCanTBeEmpty() {
-        assertEquals(true,true);
     }
 }

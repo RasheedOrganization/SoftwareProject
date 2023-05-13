@@ -1,4 +1,4 @@
-module com.example.softwareproject1 {
+module com.example.softwareproject {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.naming;
