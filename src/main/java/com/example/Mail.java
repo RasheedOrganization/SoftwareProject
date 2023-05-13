@@ -1,13 +1,13 @@
 package com.example;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -16,6 +16,7 @@ import javax.mail.internet.MimeMultipart;
 
 public class Mail
 {
+    private static final Logger LOGGER = Logger.getLogger(Mail.class.getName());
 
     Session newSession = null;
     MimeMessage mimeMessage = null;
@@ -23,10 +24,10 @@ public class Mail
 
 
 
-    public void RasheedEmail(ArrayList<String> names) throws MessagingException, IOException {
+    public void RasheedEmail(List<String> names) throws MessagingException {
     Mail mail = new Mail();
     mail.setupServerProperties();
-    mail.draftEmail(names);
+    mail.draftEmail(new ArrayList<>(names));
     mail.sendEmail();
 }
     private void sendEmail() throws MessagingException {
@@ -37,10 +38,9 @@ public class Mail
         transport.connect(emailHost, fromUser, fromUserPe);
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
         transport.close();
-        System.out.println("Email successfully sent!!!");
     }
 
-    private MimeMessage draftEmail(ArrayList<String> names) throws AddressException, MessagingException, IOException {
+    private MimeMessage draftEmail(ArrayList<String> names) throws MessagingException {
         String emailSubject = "Product Ready for Delivery";
         String emailBody = "Dear Customer...\n" +
                 "\n" +
@@ -55,9 +55,8 @@ public class Mail
                 "Bubble Cleaning";
         mimeMessage = new MimeMessage(newSession);
 
-        for (int i =0 ;i<names.size();i++)
-        {
-            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(names.get(i)));
+        for (String name : names) {
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(name));
         }
         mimeMessage.setSubject(emailSubject);
 
