@@ -92,7 +92,6 @@ public class InvoiceController implements Initializable {
             ResultSet count=sss.executeQuery(dis);
             count.next();
             Discountcalc=count.getDouble(1);
-            LOGGER.log(Level.WARNING, "Hello");
         }
         catch (Exception e)
         {
