@@ -3,7 +3,6 @@ package com.example;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -18,9 +17,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class InvoiceController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
     @FXML
     private Label Address;
     @FXML
@@ -58,10 +60,10 @@ public class InvoiceController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PN_colom.setCellValueFactory(new PropertyValueFactory<Invoice, String>("ProductName"));
-        Area_colom.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("area"));
-        Quantity_colom.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("quantity"));
-        Price_colom.setCellValueFactory(new PropertyValueFactory<Invoice, Double>("price"));
+        PN_colom.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+        Area_colom.setCellValueFactory(new PropertyValueFactory<>("area"));
+        Quantity_colom.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        Price_colom.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         Table_viwe.setItems(ProductEntryController.LIST);
         InitializeHelper();
@@ -90,12 +92,11 @@ public class InvoiceController implements Initializable {
             ResultSet count=sss.executeQuery(dis);
             count.next();
             Discountcalc=count.getDouble(1);
-            System.out.println(Discountcalc);
-
+            LOGGER.log(Level.WARNING, String.valueOf(Discountcalc));
         }
         catch (Exception e)
         {
-            System.out.println("Exception in invoice");
+            LOGGER.log(Level.WARNING, "Exception in invoice");
         }
 
         if(Discountcalc<=10)Discountcalc=0.00;
@@ -104,13 +105,12 @@ public class InvoiceController implements Initializable {
 
         else Discountcalc=ProductEntryController.LocalPrice*0.2;
 
-        if(ProductEntryController.LocalPrice>=1000)Discountcalc=ProductEntryController.LocalPrice*0.02;
+        if(ProductEntryController.getLocalPrice()>=1000)Discountcalc=ProductEntryController.getLocalPrice()*0.02;
         Discount.setText(Double.toString(Discountcalc)+"$");
-        Total_price.setText(Double.toString(ProductEntryController.LocalPrice-Discountcalc)+"$");
-        LocalPrice.setText(Double.toString(ProductEntryController.LocalPrice)+"$");
-        ProductEntryController.LocalPrice=0;
+        Total_price.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
+        LocalPrice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
+        ProductEntryController.setZeroLocalPrice();
         Discountcalc=0;
-
     }
 
     public void BackAndClear(MouseEvent event) {
@@ -123,7 +123,7 @@ public class InvoiceController implements Initializable {
             stage.setScene(scene);
         }
         catch (Exception e) {
-            System.out.println("Exception in Logout Clicked");
+            LOGGER.log(Level.WARNING, "Exception in Logout Clicked");
         }
     }
     }

@@ -2,11 +2,13 @@ package com.example;
 
 public class Invoice {
 private String ProductName;
-private double area,quantity,price;
+private double area;
+private double quantity;
+private double price;
 
     public Invoice(String productName, double area, double quantity, double price) {
         ProductName = productName;
-        this.area = Math.round(area * 1000) / 1000.0;;
+        this.area = Math.round(area * 1000) / 1000.0;
         this.quantity = Math.round(quantity * 1000) / 1000.0;
         this.price = Math.round(price * 1000) / 1000.0;
     }

@@ -55,6 +55,16 @@ public class ProductEntryController implements Initializable{
     static int DevDate=0;
     private static int StatusCounter=0;
     public static ArrayList<String>MailNames=new ArrayList<>();
+
+    static public double getLocalPrice() {
+        return LocalPrice;
+    }
+    static public void addLocalPrice(double local) {
+        LocalPrice += local;
+    }
+    static public void setZeroLocalPrice() {
+        LocalPrice = 0;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
@@ -350,7 +360,7 @@ public class ProductEntryController implements Initializable{
                     price+=price*0.05;
                 }
 
-                LocalPrice += price;
+                addLocalPrice(price);
 
                 LIST.add(
                         new Invoice(name, Double.parseDouble(area), Double.parseDouble(quantity), price)
