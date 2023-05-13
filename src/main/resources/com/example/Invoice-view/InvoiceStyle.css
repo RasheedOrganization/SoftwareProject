@@ -10,26 +10,23 @@
 }
 .table-view.cell{
     -fx-cell-size :30;
-    -fx-aligment:center-left;
+    -fx-alignment:center-left;
     -fx-text-fill:#000000;
-    -fx-aligment:CENTER_LEFT;
 }
 .table-row-selected{
     -fx-background-color: rgb(127,172,243);
 }
-.table-row-cell:selected .text{
-    -fx-fill:white;
-}
+
 .table-view .increment-button,.table-view .decrement-button{
     -fx-background-color:transparent;
     -fx-background-radius:2cm;
 }
-.table-view.scroll-bar:horizantal.track{
+.table-view.scroll-bar:horizontal.track{
     -fx-background-color:transparent;
     -fx-border-color:derive(#212F3C,80%);
     -fx-background-radius: 2cm;
 }
-.table-view.scroll-bar:horizantal.thumb,
+.table-view.scroll-bar:horizontal.thumb,
 .table-view.scroll-bar:vertical.thumb{
     -fx-border-color:derive(#212F3C,90%);
     -fx-background-insets:2,0,0;
