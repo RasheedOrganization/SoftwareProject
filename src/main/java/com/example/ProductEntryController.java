@@ -24,7 +24,6 @@ import java.util.ResourceBundle;
 
 
 public class ProductEntryController implements Initializable{
-    HelloController h = new HelloController();
     private static ConnectionDatabase data;
     @FXML
     TextField TF_Pname;
@@ -306,7 +305,7 @@ public class ProductEntryController implements Initializable{
                 String    useFlag = null
                         , clothType = null
                         , WellCleaned = null
-                        , Customer_email = h.getGmailCounter();
+                        , Customer_email = HelloController.getGmailCounter();
 
                 if (Check_treatment.isSelected())
                     WellCleaned = "true";

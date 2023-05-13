@@ -40,16 +40,16 @@ public class HelloController {
 
     private ConnectionDatabase Data = ConnectionDatabase.getInstance();
 
-    String getGmailCounter() {
+    static String getGmailCounter() {
         return GmailCounter;
     }
-    String getUserNamee() {
+    static String getUserNamee() {
         return UserNamee;
     }
-    void setGmailCounter(String gmail){
+    static void setGmailCounter(String gmail){
         GmailCounter = gmail;
     }
-    void setUserNamee(String namee){
+    static void setUserNamee(String namee){
         UserNamee = namee;
     }
     @FXML

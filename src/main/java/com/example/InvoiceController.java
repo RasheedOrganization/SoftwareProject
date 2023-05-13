@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 
 
 public class InvoiceController implements Initializable {
-    HelloController h = new HelloController();
     @FXML
     private Label Address;
     @FXML
@@ -82,11 +81,11 @@ public class InvoiceController implements Initializable {
             rs = stmt.executeQuery(str);
             rs.next();
             D_Date.setText(rs.getString(1));
-            User.setText(h.getUserNamee());
+            User.setText(HelloController.getUserNamee());
             Address.setText(ProductEntryController.location);
 
 
-            String dis="SELECT count(CUSTOMER_EMAIL) FROM PRODUCT WHERE CUSTOMER_EMAIL='"+h.getGmailCounter()+"'";
+            String dis="SELECT count(CUSTOMER_EMAIL) FROM PRODUCT WHERE CUSTOMER_EMAIL='"+ HelloController.getGmailCounter()+"'";
             Statement sss=con.createStatement();
             ResultSet count=sss.executeQuery(dis);
             count.next();
