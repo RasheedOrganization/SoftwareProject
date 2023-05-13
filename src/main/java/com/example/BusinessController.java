@@ -16,35 +16,21 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.*;
-import javax.swing.text.html.ImageView;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class BusinessController implements Initializable {
-    @FXML
-    private Button BTN_C;
-
-    @FXML
-    private TextField TF_PN;
-    @FXML
-    private TextField TF_ID;
-    @FXML
-    private TextField TF_NAME;
-    @FXML
-    private Button BTN_P;
-
-    @FXML
-    private Button BTN_W;
-
-    @FXML
-    private ImageView BTN_search;
-    @FXML
-    private ImageView BTN_LOGOUT;
-
+    private static final String deletedSuccessfully = "Deleted successfully";
+    private static final String nothingDeleted = "Nothing deleted";
+    private static final Logger logger = Logger.getLogger(BusinessController.class.getName());
     @FXML
     private TableView<Customer> Customer_TV;
 
@@ -117,28 +103,28 @@ public class BusinessController implements Initializable {
     private ConnectionDatabase Data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        TV_CUSTOMR_NAME.setCellValueFactory(new PropertyValueFactory<Customer, String>("Name"));
-        TV_CUSTOMR_Email.setCellValueFactory(new PropertyValueFactory<Customer, String>("Email"));
-        TV_CUSTOMR_Phone.setCellValueFactory(new PropertyValueFactory<Customer, String>("Phone"));
+        TV_CUSTOMR_NAME.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TV_CUSTOMR_Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        TV_CUSTOMR_Phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 
 
 
 
-        TV_P_ID.setCellValueFactory(new PropertyValueFactory<Product, String>("ID"));
-        TV_P_name.setCellValueFactory(new PropertyValueFactory<Product, String>("Name"));
-        TV_P_area.setCellValueFactory(new PropertyValueFactory<Product, String>("Area"));
-        TV_P_quantity.setCellValueFactory(new PropertyValueFactory<Product, String>("Quantity"));
-        TV_P_address.setCellValueFactory(new PropertyValueFactory<Product, String>("Address"));
-        TV_P_status.setCellValueFactory(new PropertyValueFactory<Product, String>("Status"));
-        TV_P_date.setCellValueFactory(new PropertyValueFactory<Product, String>("Date"));
-        TV_P_price.setCellValueFactory(new PropertyValueFactory<Product, Float>("Price"));
+        TV_P_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        TV_P_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TV_P_area.setCellValueFactory(new PropertyValueFactory<>("Area"));
+        TV_P_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        TV_P_address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        TV_P_status.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        TV_P_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        TV_P_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
 
 
-        TV_W_ID.setCellValueFactory(new PropertyValueFactory<Worker, String>("ID"));
-        TV_W_name.setCellValueFactory(new PropertyValueFactory<Worker, String>("Name"));
-        TV_W_phone.setCellValueFactory(new PropertyValueFactory<Worker, String>("Phone"));
-        TV_W_flag.setCellValueFactory(new PropertyValueFactory<Worker, String>("Availability"));
+        TV_W_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        TV_W_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TV_W_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        TV_W_flag.setCellValueFactory(new PropertyValueFactory<>("Availability"));
         CustomerHelper();
         Customer_TV.setVisible(true);
         Product_TV.setVisible(false);
@@ -163,24 +149,22 @@ public class BusinessController implements Initializable {
                     return true;
                 }
                 String searchKey=NewVal.toLowerCase();
-                if(worker.getID().toLowerCase().indexOf(searchKey) > -1)
+                if(worker.getID().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(worker.getName().toLowerCase().indexOf(searchKey) > -1)
+                else if(worker.getName().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(worker.getPhone().toLowerCase().indexOf(searchKey) > -1)
-                {
-                    return true;
-                }
-                else if(worker.getAvailability().toLowerCase().indexOf(searchKey) > -1)
+                else if(worker.getPhone().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
                 else
-                    return false;
+                {
+                    return worker.getAvailability().toLowerCase().contains(searchKey);
+                }
 
             });
 
@@ -200,36 +184,31 @@ public class BusinessController implements Initializable {
                     return true;
                 }
                 String searchKey=NewVal.toLowerCase();
-                if(product.getID().toLowerCase().indexOf(searchKey) > -1)
+                if(product.getID().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getName().toLowerCase().indexOf(searchKey) > -1)
+                else if(product.getName().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getAddress().toLowerCase().indexOf(searchKey) > -1)
+                else if(product.getAddress().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getArea().toLowerCase().indexOf(searchKey) > -1)
+                else if(product.getArea().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getStatus().toLowerCase().indexOf(searchKey) > -1)
+                else if(product.getStatus().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getQuantity().toLowerCase().indexOf(searchKey) > -1)
+                else if(product.getQuantity().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(product.getDate().toLowerCase().indexOf(searchKey) > -1)
-                {
-                    return true;
-                }
-                else
-                    return false;
+                else return product.getDate().toLowerCase().contains(searchKey);
 
             });
 
@@ -242,25 +221,20 @@ public class BusinessController implements Initializable {
         FilteredList<Customer>filter=new FilteredList<>(C_LIST, b ->true);
         TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(customer->{
-                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                if(NewVal.isEmpty() || NewVal.isBlank())
                 {
                     return true;
                 }
                 String searchKey=NewVal.toLowerCase();
-                if(customer.getName().toLowerCase().indexOf(searchKey) > -1)
+                if(customer.getName().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(customer.getEmail().toLowerCase().indexOf(searchKey) > -1)
+                else if(customer.getEmail().toLowerCase().contains(searchKey))
                 {
                     return true;
                 }
-                else if(customer.getPhone().toLowerCase().indexOf(searchKey) > -1)
-                {
-                    return true;
-                }
-                else
-                    return false;
+                else return customer.getPhone().toLowerCase().contains(searchKey);
 
             });
 
@@ -287,9 +261,9 @@ public class BusinessController implements Initializable {
 
             Customer_TV.setItems(C_LIST);
         }
-        catch (Exception e)
+        catch (SQLException e)
         {
-            System.out.println("Exception in Customer Table");
+            logger.log(Level.WARNING, "Exception in Customer Table");
         }
         Customer_TV.setVisible(true);
         Product_TV.setVisible(false);
@@ -324,9 +298,9 @@ public class BusinessController implements Initializable {
 
             Product_TV.setItems(P_LIST);
         }
-        catch (Exception e)
+        catch (SQLException e)
         {
-            System.out.println("Exception in Product Table");
+            logger.log(Level.WARNING, "Exception in Product Table");
         }
         Customer_TV.setVisible(false);
         Product_TV.setVisible(true);
@@ -349,9 +323,9 @@ public class BusinessController implements Initializable {
 
             Worker_TV.setItems(W_LIST);
         }
-        catch (Exception e)
+        catch (SQLException e)
         {
-            System.out.println("Exception in Worker Table");
+            logger.log(Level.WARNING, "Exception in Worker Table");
         }
         Customer_TV.setVisible(false);
         Product_TV.setVisible(false);
@@ -384,13 +358,13 @@ public class BusinessController implements Initializable {
                     Statement stmt = con.createStatement();
                     int deleted = stmt.executeUpdate(str);
                     if(deleted > 0)
-                        JOptionPane.showMessageDialog(null , "Deleted successfully");
+                        JOptionPane.showMessageDialog(null , deletedSuccessfully);
                     else
-                        JOptionPane.showMessageDialog(null , "Nothing deleted");
+                        JOptionPane.showMessageDialog(null , nothingDeleted);
                 }
-                catch (Exception e)
+                catch (SQLException e)
                 {
-                    System.out.println("Exception in Product delete");
+                    logger.log(Level.WARNING, "Exception in Product delete");
                 }
 
                 ProductEntryController.StatusHelper();
@@ -408,14 +382,14 @@ public class BusinessController implements Initializable {
                 Statement stmt = con.createStatement();
                 int deleted = stmt.executeUpdate(str);
                 if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , "Deleted successfully");
+                    JOptionPane.showMessageDialog(null , deletedSuccessfully);
                 else
-                    JOptionPane.showMessageDialog(null , "Nothing deleted");
+                    JOptionPane.showMessageDialog(null , nothingDeleted);
 
             }
-            catch (Exception e)
+            catch (SQLException e)
             {
-                System.out.println("Exception in Worker delete");
+                logger.log(Level.WARNING, "Exception in Worker delete");
             }
 
             Worker_TV.getItems().removeAll(Worker_TV.getSelectionModel().getSelectedItem());
@@ -430,14 +404,14 @@ public class BusinessController implements Initializable {
                 Statement stmt = con.createStatement();
                 int deleted = stmt.executeUpdate(str);
                 if(deleted > 0)
-                    JOptionPane.showMessageDialog(null , "Deleted successfully");
+                    JOptionPane.showMessageDialog(null , deletedSuccessfully);
                 else
-                    JOptionPane.showMessageDialog(null , "Nothing deleted");
+                    JOptionPane.showMessageDialog(null , nothingDeleted);
 
             }
-            catch (Exception e)
+            catch (SQLException e)
             {
-                System.out.println("Exception in Customer delete");
+                logger.log(Level.WARNING, "Exception in Customer delete");
             }
 
             Customer_TV.getItems().removeAll(Customer_TV.getSelectionModel().getSelectedItem());
@@ -453,8 +427,8 @@ public class BusinessController implements Initializable {
                 Stage stage = (Stage) TF_search.getScene().getWindow();
                 stage.setScene(scene);
             }
-            catch (Exception e) {
-                System.out.println("Exception in Product add button");
+            catch (IOException e) {
+                logger.log(Level.WARNING, "Exception in Product add button");
             }
         }
         else if(Worker_TV.isVisible())
@@ -465,9 +439,9 @@ public class BusinessController implements Initializable {
                 Stage stage = (Stage) TF_search.getScene().getWindow();
                 stage.setScene(scene);
             }
-            catch (Exception e)
+            catch (IOException e)
             {
-                System.out.println("Exception in Worker add button");
+                logger.log(Level.WARNING, "Exception in Worker add button");
             }
         }
         else if(Customer_TV.isVisible())
@@ -478,8 +452,8 @@ public class BusinessController implements Initializable {
                 Stage stage = (Stage) TF_search.getScene().getWindow();
                 stage.setScene(scene);
             }
-            catch (Exception e) {
-                System.out.println("Exception in Customer add button");
+            catch (IOException e) {
+                logger.log(Level.WARNING, "Exception in Customer add button");
             }
         }
     }
@@ -496,8 +470,8 @@ public class BusinessController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-        catch (Exception e) {
-            System.out.println("Exception in Logout2 Clicked");
+        catch (IOException e) {
+            logger.log(Level.WARNING, "Exception in Logout2 Clicked");
         }
     }
 
@@ -509,8 +483,8 @@ public class BusinessController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
-        catch (Exception e) {
-            System.out.println("Exception in chart Clicked");
+        catch (IOException e) {
+            logger.log(Level.WARNING, "Exception in chart Clicked");
         }
     }
 }
