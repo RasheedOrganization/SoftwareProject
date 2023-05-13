@@ -3,7 +3,6 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -16,7 +15,6 @@ import javax.mail.internet.MimeMultipart;
 
 public class Mail
 {
-    private static final Logger LOGGER = Logger.getLogger(Mail.class.getName());
 
     Session newSession = null;
     MimeMessage mimeMessage = null;
