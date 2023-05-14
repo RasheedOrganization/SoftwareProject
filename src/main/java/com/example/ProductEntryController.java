@@ -57,13 +57,13 @@ public class ProductEntryController implements Initializable{
     private static int StatusCounter=0;
     static List<String> MailNames=new ArrayList<>();
 
-    static public double getLocalPrice() {
+    public static double getLocalPrice() {
         return LocalPrice;
     }
-    static public void addLocalPrice(double local) {
+    public static void addLocalPrice(double local) {
         LocalPrice += local;
     }
-    static public void setZeroLocalPrice() {
+    public static void setZeroLocalPrice() {
         LocalPrice = 0;
     }
     @Override
@@ -71,7 +71,6 @@ public class ProductEntryController implements Initializable{
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
         ComboBox_Clothes.setItems(list);
         StatusHelper();
-       // SendEmail();
     }
 
 
@@ -82,13 +81,11 @@ public class ProductEntryController implements Initializable{
             String tempDate;
             data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
-
             String s="SELECT SYSDATE from USER_TABLE";
             Statement ss=con.createStatement();
             ResultSet sss=ss.executeQuery(s);
             sss.next();
             tempDate=sss.getString(1);
-
             String stmt="SELECT productID,STATUS,STRINGDATE,CUSTOMER_EMAIL from product";
             Statement stmtt = con.createStatement();
             ResultSet rs = stmtt.executeQuery(stmt);
@@ -99,22 +96,13 @@ public class ProductEntryController implements Initializable{
                 {
                     String[] SpaceSplit=rs.getString(3).split(" ");
                     String[] SpaceSplitTemp=tempDate.split(" ");
-
                     String[] Split = SpaceSplit[0].split("-");
                     String[] tempDateSplit = SpaceSplitTemp[0].split("-");
                     if (Split[1].equals(tempDateSplit[1]))
                     {
-                        if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(Split[2]) > 2 )
-                        {
-                            flag=1;
-                        }
-                    }
-                    else
-                    {
-                        if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(Split[2])) >2 )
-                            flag=1;
-                    }
-
+                        if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(Split[2]) > 2 ) {flag=1;}}
+                    else {if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(Split[2])) >2 )
+                            flag=1;}
                     if(flag!=0)
                     {
                         String update="update product set status='" + "COMPLETE'" + "where productID="+rs.getInt(1);
@@ -124,26 +112,16 @@ public class ProductEntryController implements Initializable{
                         WaitToTreatment++;
                         int f=1;
                         WorkerRest(f);
-
-
                         String updateEmail="update product set EMAIL_FLAG='" + "true'" + "where productID="+rs.getInt(1);
                         stmtUpdate.executeUpdate(updateEmail);
-
                         MailNames.add(rs.getString(4));
                     }
-                    else
-                    {
-                        StatusCounter++;
-                    }
-
-
+                    else  StatusCounter++;
                 }
-
                 Mail m=new Mail();
                 m.RasheedEmail(MailNames);
                 MailNames.clear();
             }
-
             ResultSet RS=stmtt.executeQuery(stmt);
             while(RS.next())
             {
@@ -156,16 +134,8 @@ public class ProductEntryController implements Initializable{
                     WaitToTreatment--;
                     int f=2;
                     WorkerRest(f);
-                }
-            }
-
-        }
-        catch (Exception e)
-        {
-            System.out.println("iam here in Status Counter idiot");
-        }
-
-    }
+                }}
+        } catch (Exception e) {System.out.println("iam here in Status Counter idiot");}}
 
     private static void WorkerRest(int f) {
         String W_flag="",IDString="";
