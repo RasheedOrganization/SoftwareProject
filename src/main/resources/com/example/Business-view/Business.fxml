@@ -16,15 +16,15 @@
 
 <AnchorPane prefHeight="506.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.BusinessController">
    <children>
-      <Button fx:id="BTN_P" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_P_CLICKED" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Product">
+      <Button fx:id="BTNp1" layoutX="195.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTNPCLICKED1" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Product">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="BTN_C" layoutX="32.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_C_Clicked" prefHeight="45.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Customer">
+      <Button fx:id="BTNc1" layoutX="32.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTNCClicked1" prefHeight="45.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Customer">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="BTN_W" layoutX="355.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTN_W_CLICKED" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Workers">
+      <Button fx:id="BTNw1" layoutX="355.0" layoutY="97.0" mnemonicParsing="false" onAction="#BTNwCLICKED1" prefHeight="46.0" prefWidth="138.0" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Workers">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
@@ -90,8 +90,8 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <TextField fx:id="TF_search" layoutX="58.0" layoutY="202.0" promptText="search..." />
-      <ImageView fx:id="BT_search" fitHeight="23.0" fitWidth="23.0" layoutX="27.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="TFsearch1" layoutX="58.0" layoutY="202.0" promptText="search..." />
+      <ImageView fx:id="BTsearch1" fitHeight="23.0" fitWidth="23.0" layoutX="27.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/search.png" />
          </image>
@@ -100,17 +100,17 @@
          </cursor>
       </ImageView>
       <Circle fill="DODGERBLUE" layoutX="-11.0" layoutY="-11.0" radius="69.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="BTN_ADD" layoutX="421.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_ADD_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #6ab04c;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
+      <Button fx:id="BTN11ADD1" layoutX="421.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTNADDClicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #6ab04c;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="BTN_DELETE" layoutX="562.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_Delete_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #d32f2f;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Delete">
+      <Button fx:id="BTNDelete1" layoutX="562.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTNDeleteClicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #d32f2f;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Delete">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="BTN_ADD1" layoutX="279.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTN_chart_Clicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #f39c12;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Chart">
+      <Button fx:id="BTNadd1" layoutX="279.0" layoutY="184.0" mnemonicParsing="false" onAction="#BTNchartClicked" prefHeight="45.0" prefWidth="138.0" style="-fx-background-radius: 30; -fx-background-color: #f39c12;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Chart">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

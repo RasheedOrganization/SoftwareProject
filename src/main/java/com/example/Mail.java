@@ -30,12 +30,15 @@ public class Mail
 }
     private void sendEmail() throws MessagingException {
         String fromUser = "rrash22875@gmail.com";
-        String fromUserPe = "shxtkncbtduzbpub";
+        String fromUserPassword = "urmfacbmdblyplgb";
         String emailHost = "smtp.gmail.com";
         Transport transport = newSession.getTransport("smtp");
-        transport.connect(emailHost, fromUser, fromUserPe);
+        transport.connect(emailHost, fromUser, fromUserPassword);
+        System.out.println("1");
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+        System.out.println("111");
         transport.close();
+        System.out.println("Email successfully sent!!!");
     }
 
     private MimeMessage draftEmail(ArrayList<String> names) throws MessagingException {

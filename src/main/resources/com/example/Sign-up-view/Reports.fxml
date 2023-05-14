@@ -30,7 +30,7 @@
          </cursor>
       </Button>
       <Circle fill="DODGERBLUE" layoutX="-4.0" radius="51.0" stroke="BLACK" strokeType="INSIDE" />
-      <Button fx:id="BTN_GEN" layoutX="54.0" layoutY="179.0" mnemonicParsing="false" onAction="#ViewClicked" prefHeight="50.0" prefWidth="218.0" style="-fx-background-radius: 50;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Business view">
+      <Button fx:id="BTNgen1" layoutX="54.0" layoutY="179.0" mnemonicParsing="false" onAction="#ViewClicked" prefHeight="50.0" prefWidth="218.0" style="-fx-background-radius: 50;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Business view">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

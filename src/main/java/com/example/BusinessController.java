@@ -40,7 +40,7 @@ public class BusinessController implements Initializable {
     private TableView<Worker> Worker_TV;
 
     @FXML
-    private TextField TF_search;
+    private TextField TFsearch1;
 
     @FXML
     private TableColumn<Customer, String> TV_CUSTOMR_Email;
@@ -140,7 +140,7 @@ public class BusinessController implements Initializable {
 
     private void WorkerSearch() {
         FilteredList<Worker>filter=new FilteredList<>(W_LIST, b ->true);
-        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(worker->{
                 if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
                 {
@@ -175,7 +175,7 @@ public class BusinessController implements Initializable {
     }
     private void ProductSearch() {
         FilteredList<Product>filter=new FilteredList<>(P_LIST, b ->true);
-        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(product->{
                 if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
                 {
@@ -217,7 +217,7 @@ public class BusinessController implements Initializable {
     }
     private void CustomerSearch() {
         FilteredList<Customer>filter=new FilteredList<>(C_LIST, b ->true);
-        TF_search.textProperty().addListener((observable,OldVal,NewVal)-> {
+        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(customer->{
                 if(NewVal.isEmpty() || NewVal.isBlank())
                 {
@@ -332,15 +332,15 @@ public class BusinessController implements Initializable {
     }
 
 
-    public void BTN_P_CLICKED(ActionEvent actionEvent) {
+    public void BTNPCLICKED1(ActionEvent actionEvent) {
         ProductHelper();
     }
 
-    public void BTN_C_Clicked(ActionEvent actionEvent) {
+    public void BTNCClicked1(ActionEvent actionEvent) {
         CustomerHelper();
     }
 
-    public void BTN_W_CLICKED(ActionEvent actionEvent) {
+    public void BTNwCLICKED1(ActionEvent actionEvent) {
         WorkerHelper();
     }
 
@@ -351,7 +351,7 @@ public class BusinessController implements Initializable {
             JOptionPane.showMessageDialog(null , NOTHINGDELETED);
     }
 
-    public void BTN_Delete_Clicked(ActionEvent actionEvent)
+    public void BTNDeleteClicked(ActionEvent actionEvent)
     {
         if(Product_TV.isVisible())
         {
@@ -409,14 +409,14 @@ public class BusinessController implements Initializable {
         }
     }
 
-    public void BTN_ADD_Clicked(ActionEvent actionEvent) {
+    public void BTNADDClicked(ActionEvent actionEvent) {
         if (!Product_TV.isVisible()) {
             if(Worker_TV.isVisible())
             {
                 try{
                     Parent root = FXMLLoader.load(getClass().getResource("Business-view/WorkerAdd.fxml"));
                     Scene scene = new Scene(root);
-                    Stage stage = (Stage) TF_search.getScene().getWindow();
+                    Stage stage = (Stage) TFsearch1.getScene().getWindow();
                     stage.setScene(scene);
                 }
                 catch (IOException e)
@@ -429,7 +429,7 @@ public class BusinessController implements Initializable {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
                     Scene scene = new Scene(root);
-                    Stage stage = (Stage) TF_search.getScene().getWindow();
+                    Stage stage = (Stage) TFsearch1.getScene().getWindow();
                     stage.setScene(scene);
                 }
                 catch (IOException e) {
@@ -440,7 +440,7 @@ public class BusinessController implements Initializable {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) TF_search.getScene().getWindow();
+                Stage stage = (Stage) TFsearch1.getScene().getWindow();
                 stage.setScene(scene);
             }
             catch (IOException e) {
@@ -466,7 +466,7 @@ public class BusinessController implements Initializable {
         }
     }
 
-    public void BTN_chart_Clicked(ActionEvent event) {
+    public void BTNchartClicked(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Chart.fxml"));
             Scene scene = new Scene(root);

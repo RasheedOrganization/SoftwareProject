@@ -27,25 +27,25 @@ import java.util.ResourceBundle;
 public class ProductEntryController implements Initializable{
     private static ConnectionDatabase data;
     @FXML
-    TextField TF_Pname;
+    TextField TFPname1;
     @FXML
-    TextField TF_Parea;
+    TextField TFParea1;
     @FXML
-    TextField TF_Pquantity;
+    TextField TFPquantity1;
     @FXML
-    TextField TF_Paddress;
+    TextField TFPaddress1;
     @FXML
-    TextField TF_PphoneNumber;
+    TextField TFPphoneNumber1;
     @FXML
-    CheckBox Check_Use;
+    CheckBox CheckUse1;
     @FXML
-    CheckBox Check_treatment;
+    CheckBox Checktreatment1;
     @FXML
-    ImageView BTN_AddProduct;
+    ImageView BTNAddProduct1;
     @FXML
-    ImageView BTN_logout;
+    ImageView BTN1logout;
     @FXML
-    Button BTN_Entry;
+    Button BTNEntry1;
     @FXML
     private ComboBox<String> ComboBox_Clothes;
 
@@ -118,9 +118,11 @@ public class ProductEntryController implements Initializable{
                     }
                     else  StatusCounter++;
                 }
-                Mail m=new Mail();
-                m.RasheedEmail(MailNames);
-                MailNames.clear();
+/*                if (!MailNames.isEmpty()) {
+                    Mail m = new Mail();
+                    m.RasheedEmail(MailNames);
+                    MailNames.clear();
+                }*/
             }
             ResultSet RS=stmtt.executeQuery(stmt);
             while(RS.next())
@@ -134,8 +136,10 @@ public class ProductEntryController implements Initializable{
                     WaitToTreatment--;
                     int f=2;
                     WorkerRest(f);
-                }}
-        } catch (Exception e) {System.out.println("iam here in Status Counter idiot");}}
+                }
+            }
+        }
+        catch (Exception e) {System.out.println("iam here in Status Counter idiot");}}
 
     private static void WorkerRest(int f) {
         String W_flag="",IDString="";
@@ -202,15 +206,15 @@ public class ProductEntryController implements Initializable{
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Invoice-view/invoice.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) TF_PphoneNumber.getScene().getWindow();
+            Stage stage = (Stage) TFPphoneNumber1.getScene().getWindow();
             stage.setScene(scene);
-                TF_Parea.setText("");
-                TF_Pname.setText("");
-                TF_Pquantity.setText("");
-                TF_Paddress.setText("");
-                TF_PphoneNumber.setText("");
-                Check_Use.setSelected(false);
-                Check_treatment.setSelected(false);
+                TFParea1.setText("");
+                TFPname1.setText("");
+                TFPquantity1.setText("");
+                TFPaddress1.setText("");
+                TFPphoneNumber1.setText("");
+                CheckUse1.setSelected(false);
+                Checktreatment1.setSelected(false);
                 ComboBox_Clothes.setVisible(false);
         }
         catch (Exception e) {
@@ -221,11 +225,11 @@ public class ProductEntryController implements Initializable{
     public void AddProductClicked(MouseEvent mouseEvent) {
         StatusHelper();
         try {
-            String   name=TF_Pname.getText()
-                    ,area=TF_Parea.getText()
-                    ,quantity=TF_Pquantity.getText()
-                    ,address=TF_Paddress.getText()
-                    ,phone=TF_PphoneNumber.getText();
+            String   name=TFPname1.getText()
+                    ,area=TFParea1.getText()
+                    ,quantity=TFPquantity1.getText()
+                    ,address=TFPaddress1.getText()
+                    ,phone=TFPphoneNumber1.getText();
             location=address;
 
             boolean flag = true;
@@ -288,10 +292,10 @@ public class ProductEntryController implements Initializable{
                         , WellCleaned = null
                         , Customer_email = HelloController.getGmailCounter();
 
-                if (Check_treatment.isSelected())
+                if (Checktreatment1.isSelected())
                     WellCleaned = "true";
                 else WellCleaned = "false";
-                if (Check_Use.isSelected()) {
+                if (CheckUse1.isSelected()) {
                     useFlag = "true";
                     clothType = ComboBox_Clothes.getSelectionModel().getSelectedItem().toString();
                 }
@@ -318,7 +322,7 @@ public class ProductEntryController implements Initializable{
 
 
                 double price = 0;
-                if (Check_Use.isSelected()) {
+                if (CheckUse1.isSelected()) {
                     if (ComboBox_Clothes.getValue().equals("Pants")) price = Double.parseDouble(quantity) * 5;
                     else if (ComboBox_Clothes.getValue().equals("Shirt")) price = Double.parseDouble(quantity) * 5;
                     else if (ComboBox_Clothes.getValue().equals("Jacket")) price = Double.parseDouble(quantity) * 10;
@@ -326,7 +330,7 @@ public class ProductEntryController implements Initializable{
                 } else
                     price = Double.parseDouble(quantity) * Double.parseDouble(area) * 0.45;
 
-                if(Check_treatment.isSelected())
+                if(Checktreatment1.isSelected())
                 {
                     price+=price*0.05;
                 }
@@ -340,11 +344,11 @@ public class ProductEntryController implements Initializable{
                         + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + WellCleaned + "'," + "'" + Customer_email + "'," + "'"+WhatIsStatus+"',"+price+",'"+"false"+"',"+"'"+CurrentDate+"')";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(all);
-                TF_Parea.setText("");
-                TF_Pname.setText("");
-                TF_Pquantity.setText("");
-                Check_Use.setSelected(false);
-                Check_treatment.setSelected(false);
+                TFParea1.setText("");
+                TFPname1.setText("");
+                TFPquantity1.setText("");
+                CheckUse1.setSelected(false);
+                Checktreatment1.setSelected(false);
                 ComboBox_Clothes.setVisible(false);
             }
 
@@ -357,8 +361,8 @@ public class ProductEntryController implements Initializable{
 
     }
 
-    public void Check_Use_Clicked(ActionEvent actionEvent) {
-        if(Check_Use.isSelected())
+    public void CheckUseClicked1(ActionEvent actionEvent) {
+        if(CheckUse1.isSelected())
         {
             ComboBox_Clothes.setVisible(true);
         }

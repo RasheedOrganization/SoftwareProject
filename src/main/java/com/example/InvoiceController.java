@@ -26,46 +26,46 @@ public class InvoiceController implements Initializable {
     @FXML
     private Label Address;
     @FXML
-    private Label D_Date;
+    private Label DDate1;
 
     @FXML
     private Label Discount;
 
     @FXML
-    private Label R_Date;
+    private Label RDate1;
     @FXML
     private Label LocalPrice;
     @FXML
-    private Label Total_price;
+    private Label Totalprice1;
 
     @FXML
     private Label User;
     @FXML
-    private TableColumn<Invoice, Double> Area_colom;
+    private TableColumn<Invoice, Double> Areacolom1;
 
     @FXML
-    private TableColumn<Invoice, String> PN_colom;
+    private TableColumn<Invoice, String> PN_olom1;
 
     @FXML
-    private TableColumn<Invoice, Double> Price_colom;
+    private TableColumn<Invoice, Double> Pricecolom1;
 
     @FXML
-    private TableColumn<Invoice, Double> Quantity_colom;
+    private TableColumn<Invoice, Double> Quantitycolom1;
 
     @FXML
-    private TableView<Invoice> Table_viwe;
+    private TableView<Invoice> Tableviwe1;
 
     private double Discountcalc=0;
     private ConnectionDatabase Data;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PN_colom.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
-        Area_colom.setCellValueFactory(new PropertyValueFactory<>("area"));
-        Quantity_colom.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        Price_colom.setCellValueFactory(new PropertyValueFactory<>("price"));
+        PN_olom1.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+        Areacolom1.setCellValueFactory(new PropertyValueFactory<>("area"));
+        Quantitycolom1.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        Pricecolom1.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        Table_viwe.setItems(ProductEntryController.LIST);
+        Tableviwe1.setItems(ProductEntryController.LIST);
         InitializeHelper();
     }
     private void InitializeHelper()
@@ -78,11 +78,11 @@ public class InvoiceController implements Initializable {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             rs.next();
-            R_Date.setText(rs.getString(1));
+            RDate1.setText(rs.getString(1));
             str="SELECT SYSDATE+7 from USER_TABLE";
             rs = stmt.executeQuery(str);
             rs.next();
-            D_Date.setText(rs.getString(1));
+            DDate1.setText(rs.getString(1));
             User.setText(HelloController.getUserNamee());
             Address.setText(ProductEntryController.location);
 
@@ -106,7 +106,7 @@ public class InvoiceController implements Initializable {
 
         if(ProductEntryController.getLocalPrice()>=1000)Discountcalc=ProductEntryController.getLocalPrice()*0.02;
         Discount.setText(Double.toString(Discountcalc)+"$");
-        Total_price.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
+        Totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
         LocalPrice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
         ProductEntryController.setZeroLocalPrice();
         Discountcalc=0;
@@ -114,7 +114,7 @@ public class InvoiceController implements Initializable {
 
     public void BackAndClear(MouseEvent event) {
         ProductEntryController.LIST.clear();
-        Table_viwe.setItems(ProductEntryController.LIST);
+        Tableviwe1.setItems(ProductEntryController.LIST);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
             Scene scene = new Scene(root);

@@ -48,7 +48,7 @@
             <Font name="Forte" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Total_price" layoutX="462.0" layoutY="288.0" prefHeight="27.0" prefWidth="131.0" text="00.0$">
+      <Label fx:id="Totalprice1" layoutX="462.0" layoutY="288.0" prefHeight="27.0" prefWidth="131.0" text="00.0$">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -68,12 +68,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="R_Date" layoutX="470.0" layoutY="116.0" prefHeight="20.0" prefWidth="131.0" text="null">
+      <Label fx:id="RDate1" layoutX="470.0" layoutY="116.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="D_Date" layoutX="470.0" layoutY="140.0" prefHeight="20.0" prefWidth="131.0" text="null">
+      <Label fx:id="DDate1" layoutX="470.0" layoutY="140.0" prefHeight="20.0" prefWidth="131.0" text="null">
          <font>
             <Font size="14.0" />
          </font>
@@ -83,7 +83,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Discount" layoutX="470.0" layoutY="213.0" prefHeight="22.0" prefWidth="162.0" text="00.0$">
+      <Label fx:id="Discount" layoutX="470.0" layoutY="213.0" prefHeight="22.0" prefWidth="71.0" text="00.0$">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -102,12 +102,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="Table_viwe" layoutX="39.0" layoutY="105.0" prefHeight="232.0" prefWidth="296.0" stylesheets="@InvoiceStyle.css">
+      <TableView fx:id="Tableviwe1" layoutX="39.0" layoutY="105.0" prefHeight="232.0" prefWidth="296.0" stylesheets="@InvoiceStyle.css">
         <columns>
-          <TableColumn fx:id="PN_colom" prefWidth="92.79995346069336" text="Product name" />
-          <TableColumn fx:id="Area_colom" prefWidth="60.7999267578125" text="Area" />
-            <TableColumn fx:id="Quantity_colom" prefWidth="61.59999084472656" text="Quantity" />
-            <TableColumn fx:id="Price_colom" minWidth="0.0" prefWidth="80.00001525878906" text="Price" />
+          <TableColumn fx:id="PN_olom1" prefWidth="92.79995346069336" text="Product name" />
+          <TableColumn fx:id="Areacolom1" prefWidth="60.7999267578125" text="Area" />
+            <TableColumn fx:id="Quantitycolom1" prefWidth="61.59999084472656" text="Quantity" />
+            <TableColumn fx:id="Pricecolom1" minWidth="0.0" prefWidth="80.00001525878906" text="Price" />
         </columns>
          <styleClass>
             <String fx:value="cell" />
@@ -143,7 +143,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="LocalPrice" layoutX="469.0" layoutY="237.0" prefHeight="22.0" prefWidth="162.0" text="00.0$">
+      <Label fx:id="LocalPrice" layoutX="469.0" layoutY="237.0" prefHeight="22.0" prefWidth="71.0" text="00.0$">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
