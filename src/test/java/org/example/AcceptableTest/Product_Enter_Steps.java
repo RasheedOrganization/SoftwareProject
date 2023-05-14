@@ -53,9 +53,9 @@ public class Product_Enter_Steps {
             }
             assertEquals(true,true);
     }
-    @When("I enter an empty {string} Address")
+    @When("I enter an empty {string} address")
     public void i_enter_an_empty_address(String string) {
-        if(string.equals(null))assertEquals("Address can't be empty",true,false);
+        if(string.equals(null))assertEquals("address can't be empty",true,false);
         else assertEquals(true,true);
     }
     @When("I enter an empty {string} Area")

@@ -32,7 +32,7 @@ import java.util.ResourceBundle;
 public class ReportsController implements Initializable {
 
     @FXML
-    private Button BackButton;
+    private Button backbutton;
 
     @FXML
     private Button CustomerReport;
@@ -57,7 +57,7 @@ public class ReportsController implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) BackButton.getScene().getWindow();
+            Stage stage = (Stage) backbutton.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (Exception e) {
@@ -67,11 +67,11 @@ public class ReportsController implements Initializable {
     }
 
     @FXML
-    void BackClicked(ActionEvent event) {
+    void backclicked(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/hello-view.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) BackButton.getScene().getWindow();
+            Stage stage = (Stage) backbutton.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (Exception e) {

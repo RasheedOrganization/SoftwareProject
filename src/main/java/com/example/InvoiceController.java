@@ -24,48 +24,48 @@ import java.util.logging.Logger;
 public class InvoiceController implements Initializable {
     private static final Logger LOGGER = Logger.getLogger(InvoiceController.class.getName());
     @FXML
-    private Label Address;
+    private Label address;
     @FXML
     private Label DDate1;
 
     @FXML
-    private Label Discount;
+    private Label discount;
 
     @FXML
     private Label RDate1;
     @FXML
-    private Label LocalPrice;
+    private Label localprice;
     @FXML
-    private Label Totalprice1;
+    private Label totalprice1;
 
     @FXML
-    private Label User;
+    private Label user;
     @FXML
-    private TableColumn<Invoice, Double> Areacolom1;
+    private TableColumn<Invoice, Double> areacolom1;
 
     @FXML
-    private TableColumn<Invoice, String> PN_olom1;
+    private TableColumn<Invoice, String> pnolom1;
 
     @FXML
-    private TableColumn<Invoice, Double> Pricecolom1;
+    private TableColumn<Invoice, Double> pricecolom1;
 
     @FXML
-    private TableColumn<Invoice, Double> Quantitycolom1;
+    private TableColumn<Invoice, Double> quantitycolom1;
 
     @FXML
-    private TableView<Invoice> Tableviwe1;
+    private TableView<Invoice> tableviwe1;
 
     private double Discountcalc=0;
     private ConnectionDatabase Data;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        PN_olom1.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
-        Areacolom1.setCellValueFactory(new PropertyValueFactory<>("area"));
-        Quantitycolom1.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        Pricecolom1.setCellValueFactory(new PropertyValueFactory<>("price"));
+        pnolom1.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+        areacolom1.setCellValueFactory(new PropertyValueFactory<>("area"));
+        quantitycolom1.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        pricecolom1.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        Tableviwe1.setItems(ProductEntryController.LIST);
+        tableviwe1.setItems(ProductEntryController.LIST);
         InitializeHelper();
     }
     private void InitializeHelper()
@@ -83,8 +83,8 @@ public class InvoiceController implements Initializable {
             rs = stmt.executeQuery(str);
             rs.next();
             DDate1.setText(rs.getString(1));
-            User.setText(HelloController.getUserNamee());
-            Address.setText(ProductEntryController.location);
+            user.setText(HelloController.getUserNamee());
+            address.setText(ProductEntryController.location);
 
 
             String dis="SELECT count(CUSTOMER_EMAIL) FROM PRODUCT WHERE CUSTOMER_EMAIL='"+ HelloController.getGmailCounter()+"'";
@@ -100,25 +100,25 @@ public class InvoiceController implements Initializable {
 
         if(Discountcalc<=10)Discountcalc=0.00;
 
-        else if(Discountcalc<=20)Discountcalc=ProductEntryController.LocalPrice*0.1;
+        else if(Discountcalc<=20)Discountcalc=ProductEntryController.localprice*0.1;
 
-        else Discountcalc=ProductEntryController.LocalPrice*0.2;
+        else Discountcalc=ProductEntryController.localprice*0.2;
 
         if(ProductEntryController.getLocalPrice()>=1000)Discountcalc=ProductEntryController.getLocalPrice()*0.02;
-        Discount.setText(Double.toString(Discountcalc)+"$");
-        Totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
-        LocalPrice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
+        discount.setText(Double.toString(Discountcalc)+"$");
+        totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
+        localprice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
         ProductEntryController.setZeroLocalPrice();
         Discountcalc=0;
     }
 
-    public void BackAndClear(MouseEvent event) {
+    public void backandclear(MouseEvent event) {
         ProductEntryController.LIST.clear();
-        Tableviwe1.setItems(ProductEntryController.LIST);
+        tableviwe1.setItems(ProductEntryController.LIST);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) Discount.getScene().getWindow();
+            Stage stage = (Stage) discount.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (Exception e) {

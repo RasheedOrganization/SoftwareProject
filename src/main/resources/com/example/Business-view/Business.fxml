@@ -52,7 +52,7 @@
                   <TableColumn fx:id="TV_P_name" prefWidth="127.19998168945312" text="ProductName" />
                   <TableColumn fx:id="TV_P_area" prefWidth="99.99998474121094" text="ProductArea" />
                   <TableColumn fx:id="TV_P_quantity" prefWidth="68.79998779296875" text="Quantity" />
-                  <TableColumn fx:id="TV_P_address" prefWidth="70.4000244140625" text="Address" />
+                  <TableColumn fx:id="TV_P_address" prefWidth="70.4000244140625" text="address" />
                   <TableColumn fx:id="TV_P_status" prefWidth="72.79998779296875" text="Status" />
                   <TableColumn fx:id="TV_P_date" prefWidth="108.00006103515625" text="Date" />
                   <TableColumn fx:id="TV_P_price" prefWidth="72.7999267578125" text="price" />

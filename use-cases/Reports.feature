@@ -5,7 +5,7 @@ Feature: Reports
   @Successful
   Scenario: Successful Print Report
 
-  User should get a PDF file and open jasper report.
+  user should get a PDF file and open jasper report.
 
     Given I have chosen to print report screen
     When I press on button to print a report

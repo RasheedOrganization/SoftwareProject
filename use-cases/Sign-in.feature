@@ -19,7 +19,7 @@ Feature: Sign-In
   @Successful
   Scenario Outline: Successful sign-in
 
-  User should get a greeted personally by the site once signed-in.
+  user should get a greeted personally by the site once signed-in.
 
     Given I have chosen to sign in
     When I sign in with valid details email '<email>' and password '<password>'

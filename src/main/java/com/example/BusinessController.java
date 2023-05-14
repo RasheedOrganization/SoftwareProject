@@ -112,7 +112,7 @@ public class BusinessController implements Initializable {
         TV_P_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
         TV_P_area.setCellValueFactory(new PropertyValueFactory<>("Area"));
         TV_P_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        TV_P_address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        TV_P_address.setCellValueFactory(new PropertyValueFactory<>("address"));
         TV_P_status.setCellValueFactory(new PropertyValueFactory<>("Status"));
         TV_P_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
         TV_P_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
@@ -274,7 +274,7 @@ public class BusinessController implements Initializable {
             Data=ConnectionDatabase.getInstance();
             Connection con = Data.getConnectData();
 
-            String str="SELECT PRODUCTID,PRICE,PRODUCTNAME,PRODUCTAREA,QUANTITY,ADDRESS,STATUS,STRINGDATE from PRODUCT";
+            String str="SELECT PRODUCTID,PRICE,PRODUCTNAME,PRODUCTAREA,QUANTITY,address,STATUS,STRINGDATE from PRODUCT";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next())
