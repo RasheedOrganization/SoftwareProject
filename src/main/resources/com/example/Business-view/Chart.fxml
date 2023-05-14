@@ -29,13 +29,13 @@
       </ImageView>
       <AnchorPane layoutX="377.0" layoutY="160.0" prefHeight="306.0" prefWidth="360.0" style="-fx-background-color: #E2E5DE;">
          <children>
-            <PieChart fx:id="C_chart" layoutX="11.0" layoutY="8.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@chart2.css" />
+            <PieChart fx:id="cchart" layoutX="11.0" layoutY="8.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@chart2.css" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="9.0" layoutY="160.0" prefHeight="306.0" prefWidth="360.0" style="-fx-background-color: #E2E5DE;">
          <children>
-            <PieChart fx:id="C_chart1" layoutX="21.0" layoutY="8.0" prefHeight="290.0" prefWidth="314.0" />
-            <PieChart fx:id="I_chart" layoutX="8.0" layoutY="9.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@Chart.css" />
+            <PieChart fx:id="cchart1" layoutX="21.0" layoutY="8.0" prefHeight="290.0" prefWidth="314.0" />
+            <PieChart fx:id="ichart" layoutX="8.0" layoutY="9.0" prefHeight="290.0" prefWidth="342.0" stylesheets="@Chart.css" />
          </children>
       </AnchorPane>
       <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="684.0" layoutY="21.0" onMouseClicked="#BackFromChart" pickOnBounds="true" preserveRatio="true">

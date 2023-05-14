@@ -25,10 +25,10 @@ import java.util.logging.Logger;
 public class Chart implements Initializable {
     private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
     @FXML
-    private PieChart C_chart;
+    private PieChart cchart;
 
     @FXML
-    private PieChart I_chart;
+    private PieChart ichart;
     private ConnectionDatabase Data;
     int c=0;
     int i=0;
@@ -48,8 +48,8 @@ public class Chart implements Initializable {
                 new PieChart.Data("Waiting",w)
         );
 
-        I_chart.getData().addAll(ItemChart);
-        I_chart.labelsVisibleProperty().set(false);
+        ichart.getData().addAll(ItemChart);
+        ichart.labelsVisibleProperty().set(false);
 
 
 
@@ -62,8 +62,8 @@ public class Chart implements Initializable {
         );
 
 
-        C_chart.getData().addAll(CashChart);
-        C_chart.labelsVisibleProperty().set(false);
+        cchart.getData().addAll(CashChart);
+        cchart.labelsVisibleProperty().set(false);
         
 
     }
@@ -123,7 +123,7 @@ public class Chart implements Initializable {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) I_chart.getScene().getWindow();
+            Stage stage = (Stage) ichart.getScene().getWindow();
             stage.setScene(scene);
         }
         catch (IOException e) {

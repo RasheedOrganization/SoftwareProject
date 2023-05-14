@@ -16,22 +16,22 @@
             <Image url="@../Image/cleaning-service.png" />
          </image>
       </ImageView>
-      <TextField fx:id="TF_ID" layoutX="58.0" layoutY="98.0" prefHeight="34.0" prefWidth="211.0" promptText="ID" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfid1" layoutX="58.0" layoutY="98.0" prefHeight="34.0" prefWidth="211.0" promptText="ID" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="TF_NAME" layoutX="58.0" layoutY="142.0" prefHeight="34.0" prefWidth="211.0" promptText="Name" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfname" layoutX="58.0" layoutY="142.0" prefHeight="34.0" prefWidth="211.0" promptText="Name" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="TF_PN" layoutX="58.0" layoutY="189.0" prefHeight="34.0" prefWidth="211.0" promptText="Phone number" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfpn1" layoutX="58.0" layoutY="189.0" prefHeight="34.0" prefWidth="211.0" promptText="Phone number" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <Button layoutX="88.0" layoutY="241.0" mnemonicParsing="false" onAction="#Worker_insert" prefHeight="46.0" prefWidth="151.0" style="-fx-background-radius: 30;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
+      <Button layoutX="88.0" layoutY="241.0" mnemonicParsing="false" onAction="#workerinsert" prefHeight="46.0" prefWidth="151.0" style="-fx-background-radius: 30;" styleClass="button-blue" stylesheets="@../Style/Style.css" text="Add">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

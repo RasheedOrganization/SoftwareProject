@@ -15,23 +15,23 @@ import java.sql.Statement;
 
 public class WorkerController {
     @FXML
-    private TextField TF_PN;
+    private TextField tfpn1;
     @FXML
-    private TextField TF_ID;
+    private TextField tfid1;
     @FXML
-    private TextField TF_NAME;
+    private TextField tfname;
     private ConnectionDatabase Data;
-    public void Worker_insert(ActionEvent actionEvent) {
+    public void workerinsert(ActionEvent actionEvent) {
         try{
             Data=ConnectionDatabase.getInstance();
             Connection con = Data.getConnectData();
 
-            String str="INSERT INTO WORKERS VALUES('"+TF_ID.getText()+"',"+"'"+TF_NAME.getText()+"',"+"'"+TF_PN.getText()+"',"+"'"+"false')";
+            String str="INSERT INTO WORKERS VALUES('"+tfid1.getText()+"',"+"'"+tfname.getText()+"',"+"'"+tfpn1.getText()+"',"+"'"+"false')";
             Statement stmt = con.createStatement();
             stmt.executeUpdate(str);
-            TF_PN.setText("");
-            TF_NAME.setText("");
-            TF_ID.setText("");
+            tfpn1.setText("");
+            tfname.setText("");
+            tfid1.setText("");
         }
         catch (Exception e)
         {

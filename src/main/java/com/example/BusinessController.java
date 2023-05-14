@@ -32,60 +32,60 @@ public class BusinessController implements Initializable {
     private static final String NOTHINGDELETED = "Nothing deleted";
     private static final Logger LOGGER = Logger.getLogger(BusinessController.class.getName());
     @FXML
-    private TableView<Customer> Customer_TV;
+    private TableView<Customer> customertv;
 
     @FXML
-    private TableView<Product> Product_TV;
+    private TableView<Product> producttv;
     @FXML
-    private TableView<Worker> Worker_TV;
+    private TableView<Worker> workertv;
 
     @FXML
-    private TextField TFsearch1;
+    private TextField tfsearch1;
 
     @FXML
-    private TableColumn<Customer, String> TV_CUSTOMR_Email;
+    private TableColumn<Customer, String> tvcustomeremail;
 
     @FXML
-    private TableColumn<Customer, String> TV_CUSTOMR_NAME;
+    private TableColumn<Customer, String> tvcustomername;
 
     @FXML
-    private TableColumn<Customer, String> TV_CUSTOMR_Phone;
+    private TableColumn<Customer, String> tvcustomerphone;
 
     @FXML
-    private TableColumn<Product, String> TV_P_ID;
+    private TableColumn<Product, String> tvpid;
 
     @FXML
-    private TableColumn<Product, String> TV_P_address;
+    private TableColumn<Product, String> tvpaddress;
 
     @FXML
-    private TableColumn<Product, String> TV_P_area;
+    private TableColumn<Product, String> tvparea;
 
     @FXML
-    private TableColumn<Product, String> TV_P_date;
+    private TableColumn<Product, String> tvpdate;
 
     @FXML
-    private TableColumn<Product, String> TV_P_name;
+    private TableColumn<Product, String> tvpname;
 
     @FXML
-    private TableColumn<Product, Float> TV_P_price;
+    private TableColumn<Product, Float> tvpprice;
 
     @FXML
-    private TableColumn<Product, String> TV_P_quantity;
+    private TableColumn<Product, String> tvpquantity;
 
     @FXML
-    private TableColumn<Product, String> TV_P_status;
+    private TableColumn<Product, String> tvpstatus;
 
     @FXML
-    private TableColumn<Worker, String> TV_W_ID;
+    private TableColumn<Worker, String> tvwid;
 
     @FXML
-    private TableColumn<Worker, String> TV_W_flag;
+    private TableColumn<Worker, String> tvwflag;
 
     @FXML
-    private TableColumn<Worker, String> TV_W_name;
+    private TableColumn<Worker, String> tvwname;
 
     @FXML
-    private TableColumn<Worker, String> TV_W_phone;
+    private TableColumn<Worker, String> tvwphone;
 
 
     @FXML
@@ -101,32 +101,32 @@ public class BusinessController implements Initializable {
     private ConnectionDatabase Data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        TV_CUSTOMR_NAME.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        TV_CUSTOMR_Email.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        TV_CUSTOMR_Phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        tvcustomername.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        tvcustomeremail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+        tvcustomerphone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 
 
 
 
-        TV_P_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        TV_P_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        TV_P_area.setCellValueFactory(new PropertyValueFactory<>("Area"));
-        TV_P_quantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
-        TV_P_address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        TV_P_status.setCellValueFactory(new PropertyValueFactory<>("Status"));
-        TV_P_date.setCellValueFactory(new PropertyValueFactory<>("Date"));
-        TV_P_price.setCellValueFactory(new PropertyValueFactory<>("Price"));
+        tvpid.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        tvpname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        tvparea.setCellValueFactory(new PropertyValueFactory<>("Area"));
+        tvpquantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
+        tvpaddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        tvpstatus.setCellValueFactory(new PropertyValueFactory<>("Status"));
+        tvpdate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        tvpprice.setCellValueFactory(new PropertyValueFactory<>("Price"));
 
 
 
-        TV_W_ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        TV_W_name.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        TV_W_phone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        TV_W_flag.setCellValueFactory(new PropertyValueFactory<>("Availability"));
+        tvwid.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        tvwname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        tvwphone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        tvwflag.setCellValueFactory(new PropertyValueFactory<>("Availability"));
         CustomerHelper();
-        Customer_TV.setVisible(true);
-        Product_TV.setVisible(false);
-        Worker_TV.setVisible(false);
+        customertv.setVisible(true);
+        producttv.setVisible(false);
+        workertv.setVisible(false);
 
 
 
@@ -140,7 +140,7 @@ public class BusinessController implements Initializable {
 
     private void WorkerSearch() {
         FilteredList<Worker>filter=new FilteredList<>(W_LIST, b ->true);
-        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(worker->{
                 if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
                 {
@@ -168,14 +168,14 @@ public class BusinessController implements Initializable {
 
         });
         SortedList<Worker> sortedData=new SortedList<>(filter);
-        sortedData.comparatorProperty().bind(Worker_TV.comparatorProperty());
-        Worker_TV.setItems(sortedData);
+        sortedData.comparatorProperty().bind(workertv.comparatorProperty());
+        workertv.setItems(sortedData);
 
 
     }
     private void ProductSearch() {
         FilteredList<Product>filter=new FilteredList<>(P_LIST, b ->true);
-        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(product->{
                 if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
                 {
@@ -212,12 +212,12 @@ public class BusinessController implements Initializable {
 
         });
         SortedList<Product> sortedData=new SortedList<>(filter);
-        sortedData.comparatorProperty().bind(Product_TV.comparatorProperty());
-        Product_TV.setItems(sortedData);
+        sortedData.comparatorProperty().bind(producttv.comparatorProperty());
+        producttv.setItems(sortedData);
     }
     private void CustomerSearch() {
         FilteredList<Customer>filter=new FilteredList<>(C_LIST, b ->true);
-        TFsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
             filter.setPredicate(customer->{
                 if(NewVal.isEmpty() || NewVal.isBlank())
                 {
@@ -238,8 +238,8 @@ public class BusinessController implements Initializable {
 
         });
         SortedList<Customer> sortedData=new SortedList<>(filter);
-        sortedData.comparatorProperty().bind(Customer_TV.comparatorProperty());
-        Customer_TV.setItems(sortedData);
+        sortedData.comparatorProperty().bind(customertv.comparatorProperty());
+        customertv.setItems(sortedData);
     }
 
 
@@ -257,15 +257,15 @@ public class BusinessController implements Initializable {
                 C_LIST.add(new Customer(rs.getString(1),rs.getString(2),rs.getString(3)));
             }
 
-            Customer_TV.setItems(C_LIST);
+            customertv.setItems(C_LIST);
         }
         catch (SQLException e)
         {
             LOGGER.log(Level.WARNING, "Exception in Customer Table");
         }
-        Customer_TV.setVisible(true);
-        Product_TV.setVisible(false);
-        Worker_TV.setVisible(false);
+        customertv.setVisible(true);
+        producttv.setVisible(false);
+        workertv.setVisible(false);
         CustomerSearch();
     }
     private void ProductHelper() {
@@ -294,15 +294,15 @@ public class BusinessController implements Initializable {
                 );
             }
 
-            Product_TV.setItems(P_LIST);
+            producttv.setItems(P_LIST);
         }
         catch (SQLException e)
         {
             LOGGER.log(Level.WARNING, "Exception in Product Table");
         }
-        Customer_TV.setVisible(false);
-        Product_TV.setVisible(true);
-        Worker_TV.setVisible(false);
+        customertv.setVisible(false);
+        producttv.setVisible(true);
+        workertv.setVisible(false);
         ProductSearch();
     }
     private void WorkerHelper() {
@@ -319,28 +319,28 @@ public class BusinessController implements Initializable {
                 W_LIST.add(new Worker(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
             }
 
-            Worker_TV.setItems(W_LIST);
+            workertv.setItems(W_LIST);
         }
         catch (SQLException e)
         {
             LOGGER.log(Level.WARNING, "Exception in Worker Table");
         }
-        Customer_TV.setVisible(false);
-        Product_TV.setVisible(false);
-        Worker_TV.setVisible(true);
+        customertv.setVisible(false);
+        producttv.setVisible(false);
+        workertv.setVisible(true);
         WorkerSearch();
     }
 
 
-    public void BTNPCLICKED1(ActionEvent actionEvent) {
+    public void btnpclicked1(ActionEvent actionEvent) {
         ProductHelper();
     }
 
-    public void BTNCClicked1(ActionEvent actionEvent) {
+    public void btncclicked1(ActionEvent actionEvent) {
         CustomerHelper();
     }
 
-    public void BTNwCLICKED1(ActionEvent actionEvent) {
+    public void btnwclicked1(ActionEvent actionEvent) {
         WorkerHelper();
     }
 
@@ -351,14 +351,14 @@ public class BusinessController implements Initializable {
             JOptionPane.showMessageDialog(null , NOTHINGDELETED);
     }
 
-    public void BTNDeleteClicked(ActionEvent actionEvent)
+    public void btndeleteclicked(ActionEvent actionEvent)
     {
-        if(Product_TV.isVisible())
+        if(producttv.isVisible())
         {
                 try{
                     Data=ConnectionDatabase.getInstance();
                     Connection con = Data.getConnectData();
-                    String P_ID=Product_TV.getSelectionModel().getSelectedItem().getID();
+                    String P_ID=producttv.getSelectionModel().getSelectedItem().getID();
                     String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
                     Statement stmt = con.createStatement();
                     isDeleted(stmt.executeUpdate(str));
@@ -370,15 +370,15 @@ public class BusinessController implements Initializable {
 
                 ProductEntryController.StatusHelper();
 
-                Product_TV.getItems().removeAll(Product_TV.getSelectionModel().getSelectedItem());
+                producttv.getItems().removeAll(producttv.getSelectionModel().getSelectedItem());
 
         }
-        else if(Worker_TV.isVisible())
+        else if(workertv.isVisible())
         {
             try{
                 Data=ConnectionDatabase.getInstance();
                 Connection con = Data.getConnectData();
-                String W_ID=Worker_TV.getSelectionModel().getSelectedItem().getID();
+                String W_ID=workertv.getSelectionModel().getSelectedItem().getID();
                 String str="DELETE FROM WORKERS WHERE ID='"+W_ID+"'";
                 Statement stmt = con.createStatement();
                 isDeleted(stmt.executeUpdate(str));
@@ -388,14 +388,14 @@ public class BusinessController implements Initializable {
                 LOGGER.log(Level.WARNING, "Exception in Worker delete");
             }
 
-            Worker_TV.getItems().removeAll(Worker_TV.getSelectionModel().getSelectedItem());
+            workertv.getItems().removeAll(workertv.getSelectionModel().getSelectedItem());
         }
-        else if(Customer_TV.isVisible())
+        else if(customertv.isVisible())
         {
             try{
                 Data=ConnectionDatabase.getInstance();
                 Connection con = Data.getConnectData();
-                String C_Email=Customer_TV.getSelectionModel().getSelectedItem().getEmail();
+                String C_Email=customertv.getSelectionModel().getSelectedItem().getEmail();
                 String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+C_Email+"'";
                 Statement stmt = con.createStatement();
                 isDeleted(stmt.executeUpdate(str));
@@ -405,18 +405,18 @@ public class BusinessController implements Initializable {
                 LOGGER.log(Level.WARNING, "Exception in Customer delete");
             }
 
-            Customer_TV.getItems().removeAll(Customer_TV.getSelectionModel().getSelectedItem());
+            customertv.getItems().removeAll(customertv.getSelectionModel().getSelectedItem());
         }
     }
 
-    public void BTNADDClicked(ActionEvent actionEvent) {
-        if (!Product_TV.isVisible()) {
-            if(Worker_TV.isVisible())
+    public void btnaddclicked(ActionEvent actionEvent) {
+        if (!producttv.isVisible()) {
+            if(workertv.isVisible())
             {
                 try{
                     Parent root = FXMLLoader.load(getClass().getResource("Business-view/WorkerAdd.fxml"));
                     Scene scene = new Scene(root);
-                    Stage stage = (Stage) TFsearch1.getScene().getWindow();
+                    Stage stage = (Stage) tfsearch1.getScene().getWindow();
                     stage.setScene(scene);
                 }
                 catch (IOException e)
@@ -424,12 +424,12 @@ public class BusinessController implements Initializable {
                     LOGGER.log(Level.WARNING, "Exception in Worker add button");
                 }
             }
-            else if(Customer_TV.isVisible())
+            else if(customertv.isVisible())
             {
                 try {
                     Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
                     Scene scene = new Scene(root);
-                    Stage stage = (Stage) TFsearch1.getScene().getWindow();
+                    Stage stage = (Stage) tfsearch1.getScene().getWindow();
                     stage.setScene(scene);
                 }
                 catch (IOException e) {
@@ -440,7 +440,7 @@ public class BusinessController implements Initializable {
             try {
                 Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) TFsearch1.getScene().getWindow();
+                Stage stage = (Stage) tfsearch1.getScene().getWindow();
                 stage.setScene(scene);
             }
             catch (IOException e) {
@@ -466,7 +466,7 @@ public class BusinessController implements Initializable {
         }
     }
 
-    public void BTNchartClicked(ActionEvent event) {
+    public void btnchartclicked(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Chart.fxml"));
             Scene scene = new Scene(root);
