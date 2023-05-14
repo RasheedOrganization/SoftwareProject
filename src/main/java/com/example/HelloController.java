@@ -24,26 +24,26 @@ public class HelloController {
     private static final Logger LOGGER = Logger.getLogger(HelloController.class.getName());
 
     @FXML
-    private Label CreateAnAccount;
+    private Label createanaccount;
 
     @FXML
-    private PasswordField PasswordText;
+    private PasswordField passwordtext;
 
     @FXML
-    private TextField UserNameText;
-    private static String GmailCounter;
+    private TextField usernametext;
+    private static String gmailcounter;
     private static String UserNamee;
 
-    private ConnectionDatabase Data = ConnectionDatabase.getInstance();
+    private ConnectionDatabase data = ConnectionDatabase.getInstance();
 
     static String getGmailCounter() {
-        return GmailCounter;
+        return gmailcounter;
     }
     static String getUserNamee() {
         return UserNamee;
     }
     static void setGmailCounter(String gmail){
-        GmailCounter = gmail;
+        gmailcounter = gmail;
     }
     static void setUserNamee(String namee){
         UserNamee = namee;
@@ -53,7 +53,7 @@ public class HelloController {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) CreateAnAccount.getScene().getWindow();
+            Stage stage = (Stage) createanaccount.getScene().getWindow();
             stage.setScene(scene);
         }catch (IOException e) {
             LOGGER.log(Level.WARNING, "Exception");
@@ -68,16 +68,16 @@ public class HelloController {
     @FXML
     void SignInClicked(ActionEvent event) {
         try {
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select email_user, password,NAME_USER,ADMIN_FLAG from user_table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
-            String string = UserNameText.getText();
+            String string = usernametext.getText();
             while (rs.next()) {
                 String Email = rs.getString(1);
                 if(Email.equals(string)) {
                     String Password = rs.getString(2);
-                    if(Password.equals(PasswordText.getText())) {
+                    if(Password.equals(passwordtext.getText())) {
                         String WhereToGo;
                         setGmailCounter(rs.getString(1));
                         setUserNamee(rs.getString(3));
@@ -86,7 +86,7 @@ public class HelloController {
                         else WhereToGo="Product-view/Product-entry-view.fxml";
                         Parent root = FXMLLoader.load(getClass().getResource(WhereToGo));
                         Scene scene = new Scene(root);
-                        Stage stage = (Stage) UserNameText.getScene().getWindow();
+                        Stage stage = (Stage) usernametext.getScene().getWindow();
                         stage.setScene(scene);
                         return;
                     }

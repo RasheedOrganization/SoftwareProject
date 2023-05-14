@@ -37,7 +37,7 @@ public class SignUpController implements Initializable {
     private TextField NameText;
 
     @FXML
-    private PasswordField PasswordText;
+    private PasswordField passwordtext;
 
     @FXML
     private TextField PhoneText;
@@ -61,14 +61,14 @@ public class SignUpController implements Initializable {
 
     @FXML
     void SignUpClicked(ActionEvent event) {
-        if(EmailText.getText().isBlank() || NameText.getText().isBlank() || PhoneText.getText().isBlank() || PasswordText.getText().isBlank() || ConfirmPasswordText.getText().isBlank()) {
+        if(EmailText.getText().isBlank() || NameText.getText().isBlank() || PhoneText.getText().isBlank() || passwordtext.getText().isBlank() || ConfirmPasswordText.getText().isBlank()) {
             JOptionPane.showMessageDialog(null,"Field is Empty");
             return;
         }
         String Email = EmailText.getText();
         String Name = NameText.getText();
         String Phone = PhoneText.getText();
-        String Pass = PasswordText.getText();
+        String Pass = passwordtext.getText();
         String PassCheck = ConfirmPasswordText.getText();
         if(!Validation.emailPatternMatches(Email)) {
             JOptionPane.showMessageDialog(null,"Email is not Validation");

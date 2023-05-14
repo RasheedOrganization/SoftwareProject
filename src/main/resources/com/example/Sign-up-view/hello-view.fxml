@@ -22,7 +22,7 @@
             <Font name="Calibri Bold" size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="UserNameText" layoutX="72.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="200.0">
+      <TextField fx:id="usernametext" layoutX="72.0" layoutY="200.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Username" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="200.0">
          <font>
             <Font size="13.0" />
          </font>
@@ -38,7 +38,7 @@
       <AnchorPane layoutY="371.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="66.0" prefWidth="356.0" style="-fx-background-color: #e3e3e3;" AnchorPane.bottomAnchor="0.5999999999999943" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="371.0">
          <children>
             <Label layoutX="86.0" layoutY="24.0" text="Not a Member?" />
-            <Label fx:id="CreateAnAccount" layoutX="172.0" layoutY="24.0" onMouseClicked="#CreateAnAccountClicked" text="Create an Account" textFill="#3c9ae2">
+            <Label fx:id="createanaccount" layoutX="172.0" layoutY="24.0" onMouseClicked="#CreateAnAccountClicked" text="Create an Account" textFill="#3c9ae2">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -50,6 +50,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <PasswordField fx:id="PasswordText" layoutX="72.0" layoutY="244.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="244.0" />
+      <PasswordField fx:id="passwordtext" layoutX="72.0" layoutY="244.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="244.0" />
    </children>
 </AnchorPane>

@@ -26,13 +26,13 @@ public class InvoiceController implements Initializable {
     @FXML
     private Label address;
     @FXML
-    private Label DDate1;
+    private Label ddate1;
 
     @FXML
     private Label discount;
 
     @FXML
-    private Label RDate1;
+    private Label rdate1;
     @FXML
     private Label localprice;
     @FXML
@@ -55,8 +55,8 @@ public class InvoiceController implements Initializable {
     @FXML
     private TableView<Invoice> tableviwe1;
 
-    private double Discountcalc=0;
-    private ConnectionDatabase Data;
+    private double discountcalc=0;
+    private ConnectionDatabase data;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,18 +71,18 @@ public class InvoiceController implements Initializable {
     private void InitializeHelper()
     {
         try {
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT SYSDATE from USER_TABLE";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             rs.next();
-            RDate1.setText(rs.getString(1));
+            rdate1.setText(rs.getString(1));
             str="SELECT SYSDATE+7 from USER_TABLE";
             rs = stmt.executeQuery(str);
             rs.next();
-            DDate1.setText(rs.getString(1));
+            ddate1.setText(rs.getString(1));
             user.setText(HelloController.getUserNamee());
             address.setText(ProductEntryController.location);
 
@@ -91,25 +91,25 @@ public class InvoiceController implements Initializable {
             Statement sss=con.createStatement();
             ResultSet count=sss.executeQuery(dis);
             count.next();
-            Discountcalc=count.getDouble(1);
+            discountcalc=count.getDouble(1);
         }
         catch (Exception e)
         {
             LOGGER.log(Level.WARNING, "Exception in invoice");
         }
 
-        if(Discountcalc<=10)Discountcalc=0.00;
+        if(discountcalc<=10)discountcalc=0.00;
 
-        else if(Discountcalc<=20)Discountcalc=ProductEntryController.localprice*0.1;
+        else if(discountcalc<=20)discountcalc=ProductEntryController.localprice*0.1;
 
-        else Discountcalc=ProductEntryController.localprice*0.2;
+        else discountcalc=ProductEntryController.localprice*0.2;
 
-        if(ProductEntryController.getLocalPrice()>=1000)Discountcalc=ProductEntryController.getLocalPrice()*0.02;
-        discount.setText(Double.toString(Discountcalc)+"$");
-        totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-Discountcalc)+"$");
+        if(ProductEntryController.getLocalPrice()>=1000)discountcalc=ProductEntryController.getLocalPrice()*0.02;
+        discount.setText(Double.toString(discountcalc)+"$");
+        totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-discountcalc)+"$");
         localprice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
         ProductEntryController.setZeroLocalPrice();
-        Discountcalc=0;
+        discountcalc=0;
     }
 
     public void backandclear(MouseEvent event) {

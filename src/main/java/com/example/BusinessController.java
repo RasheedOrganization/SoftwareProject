@@ -89,16 +89,16 @@ public class BusinessController implements Initializable {
 
 
     @FXML
-    static ObservableList<Customer> C_LIST = FXCollections.observableArrayList();
+    static ObservableList<Customer> clist = FXCollections.observableArrayList();
     @FXML
-    static ObservableList<Product> P_LIST = FXCollections.observableArrayList();
+    static ObservableList<Product> plist = FXCollections.observableArrayList();
     @FXML
-    static ObservableList<Worker> W_LIST = FXCollections.observableArrayList();
+    static ObservableList<Worker> wlist = FXCollections.observableArrayList();
 
 
 
 
-    private ConnectionDatabase Data;
+    private ConnectionDatabase data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
         tvcustomername.setCellValueFactory(new PropertyValueFactory<>("Name"));
@@ -123,7 +123,7 @@ public class BusinessController implements Initializable {
         tvwname.setCellValueFactory(new PropertyValueFactory<>("Name"));
         tvwphone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
         tvwflag.setCellValueFactory(new PropertyValueFactory<>("Availability"));
-        CustomerHelper();
+        customerhelper();
         customertv.setVisible(true);
         producttv.setVisible(false);
         workertv.setVisible(false);
@@ -138,15 +138,15 @@ public class BusinessController implements Initializable {
 
     }
 
-    private void WorkerSearch() {
-        FilteredList<Worker>filter=new FilteredList<>(W_LIST, b ->true);
-        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+    private void workersearch() {
+        FilteredList<Worker>filter=new FilteredList<>(wlist, b ->true);
+        tfsearch1.textProperty().addListener((observable,oldval,newval)-> {
             filter.setPredicate(worker->{
-                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                if(newval.isEmpty() || newval.isBlank() || newval==null)
                 {
                     return true;
                 }
-                String searchKey=NewVal.toLowerCase();
+                String searchKey=newval.toLowerCase();
                 if(worker.getID().toLowerCase().contains(searchKey))
                 {
                     return true;
@@ -174,14 +174,14 @@ public class BusinessController implements Initializable {
 
     }
     private void ProductSearch() {
-        FilteredList<Product>filter=new FilteredList<>(P_LIST, b ->true);
-        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+        FilteredList<Product>filter=new FilteredList<>(plist, b ->true);
+        tfsearch1.textProperty().addListener((observable,oldval,newval)-> {
             filter.setPredicate(product->{
-                if(NewVal.isEmpty() || NewVal.isBlank() || NewVal==null)
+                if(newval.isEmpty() || newval.isBlank() || newval==null)
                 {
                     return true;
                 }
-                String searchKey=NewVal.toLowerCase();
+                String searchKey=newval.toLowerCase();
                 if(product.getID().toLowerCase().contains(searchKey))
                 {
                     return true;
@@ -215,15 +215,15 @@ public class BusinessController implements Initializable {
         sortedData.comparatorProperty().bind(producttv.comparatorProperty());
         producttv.setItems(sortedData);
     }
-    private void CustomerSearch() {
-        FilteredList<Customer>filter=new FilteredList<>(C_LIST, b ->true);
-        tfsearch1.textProperty().addListener((observable,OldVal,NewVal)-> {
+    private void customersearch() {
+        FilteredList<Customer>filter=new FilteredList<>(clist, b ->true);
+        tfsearch1.textProperty().addListener((observable,oldval,newval)-> {
             filter.setPredicate(customer->{
-                if(NewVal.isEmpty() || NewVal.isBlank())
+                if(newval.isEmpty() || newval.isBlank())
                 {
                     return true;
                 }
-                String searchKey=NewVal.toLowerCase();
+                String searchKey=newval.toLowerCase();
                 if(customer.getName().toLowerCase().contains(searchKey))
                 {
                     return true;
@@ -243,21 +243,21 @@ public class BusinessController implements Initializable {
     }
 
 
-    private void CustomerHelper() {
-        C_LIST.clear();
+    private void customerhelper() {
+        clist.clear();
         try {
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT NAME_USER,EMAIL_USER,PHONE_USER from USER_TABLE";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next())
             {
-                C_LIST.add(new Customer(rs.getString(1),rs.getString(2),rs.getString(3)));
+                clist.add(new Customer(rs.getString(1),rs.getString(2),rs.getString(3)));
             }
 
-            customertv.setItems(C_LIST);
+            customertv.setItems(clist);
         }
         catch (SQLException e)
         {
@@ -266,13 +266,13 @@ public class BusinessController implements Initializable {
         customertv.setVisible(true);
         producttv.setVisible(false);
         workertv.setVisible(false);
-        CustomerSearch();
+        customersearch();
     }
     private void ProductHelper() {
-        P_LIST.clear();
+        plist.clear();
         try {
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT PRODUCTID,PRICE,PRODUCTNAME,PRODUCTAREA,QUANTITY,address,STATUS,STRINGDATE from PRODUCT";
             Statement stmt = con.createStatement();
@@ -280,7 +280,7 @@ public class BusinessController implements Initializable {
             while(rs.next())
             {
                 double f=Math.round(rs.getDouble(2) * 1000) / 1000.0;
-                P_LIST.add(new Product
+                plist.add(new Product
                         (
                         rs.getString(1),
                         f                         ,
@@ -294,7 +294,7 @@ public class BusinessController implements Initializable {
                 );
             }
 
-            producttv.setItems(P_LIST);
+            producttv.setItems(plist);
         }
         catch (SQLException e)
         {
@@ -306,20 +306,20 @@ public class BusinessController implements Initializable {
         ProductSearch();
     }
     private void WorkerHelper() {
-        W_LIST.clear();
+        wlist.clear();
         try {
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT ID,NAME,PHONENUMBER,WORKFLAG from WORKERS";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next())
             {
-                W_LIST.add(new Worker(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                wlist.add(new Worker(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
             }
 
-            workertv.setItems(W_LIST);
+            workertv.setItems(wlist);
         }
         catch (SQLException e)
         {
@@ -328,7 +328,7 @@ public class BusinessController implements Initializable {
         customertv.setVisible(false);
         producttv.setVisible(false);
         workertv.setVisible(true);
-        WorkerSearch();
+        workersearch();
     }
 
 
@@ -337,7 +337,7 @@ public class BusinessController implements Initializable {
     }
 
     public void btncclicked1(ActionEvent actionEvent) {
-        CustomerHelper();
+        customerhelper();
     }
 
     public void btnwclicked1(ActionEvent actionEvent) {
@@ -356,8 +356,8 @@ public class BusinessController implements Initializable {
         if(producttv.isVisible())
         {
                 try{
-                    Data=ConnectionDatabase.getInstance();
-                    Connection con = Data.getConnectData();
+                    data=ConnectionDatabase.getInstance();
+                    Connection con = data.getConnectData();
                     String P_ID=producttv.getSelectionModel().getSelectedItem().getID();
                     String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
                     Statement stmt = con.createStatement();
@@ -376,8 +376,8 @@ public class BusinessController implements Initializable {
         else if(workertv.isVisible())
         {
             try{
-                Data=ConnectionDatabase.getInstance();
-                Connection con = Data.getConnectData();
+                data=ConnectionDatabase.getInstance();
+                Connection con = data.getConnectData();
                 String W_ID=workertv.getSelectionModel().getSelectedItem().getID();
                 String str="DELETE FROM WORKERS WHERE ID='"+W_ID+"'";
                 Statement stmt = con.createStatement();
@@ -393,8 +393,8 @@ public class BusinessController implements Initializable {
         else if(customertv.isVisible())
         {
             try{
-                Data=ConnectionDatabase.getInstance();
-                Connection con = Data.getConnectData();
+                data=ConnectionDatabase.getInstance();
+                Connection con = data.getConnectData();
                 String C_Email=customertv.getSelectionModel().getSelectedItem().getEmail();
                 String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+C_Email+"'";
                 Statement stmt = con.createStatement();

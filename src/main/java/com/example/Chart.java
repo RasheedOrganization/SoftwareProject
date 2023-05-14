@@ -29,7 +29,7 @@ public class Chart implements Initializable {
 
     @FXML
     private PieChart ichart;
-    private ConnectionDatabase Data;
+    private ConnectionDatabase data;
     int c=0;
     int i=0;
     int w=0;
@@ -42,10 +42,10 @@ public class Chart implements Initializable {
         pw=pi=pc=0;
         CountHelp();
         PriceHelp();
-        ObservableList<PieChart.Data> ItemChart=FXCollections.observableArrayList(
-                new PieChart.Data("Complete",c),
-                new PieChart.Data("In_Treatment",i),
-                new PieChart.Data("Waiting",w)
+        ObservableList<PieChart.data> ItemChart=FXCollections.observableArrayList(
+                new PieChart.data("Complete",c),
+                new PieChart.data("In_Treatment",i),
+                new PieChart.data("Waiting",w)
         );
 
         ichart.getData().addAll(ItemChart);
@@ -55,10 +55,10 @@ public class Chart implements Initializable {
 
 
 
-        ObservableList<PieChart.Data> CashChart=FXCollections.observableArrayList(
-                new PieChart.Data("Near Income",pi),
-                new PieChart.Data("Budget",pc),
-                new PieChart.Data("Far Income",pw)
+        ObservableList<PieChart.data> CashChart=FXCollections.observableArrayList(
+                new PieChart.data("Near Income",pi),
+                new PieChart.data("Budget",pc),
+                new PieChart.data("Far Income",pw)
         );
 
 
@@ -73,8 +73,8 @@ public class Chart implements Initializable {
 
     private void PriceHelp() {
         try{
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT STATUS,PRICE from PRODUCT";
             Statement stmt = con.createStatement();
@@ -97,8 +97,8 @@ public class Chart implements Initializable {
 
     private void CountHelp() {
         try{
-            Data=ConnectionDatabase.getInstance();
-            Connection con = Data.getConnectData();
+            data=ConnectionDatabase.getInstance();
+            Connection con = data.getConnectData();
 
             String str="SELECT STATUS from PRODUCT";
             Statement stmt = con.createStatement();

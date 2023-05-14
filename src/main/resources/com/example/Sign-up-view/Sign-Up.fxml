@@ -35,7 +35,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <PasswordField fx:id="PasswordText" layoutX="74.0" layoutY="254.0" prefHeight="34.0" prefWidth="211.0" promptText="Password" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="254.0" />
+      <PasswordField fx:id="passwordtext" layoutX="74.0" layoutY="254.0" prefHeight="34.0" prefWidth="211.0" promptText="Password" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="254.0" />
       <TextField fx:id="EmailText" layoutX="74.0" layoutY="70.0" prefHeight="34.0" prefWidth="211.0" promptText="Email" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="13.0" />

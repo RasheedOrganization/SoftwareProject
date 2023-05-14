@@ -14,13 +14,13 @@ import java.sql.Statement;
 import static org.junit.Assert.*;
 
 public class Product_Enter_Steps {
-    private ConnectionDatabase Data;
+    private ConnectionDatabase data;
 
     @Given("I filled the product details")
     public void i_filled_the_product_details() {
-        Data = ConnectionDatabase.getInstance();
+        data = ConnectionDatabase.getInstance();
         boolean status = false;
-        if(Data.getConnection()) status = true;
+        if(data.getConnection()) status = true;
         assertEquals(true, status);
     }
     @When("I entered details with valid  phone number {string} and name {string} and address {string} and quantity {string} and area {string}")

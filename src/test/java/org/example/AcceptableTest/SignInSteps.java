@@ -11,20 +11,20 @@ import java.sql.Statement;
 import static org.junit.Assert.assertEquals;
 
 public class SignInSteps {
-    private ConnectionDatabase Data;
+    private ConnectionDatabase data;
 
     @Given("I have chosen to sign in")
     public void iHaveChosenToSignIn() {
-        Data = ConnectionDatabase.getInstance();
+        data = ConnectionDatabase.getInstance();
         boolean status = false;
-        if(Data.getConnection()) status = true;
+        if(data.getConnection()) status = true;
         assertEquals(true, status);
     }
     @When("I sign in with an email address does not contain {string}")
     public void iSignInWithAnEmailAddressDoesNotContain(String string) {
         try {
             //System.out.println(string);
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select Email_User from User_Table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
@@ -48,7 +48,7 @@ public class SignInSteps {
     public void iSignInWithInvalidPasswordAndValidEmail(String string, String string2) {
         try {
             //System.out.println(string);
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select password from User_Table where email_user = '" + string2 + "'";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
@@ -72,7 +72,7 @@ public class SignInSteps {
     public void iSignInWithValidDetailsEmailAndPassword(String string, String string2) {
         try {
             //System.out.println(string);
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select * from User_Table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);

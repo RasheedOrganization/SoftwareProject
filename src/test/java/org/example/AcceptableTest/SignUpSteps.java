@@ -14,12 +14,12 @@ import java.sql.Statement;
 import static org.junit.Assert.*;
 
 public class SignUpSteps {
-    private ConnectionDatabase Data;
+    private ConnectionDatabase data;
     @Given("I have chosen to sign up")
     public void iHaveChosenToSignUp() {
-        Data = ConnectionDatabase.getInstance();
+        data = ConnectionDatabase.getInstance();
         boolean status = false;
-        if(Data.getConnection()) status = true;
+        if(data.getConnection()) status = true;
         assertEquals(true, status);
         //assertEquals("error 404",true,false);
     }
@@ -27,7 +27,7 @@ public class SignUpSteps {
     public void iSignUpWithValidDetailsEmailAndPasswordAndPasswordMatchAndNameAndPhone(String string, String string2, String string3, String string4, String string5) {
         try {
             //System.out.println(string);
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select * from User_Table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
@@ -65,7 +65,7 @@ public class SignUpSteps {
     public void iSignUpWithAnEmailAddressThatHasAlreadyRegistered(String string) {
         try {
             //System.out.println(string);
-            Connection con = Data.getConnectData();
+            Connection con = data.getConnectData();
             String all = "select Email_User from User_Table";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(all);
