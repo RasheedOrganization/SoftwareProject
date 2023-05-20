@@ -34,7 +34,7 @@ public class HelloController {
     private static String gmailcounter;
     private static String userNamee;
 
-    private final connectionDatabase data = connectionDatabase.getInstance();
+    private final ConnectionDatabase data = ConnectionDatabase.getInstance();
 
     static String getGmailCounter() {
         return gmailcounter;

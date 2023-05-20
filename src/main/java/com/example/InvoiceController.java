@@ -56,7 +56,7 @@ public class InvoiceController implements Initializable {
     private TableView<Invoice> tableviwe1;
 
     private double discountcalc=0;
-    private connectionDatabase data;
+    private ConnectionDatabase data;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,7 +71,7 @@ public class InvoiceController implements Initializable {
     private void initializeHelper()
     {
         try {
-            data=connectionDatabase.getInstance();
+            data=ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT SYSDATE from USER_TABLE";

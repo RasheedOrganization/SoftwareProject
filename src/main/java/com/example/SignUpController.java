@@ -46,7 +46,7 @@ public class SignUpController implements Initializable {
     @FXML
     private Button sSignUpButton;
 
-    connectionDatabase data = connectionDatabase.getInstance();
+    ConnectionDatabase data = ConnectionDatabase.getInstance();
 
     @FXML
     void lLoginClicked(MouseEvent event) {

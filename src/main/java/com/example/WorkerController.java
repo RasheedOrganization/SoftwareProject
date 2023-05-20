@@ -23,10 +23,10 @@ public class WorkerController {
     private TextField tfid1;
     @FXML
     private TextField tfname;
-    private connectionDatabase data;
+    private ConnectionDatabase data;
     public void workerinsert(ActionEvent actionEvent) {
         try{
-            data=connectionDatabase.getInstance();
+            data=ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="INSERT INTO WORKERS VALUES('"+tfid1.getText()+"',"+"'"+tfname.getText()+"',"+"'"+tfpn1.getText()+"',"+"'"+"false')";

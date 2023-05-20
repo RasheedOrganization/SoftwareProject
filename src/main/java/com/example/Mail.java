@@ -30,10 +30,10 @@ public class Mail
 }
     private void sendEmail() throws MessagingException {
         String fromUser = "rrash22875@gmail.com";
-        String fromUserPassword = "xwyrsjoamtfjtcvs";
+        String fromUserpp = "xwyrsjoamtfjtcvs";
         String emailHost = "smtp.gmail.com";
         Transport transport = newSession.getTransport("smtp");
-        transport.connect(emailHost, fromUser, fromUserPassword);
+        transport.connect(emailHost, fromUser, fromUserpp);
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
         transport.close();
         loggER.log(Level.WARNING,"emailL successfully sent!!!");

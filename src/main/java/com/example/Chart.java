@@ -29,7 +29,7 @@ public class Chart implements Initializable {
 
     @FXML
     private PieChart ichart;
-    private connectionDatabase data;
+    private ConnectionDatabase data;
     int c=0;
     int i=0;
     int w=0;
@@ -42,13 +42,13 @@ public class Chart implements Initializable {
         pw=pi=pc=0;
         countHelp();
         priceHelp();
-        ObservableList<PieChart.Data> ItemChart=FXCollections.observableArrayList(
+        ObservableList<PieChart.Data> itemChart=FXCollections.observableArrayList(
                 new PieChart.Data("Complete",c),
                 new PieChart.Data("In_Treatment",i),
                 new PieChart.Data("Waiting",w)
         );
 
-        ichart.getData().addAll(ItemChart);
+        ichart.getData().addAll(itemChart);
         ichart.labelsVisibleProperty().set(false);
 
 
@@ -73,7 +73,7 @@ public class Chart implements Initializable {
 
     private void priceHelp() {
         try{
-            data=connectionDatabase.getInstance();
+            data=ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT STATUS,PRICE from PRODUCT";
@@ -97,7 +97,7 @@ public class Chart implements Initializable {
 
     private void countHelp() {
         try{
-            data=connectionDatabase.getInstance();
+            data=ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT STATUS from PRODUCT";

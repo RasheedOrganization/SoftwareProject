@@ -30,7 +30,7 @@ public class ReportsController implements Initializable {
 
     @FXML
     private Button rreport;
-    connectionDatabase data = connectionDatabase.getInstance();
+    ConnectionDatabase data = ConnectionDatabase.getInstance();
 
 
     @Override

@@ -63,11 +63,11 @@ public class TESTINPUT {
         else if(name.equals("BLANKET")) flag=3;
         return flag;
     }
-    public static boolean orderQuantityTest(String Quantity) {
-        if ( Quantity.length() >0) {
+    public static boolean orderQuantityTest(String quantity) {
+        if ( quantity.length() >0) {
             boolean flag = true;
-            for(int i=0;i<Quantity.length();i++){
-                if(!Character.isDigit(Quantity.charAt(i))){
+            for(int i=0;i<quantity.length();i++){
+                if(!Character.isDigit(quantity.charAt(i))){
                     flag = false ;
                     break;
                 }

@@ -6,9 +6,9 @@ import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class connectionDatabase {
-    private static final Logger loggER = Logger.getLogger(connectionDatabase.class.getName());
-    private static connectionDatabase connect;
+public class ConnectionDatabase {
+    private static final Logger loggER = Logger.getLogger(ConnectionDatabase.class.getName());
+    private static ConnectionDatabase connect;
     private Connection connectData;
     private static final boolean STATUS = true;
 
@@ -20,7 +20,7 @@ public class connectionDatabase {
         this.connectData = connectData;
     }
 
-    private connectionDatabase() {
+    private ConnectionDatabase() {
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -32,9 +32,9 @@ public class connectionDatabase {
         }
     }
 
-    public static connectionDatabase getInstance() {
+    public static ConnectionDatabase getInstance() {
         if(connect == null) {
-            connect = new connectionDatabase();
+            connect = new ConnectionDatabase();
         }
         return connect;
     }

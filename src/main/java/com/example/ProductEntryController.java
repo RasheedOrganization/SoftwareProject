@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 
 
 public class ProductEntryController implements Initializable{
-    private static connectionDatabase data;
+    private static ConnectionDatabase data;
     private static final Logger loggER = Logger.getLogger(ProductEntryController.class.getName());
     static String flagextra="false";
     @FXML
@@ -83,7 +83,7 @@ public class ProductEntryController implements Initializable{
         try {
             int waitToTreatment=0;
             String tempDate;
-            data = connectionDatabase.getInstance();
+            data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
             String s="SELECT SYSDATE from USER_TABLE";
             Statement ss=con.createStatement();
@@ -152,7 +152,7 @@ public class ProductEntryController implements Initializable{
             wwflag="true";
         }
         try {
-            data = connectionDatabase.getInstance();
+            data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String s = "SELECT id,WORKFLAG from WORKERS";
@@ -248,14 +248,14 @@ public class ProductEntryController implements Initializable{
                 if(!Character.isDigit(quantity.charAt(i)))
                 {
                     JFrame f=new JFrame();
-                    JOptionPane.showMessageDialog(f,"Quantity must contain Digits only");
+                    JOptionPane.showMessageDialog(f,"quantity must contain Digits only");
                     flag=false;
                     break;
                 }
             }
             if(quantity.equals(null)){
                 JFrame f=new JFrame();
-                JOptionPane.showMessageDialog(f,"Quantity can't be empty");
+                JOptionPane.showMessageDialog(f,"quantity can't be empty");
                 flag=false;
             }
             if(area.equals(null)) {
@@ -285,12 +285,12 @@ public class ProductEntryController implements Initializable{
 
 
             if(flag) {
-                data = connectionDatabase.getInstance();
+                data = ConnectionDatabase.getInstance();
                 Connection con = data.getConnectData();
                 String    useFlag = null,
                           clothType = null,
                           wWellCleaned = null,
-                          Customer_email = HelloController.getGmailCounter();
+                          customerEmail = HelloController.getGmailCounter();
 
                 if (checktreatment1.isSelected())
                     wWellCleaned = "true";
@@ -342,7 +342,7 @@ public class ProductEntryController implements Initializable{
                         new Invoice(name, Double.parseDouble(area), Double.parseDouble(quantity), price)
                 );
                 String all = "INSERT INTO Product values(Prouct_ID_sequence.NEXTVAL," + "'" + name + "'," + "'" + area + "'," + "'" + quantity + "',"
-                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + wWellCleaned + "'," + "'" + Customer_email + "'," + "'"+wWhatIsStatus+"',"+price+",'"+flagextra+"',"+"'"+currentDate+"')";
+                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + wWellCleaned + "'," + "'" + customerEmail + "'," + "'"+wWhatIsStatus+"',"+price+",'"+flagextra+"',"+"'"+currentDate+"')";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(all);
                 tfparea1.setText("");
