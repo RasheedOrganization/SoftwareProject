@@ -76,14 +76,14 @@ public class TESTINPUT {
         }
         return false;
     }
-    public static boolean orderSizeTest(String Size) {
-        return TESTINPUT.orderQuantityTest(Size);
+    public static boolean orderSizeTest(String size) {
+        return TESTINPUT.orderQuantityTest(size);
 
     }
-    public static boolean orderColorTest(String Color) {
+    public static boolean orderColorTest(String color) {
         boolean flag = true;
-        for (int i = 0; i < Color.length(); i++) {
-            if (Character.isDigit(Color.charAt(i))) {
+        for (int i = 0; i < color.length(); i++) {
+            if (Character.isDigit(color.charAt(i))) {
                 flag = false;
                 break;
             }
@@ -91,7 +91,7 @@ public class TESTINPUT {
         return flag;
     }
 
-    public static boolean orderPictureTest(String Picture) {
-        return Picture.indexOf(".png") != -1 || Picture.indexOf(".jpg") != -1;
+    public static boolean orderPictureTest(String picture) {
+        return picture.indexOf(".png") != -1 || picture.indexOf(".jpg") != -1;
     }
 }

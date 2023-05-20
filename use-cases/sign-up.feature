@@ -17,9 +17,9 @@ Feature: Sign-up
     Examples:
       | email                    | password  | passwordMatch | name      | phone      | message                               |
       | mohammadre1654@gmail.com | 1mohammad | 1mohammad     | mohammad  | 0592787026 | emailL Duplicate                       |
-      | mohammadre1999@gmail.com | 1mohammad | 1mohammad     | mohammad  | 0592787026 | Password shouldn't start with number  |
-      | mohammadre1999@gmail.com | mohamm    | mohamm        | mohammad  | 0592787026 | Password length should be more than 7 |
-      | mohammadre1999@gmail.com | mohammad1 | mohammad2     | mohammad  | 0592787026 | Password doesn't match                |
+      | mohammadre1999@gmail.com | 1mohammad | 1mohammad     | mohammad  | 0592787026 | password shouldn't start with number  |
+      | mohammadre1999@gmail.com | mohamm    | mohamm        | mohammad  | 0592787026 | password length should be more than 7 |
+      | mohammadre1999@gmail.com | mohammad1 | mohammad2     | mohammad  | 0592787026 | password doesn't match                |
       | mohammadre1999@gmail.com | mohammad1 | mohammad1     | 1mohammad | 0592787026 | name shouldn't start with number      |
       | mohammadre1999@gmail.com | mohammad1 | mohammad1     | 1mohammad | 1292787026 | phone should start with 05            |
 

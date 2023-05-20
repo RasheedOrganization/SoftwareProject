@@ -1,6 +1,6 @@
 package org.example.AcceptableTest;
 
-import com.example.ConnectionDatabase;
+import com.example.connectionDatabase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SignUpSteps {
-    private ConnectionDatabase data;
+    private connectionDatabase data;
     @Given("I have chosen to sign up")
     public void iHaveChosenToSignUp() {
-        data = ConnectionDatabase.getInstance();
+        data = connectionDatabase.getInstance();
         boolean status = data.getConnection();
         assertTrue(status);
         //assertEquals("error 404",true,false);
@@ -40,7 +40,7 @@ public class SignUpSteps {
             }
             if (flag) {
                 if(string2.length() < 8 || Character.isDigit(string2.charAt(0))) {
-                    assertTrue("Password is Wrong", false);
+                    assertTrue("password is Wrong", false);
                 }
                 else {
                     assertTrue(true);
@@ -71,7 +71,7 @@ public class SignUpSteps {
             while (rs.next()) {
                 String emailL = rs.getString(1);
                 if(emailL.equals(string)) {
-                    assertTrue("Password is Wrong", true);
+                    assertTrue("password is Wrong", true);
                     flag = false;
                     break;
                 }
@@ -86,19 +86,19 @@ public class SignUpSteps {
     @When("I sign up with invalid password {string} format")
     public void iSignUpWithInvalidPasswordFormat(String string) {
         if(string.length() < 8 || Character.isDigit(string.charAt(0))) {
-            assertTrue("Password is Wrong", true);
+            assertTrue("password is Wrong", true);
         }
         else {
-            assertTrue("Password is Right", true);
+            assertTrue("password is Right", true);
         }
     }
     @When("I sign up with un match password {string} passwordMatch {string} format")
     public void iSignUpWithUnMatchPasswordPasswordMatchFormat(String string, String string2) {
         if(!string.equals(string2)) {
-            assertTrue("Password Does Not Match", true);
+            assertTrue("password Does Not Match", true);
         }
         else {
-            assertTrue("Password is Match", true);
+            assertTrue("password is Match", true);
         }
     }
     @When("I sign up with invalid name {string} format")
@@ -123,15 +123,15 @@ public class SignUpSteps {
     public void iShouldToToldToMeA(String string) {
         System.out.println(string);
     }
-    @Then("I should to told to me a 'Password shouldn't start with number'")
+    @Then("I should to told to me a 'password shouldn't start with number'")
     public void iShouldToToldToMeAPasswordShouldnTStartWithNumber() {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println("Password shouldn't start with number");
+        System.out.println("password shouldn't start with number");
     }
-    @Then("I should to told to me a 'Password doesn't match'")
+    @Then("I should to told to me a 'password doesn't match'")
     public void iShouldToToldToMeAPasswordDoesnTMatch() {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println("Password doesn't match");
+        System.out.println("password doesn't match");
     }
     @Then("I should to told to me a 'name shouldn't start with number'")
     public void iShouldToToldToMeANameShouldnTStartWithNumber() {

@@ -6,21 +6,21 @@ import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ConnectionDatabase {
-    private static final Logger loggER = Logger.getLogger(ConnectionDatabase.class.getName());
-    private static ConnectionDatabase connect;
+public class connectionDatabase {
+    private static final Logger loggER = Logger.getLogger(connectionDatabase.class.getName());
+    private static connectionDatabase connect;
     private Connection connectData;
-    private static final boolean status = true;
+    private static final boolean STATUS = true;
 
     public Connection getConnectData() {
         return connectData;
     }
 
     public void setConnectData(Connection connectData) {
-        connectData = connectData;
+        this.connectData = connectData;
     }
 
-    private ConnectionDatabase() {
+    private connectionDatabase() {
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -32,14 +32,14 @@ public class ConnectionDatabase {
         }
     }
 
-    public static ConnectionDatabase getInstance() {
+    public static connectionDatabase getInstance() {
         if(connect == null) {
-            connect = new ConnectionDatabase();
+            connect = new connectionDatabase();
         }
         return connect;
     }
 
     public boolean getConnection() {
-        return status;
+        return STATUS;
     }
 }

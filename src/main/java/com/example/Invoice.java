@@ -1,7 +1,7 @@
 package com.example;
 
 public class Invoice {
-private final String productName;
+private String productName;
 private double area;
 private double quantity;
 private double price;
@@ -17,8 +17,8 @@ private double price;
         return productName;
     }
 
-    public void setProductName(String productName) {
-        productName = productName;
+    public void setProductName(String productname) {
+        this.productName = productname;
     }
 
     public double getArea() {

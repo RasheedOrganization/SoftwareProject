@@ -3,7 +3,7 @@ Feature: Reports
   Print Reports should be more precise and quick
 
   @Successful
-  Scenario: Successful Print Report
+  Scenario: Successful Print rreport
 
   user should get a PDF file and open jasper report.
 

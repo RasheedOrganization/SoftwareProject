@@ -14,7 +14,7 @@ Feature: Sign-In
     Examples:
       | email                    | password    | message           |
       | mohammadre1999@gmail.com | 12345678   | emailL Not Found    |
-      | mohammadre1654@gmail.com | mohammad   | Password not match |
+      | mohammadre1654@gmail.com | mohammad   | password not match |
 
   @Successful
   Scenario Outline: Successful sign-in

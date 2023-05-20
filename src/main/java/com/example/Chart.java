@@ -29,7 +29,7 @@ public class Chart implements Initializable {
 
     @FXML
     private PieChart ichart;
-    private ConnectionDatabase data;
+    private connectionDatabase data;
     int c=0;
     int i=0;
     int w=0;
@@ -40,8 +40,8 @@ public class Chart implements Initializable {
     {
         i=c=w=0;
         pw=pi=pc=0;
-        CountHelp();
-        PriceHelp();
+        countHelp();
+        priceHelp();
         ObservableList<PieChart.Data> ItemChart=FXCollections.observableArrayList(
                 new PieChart.Data("Complete",c),
                 new PieChart.Data("In_Treatment",i),
@@ -55,14 +55,14 @@ public class Chart implements Initializable {
 
 
 
-        ObservableList<PieChart.Data> CashChart=FXCollections.observableArrayList(
+        ObservableList<PieChart.Data> cashChart=FXCollections.observableArrayList(
                 new PieChart.Data("Near Income",pi),
                 new PieChart.Data("Budget",pc),
                 new PieChart.Data("Far Income",pw)
         );
 
 
-        cchart.getData().addAll(CashChart);
+        cchart.getData().addAll(cashChart);
         cchart.labelsVisibleProperty().set(false);
         
 
@@ -71,9 +71,9 @@ public class Chart implements Initializable {
 
 
 
-    private void PriceHelp() {
+    private void priceHelp() {
         try{
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT STATUS,PRICE from PRODUCT";
@@ -91,13 +91,13 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            loggER.log(Level.WARNING, "Exception in PriceHelp");
+            loggER.log(Level.WARNING, "Exception in priceHelp");
         }
     }
 
-    private void CountHelp() {
+    private void countHelp() {
         try{
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT STATUS from PRODUCT";
@@ -115,7 +115,7 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            loggER.log(Level.WARNING, "Exception in CountHelp");
+            loggER.log(Level.WARNING, "Exception in countHelp");
         }
     }
 

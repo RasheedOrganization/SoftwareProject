@@ -2,7 +2,10 @@ package com.example;
 
 public class Worker {
 
-    private String id,name,phone,availability;
+    private String id,
+            name,
+            phone,
+            availability;
     public Worker(String id, String name, String phone, String availability) {
         this.id = id;
         this.name = name;

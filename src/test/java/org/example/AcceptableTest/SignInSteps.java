@@ -1,6 +1,6 @@
 package org.example.AcceptableTest;
 
-import com.example.ConnectionDatabase;
+import com.example.connectionDatabase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
@@ -12,11 +12,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class SignInSteps {
-    private ConnectionDatabase data;
+    private connectionDatabase data;
 
     @Given("I have chosen to sign in")
     public void iHaveChosenToSignIn() {
-        data = ConnectionDatabase.getInstance();
+        data = connectionDatabase.getInstance();
         boolean status = data.getConnection();
         assertTrue(status);
     }
@@ -55,9 +55,9 @@ public class SignInSteps {
             if(rs.next()) {
                 boolean flag = true;
                 if (!rs.getString(1).equals(string)) {
-                    assertTrue("Password is Wrong", true);
+                    assertTrue("password is Wrong", true);
                 } else {
-                    assertTrue("Password is Right", true);
+                    assertTrue("password is Right", true);
                 }
             }
             else {
@@ -79,15 +79,15 @@ public class SignInSteps {
             boolean flag = true;
             while (rs.next()) {
                 String emailL = rs.getString(1);
-                String Password = rs.getString(2);
+                String password = rs.getString(2);
                 if(emailL.equals(string)) {
-                    if(Password.equals(string2)) {
-                        assertTrue("emailL and Password correct", true);
+                    if(password.equals(string2)) {
+                        assertTrue("emailL and password correct", true);
                         flag = false;
                         break;
                     }
                     else {
-                        assertTrue("Password not correct", true);
+                        assertTrue("password not correct", true);
                     }
                 }
             }

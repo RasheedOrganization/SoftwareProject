@@ -28,8 +28,9 @@ import java.util.logging.Logger;
 
 
 public class ProductEntryController implements Initializable{
-    private static ConnectionDatabase data;
+    private static connectionDatabase data;
     private static final Logger loggER = Logger.getLogger(ProductEntryController.class.getName());
+    static String flagextra="false";
     @FXML
     TextField tfpname1;
     @FXML
@@ -73,16 +74,16 @@ public class ProductEntryController implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
         comboboxClothes.setItems(list);
-        sStatusHelper();
+        statusHelper();
     }
 
 
 
-    public static void sStatusHelper(){
+    public static void statusHelper(){
         try {
             int waitToTreatment=0;
             String tempDate;
-            data = ConnectionDatabase.getInstance();
+            data = connectionDatabase.getInstance();
             Connection con = data.getConnectData();
             String s="SELECT SYSDATE from USER_TABLE";
             Statement ss=con.createStatement();
@@ -140,17 +141,18 @@ public class ProductEntryController implements Initializable{
         catch (Exception e) { loggER.log(Level.WARNING, "iam here in Status Counter idiot");}}
 
     private static void workerRest(int f) {
-        String wwflag="",iddString="";
+        String wwflag="";
+        String iddString="";
         if(f==1)
         {
-            wwflag="false";
+            wwflag=flagextra;
         }
         else if(f==2)
         {
             wwflag="true";
         }
         try {
-            data = ConnectionDatabase.getInstance();
+            data = connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String s = "SELECT id,WORKFLAG from WORKERS";
@@ -220,14 +222,14 @@ public class ProductEntryController implements Initializable{
         }
     }
 
-    public void aAddProductClicked(MouseEvent mouseEvent) {
-        sStatusHelper();
+    public void addProductClicked(MouseEvent mouseEvent) {
+        statusHelper();
         try {
-            String   name=tfpname1.getText()
-                    ,area=tfparea1.getText()
-                    ,quantity=tfpquantity1.getText()
-                    ,address=tfpaddress1.getText()
-                    ,phone=tfpphonenumber1.getText();
+            String   name=tfpname1.getText(),
+                     area=tfparea1.getText(),
+                     quantity=tfpquantity1.getText(),
+                     address=tfpaddress1.getText(),
+                     phone=tfpphonenumber1.getText();
             location=address;
 
             boolean flag = true;
@@ -283,32 +285,33 @@ public class ProductEntryController implements Initializable{
 
 
             if(flag) {
-                data = ConnectionDatabase.getInstance();
+                data = connectionDatabase.getInstance();
                 Connection con = data.getConnectData();
-                String    useFlag = null
-                        , clothType = null
-                        , wWellCleaned = null
-                        , Customer_email = HelloController.getGmailCounter();
+                String    useFlag = null,
+                          clothType = null,
+                          wWellCleaned = null,
+                          Customer_email = HelloController.getGmailCounter();
 
                 if (checktreatment1.isSelected())
                     wWellCleaned = "true";
-                else wWellCleaned = "false";
+                else wWellCleaned = flagextra;
                 if (checkuse1.isSelected()) {
                     useFlag = "true";
                     clothType = comboboxClothes.getSelectionModel().getSelectedItem();
                 }
                 else {
-                    useFlag = "false";
+                    useFlag = flagextra;
                     clothType = null;
                 }
 
 
-                String wWhatIsStatus=null,CurrentDate;
+                String wWhatIsStatus=null,
+                        currentDate;
                 String str="SELECT SYSDATE from USER_TABLE";
                 Statement stmtt = con.createStatement();
                 ResultSet rss = stmtt.executeQuery(str);
                 rss.next();
-                CurrentDate=rss.getString(1);
+                currentDate=rss.getString(1);
 
                 if(statusCounter<10)
                 {
@@ -339,7 +342,7 @@ public class ProductEntryController implements Initializable{
                         new Invoice(name, Double.parseDouble(area), Double.parseDouble(quantity), price)
                 );
                 String all = "INSERT INTO Product values(Prouct_ID_sequence.NEXTVAL," + "'" + name + "'," + "'" + area + "'," + "'" + quantity + "',"
-                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + wWellCleaned + "'," + "'" + Customer_email + "'," + "'"+wWhatIsStatus+"',"+price+",'"+"false"+"',"+"'"+CurrentDate+"')";
+                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + wWellCleaned + "'," + "'" + Customer_email + "'," + "'"+wWhatIsStatus+"',"+price+",'"+flagextra+"',"+"'"+currentDate+"')";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(all);
                 tfparea1.setText("");

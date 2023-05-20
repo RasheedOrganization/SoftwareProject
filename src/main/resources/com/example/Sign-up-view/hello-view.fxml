@@ -41,11 +41,11 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="Forgot" layoutX="190.0" layoutY="330.0" onMouseClicked="#forgotClicked" text="Forgot Password?" textFill="#3c9ae2" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="71.6" AnchorPane.topAnchor="330.0">
+      <Label fx:id="Forgot" layoutX="190.0" layoutY="330.0" onMouseClicked="#forgotClicked" text="Forgot password?" textFill="#3c9ae2" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="71.6" AnchorPane.topAnchor="330.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <PasswordField fx:id="passwordtext" layoutX="72.0" layoutY="244.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your Password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="244.0" />
+      <PasswordField fx:id="passwordtext" layoutX="72.0" layoutY="244.0" prefHeight="34.0" prefWidth="211.0" promptText="Type Your password" styleClass="text-field-gray" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="72.80000000000001" AnchorPane.topAnchor="244.0" />
    </children>
 </AnchorPane>

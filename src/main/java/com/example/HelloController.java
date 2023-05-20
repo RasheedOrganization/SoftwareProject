@@ -34,7 +34,7 @@ public class HelloController {
     private static String gmailcounter;
     private static String userNamee;
 
-    private final ConnectionDatabase data = ConnectionDatabase.getInstance();
+    private final connectionDatabase data = connectionDatabase.getInstance();
 
     static String getGmailCounter() {
         return gmailcounter;
@@ -76,8 +76,8 @@ public class HelloController {
             while (rs.next()) {
                 String emailL = rs.getString(1);
                 if(emailL.equals(string)) {
-                    String Password = rs.getString(2);
-                    if(Password.equals(passwordtext.getText())) {
+                    String password = rs.getString(2);
+                    if(password.equals(passwordtext.getText())) {
                         String whereToGo;
                         setGmailCounter(rs.getString(1));
                         setUserNamee(rs.getString(3));
@@ -90,7 +90,7 @@ public class HelloController {
                         stage.setScene(scene);
                         return;
                     }
-                    JOptionPane.showMessageDialog(null,"Wrong Password");
+                    JOptionPane.showMessageDialog(null,"Wrong password");
                     return;
                 }
             }

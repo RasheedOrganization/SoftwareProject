@@ -1,6 +1,6 @@
 package org.example.AcceptableTest;
 
-import com.example.ConnectionDatabase;
+import com.example.connectionDatabase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,11 +9,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class Product_Enter_Steps {
-    private ConnectionDatabase data;
+    private connectionDatabase data;
 
     @Given("I filled the product details")
     public void i_filled_the_product_details() {
-        data = ConnectionDatabase.getInstance();
+        data = connectionDatabase.getInstance();
         boolean status = data.getConnection();
         assertTrue(status);
     }

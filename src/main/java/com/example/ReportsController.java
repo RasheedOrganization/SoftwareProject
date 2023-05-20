@@ -20,22 +20,22 @@ public class ReportsController implements Initializable {
     private Button backbutton;
 
     @FXML
-    private Button CustomerReport;
+    private Button customerReport;
 
     @FXML
-    private Button FinancialReport;
+    private Button financialReport;
 
     @FXML
-    private Button ProductReport;
+    private Button productReport;
 
     @FXML
-    private Button Report;
-    ConnectionDatabase data = ConnectionDatabase.getInstance();
+    private Button rreport;
+    connectionDatabase data = connectionDatabase.getInstance();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    // this is empty because nothing fucker
     }
 
     public void vViewClicked(ActionEvent actionEvent) {
@@ -60,7 +60,7 @@ public class ReportsController implements Initializable {
             stage.setScene(scene);
         }
         catch (Exception e) {
-
+            loggER.log(Level.WARNING, "Exception in Business view button");
         }
     }
 

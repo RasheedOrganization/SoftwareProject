@@ -56,7 +56,7 @@ public class InvoiceController implements Initializable {
     private TableView<Invoice> tableviwe1;
 
     private double discountcalc=0;
-    private ConnectionDatabase data;
+    private connectionDatabase data;
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -66,12 +66,12 @@ public class InvoiceController implements Initializable {
         pricecolom1.setCellValueFactory(new PropertyValueFactory<>("price"));
 
         tableviwe1.setItems(ProductEntryController.lLIST);
-        InitializeHelper();
+        initializeHelper();
     }
-    private void InitializeHelper()
+    private void initializeHelper()
     {
         try {
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT SYSDATE from USER_TABLE";

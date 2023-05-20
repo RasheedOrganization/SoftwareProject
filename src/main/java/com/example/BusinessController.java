@@ -31,8 +31,8 @@ import java.util.logging.Logger;
 
 
 public class BusinessController implements Initializable {
-    private static final String deletedSUCCESSFULLY = "Deleted successfully";
-    private static final String nothingGDELETED = "Nothing deleted";
+    private static final String deletedsucces = "Deleted successfully";
+    private static final String nothingdeleted = "Nothing deleted";
     private static final Logger loggER = Logger.getLogger(BusinessController.class.getName());
     @FXML
     private TableView<Customer> customertv;
@@ -101,7 +101,7 @@ public class BusinessController implements Initializable {
 
 
 
-    private ConnectionDatabase data;
+    private connectionDatabase data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
         tvcustomername.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -249,7 +249,7 @@ public class BusinessController implements Initializable {
     private void customerhelper() {
         clist.clear();
         try {
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT NAME_USER,EMAIL_USER,PHONE_USER from USER_TABLE";
@@ -274,7 +274,7 @@ public class BusinessController implements Initializable {
     private void productHelper() {
         plist.clear();
         try {
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT PRODUCTID,PRICE,PRODUCTNAME,PRODUCTAREA,QUANTITY,address,STATUS,STRINGDATE from PRODUCT";
@@ -311,7 +311,7 @@ public class BusinessController implements Initializable {
     private void workerHelper() {
         wlist.clear();
         try {
-            data=ConnectionDatabase.getInstance();
+            data=connectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
             String str="SELECT id,NAME,PHONENUMBER,WORKFLAG from WORKERS";
@@ -349,9 +349,9 @@ public class BusinessController implements Initializable {
 
     public void isDeleted(int deleted) {
         if(deleted > 0)
-            JOptionPane.showMessageDialog(null , deletedSUCCESSFULLY);
+            JOptionPane.showMessageDialog(null , deletedsucces);
         else
-            JOptionPane.showMessageDialog(null , nothingGDELETED);
+            JOptionPane.showMessageDialog(null , nothingdeleted);
     }
 
     public void btndeleteclicked(ActionEvent actionEvent)
@@ -359,7 +359,7 @@ public class BusinessController implements Initializable {
         if(producttv.isVisible())
         {
                 try{
-                    data=ConnectionDatabase.getInstance();
+                    data=connectionDatabase.getInstance();
                     Connection con = data.getConnectData();
                     String pPID=producttv.getSelectionModel().getSelectedItem().getID();
                     String str="DELETE FROM Product WHERE PRODUCTID='"+pPID+"'";
@@ -371,7 +371,7 @@ public class BusinessController implements Initializable {
                     loggER.log(Level.WARNING, "Exception in Product delete");
                 }
 
-                ProductEntryController.sStatusHelper();
+                ProductEntryController.statusHelper();
 
                 producttv.getItems().removeAll(producttv.getSelectionModel().getSelectedItem());
 
@@ -379,7 +379,7 @@ public class BusinessController implements Initializable {
         else if(workertv.isVisible())
         {
             try{
-                data=ConnectionDatabase.getInstance();
+                data=connectionDatabase.getInstance();
                 Connection con = data.getConnectData();
                 String wWID=workertv.getSelectionModel().getSelectedItem().getID();
                 String str="DELETE FROM WORKERS WHERE id='"+wWID+"'";
@@ -396,7 +396,7 @@ public class BusinessController implements Initializable {
         else if(customertv.isVisible())
         {
             try{
-                data=ConnectionDatabase.getInstance();
+                data=connectionDatabase.getInstance();
                 Connection con = data.getConnectData();
                 String ccCEmail=customertv.getSelectionModel().getSelectedItem().getEmail();
                 String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+ccCEmail+"'";

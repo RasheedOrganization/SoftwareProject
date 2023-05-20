@@ -9,10 +9,10 @@ public class Validation {
                 .matcher(emailAddress)
                 .matches();
     }
-    public static boolean passwordPatternMatches(String Password) {
+    public static boolean passwordPatternMatches(String password) {
         String regexPattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,20}$";
         return Pattern.compile(regexPattern)
-                .matcher(Password)
+                .matcher(password)
                 .matches();
     }
     public static boolean phonePatternMatches(String phone) {

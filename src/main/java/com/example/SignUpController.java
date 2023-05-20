@@ -46,7 +46,7 @@ public class SignUpController implements Initializable {
     @FXML
     private Button sSignUpButton;
 
-    ConnectionDatabase data = ConnectionDatabase.getInstance();
+    connectionDatabase data = connectionDatabase.getInstance();
 
     @FXML
     void lLoginClicked(MouseEvent event) {
@@ -78,10 +78,10 @@ public class SignUpController implements Initializable {
             JOptionPane.showMessageDialog(null,"phone is not Validation");
         }
         else if(!Validation.passwordPatternMatches(pass)) {
-            JOptionPane.showMessageDialog(null,"Password is not Validation");
+            JOptionPane.showMessageDialog(null,"password is not Validation");
         }
         else if (!pass.equals(passCheck)){
-            JOptionPane.showMessageDialog(null,"Password not matches");
+            JOptionPane.showMessageDialog(null,"password not matches");
         }
         else {
             try {
