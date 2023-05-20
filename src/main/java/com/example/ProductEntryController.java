@@ -105,8 +105,10 @@ public class ProductEntryController implements Initializable{
                     if (ssplit[1].equals(tempDateSplit[1]))
                     {
                         if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(ssplit[2]) > 2 ) {flag=1;}}
-                    else {if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(ssplit[2])) >2 )
-                            flag=1;}
+                    else {
+                        if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(ssplit[2])) >2 )
+                            flag=1;
+                    }
                     if(flag!=0)
                     {
                         String update="update product set status='" + "COMPLETE'" + "where productID="+rs.getInt(1);
@@ -218,7 +220,7 @@ public class ProductEntryController implements Initializable{
                 comboboxClothes.setVisible(false);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            loggER.log(Level.WARNING, "Exception in worker flag methodddd");
         }
     }
 
@@ -356,7 +358,7 @@ public class ProductEntryController implements Initializable{
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            loggER.log(Level.WARNING, "111111111Exception in worker flag method");
         }
 
 
