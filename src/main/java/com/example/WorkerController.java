@@ -40,7 +40,7 @@ public class WorkerController {
 
     }
 
-    public void WorkerBackClicked(MouseEvent event) {
+    public void workerBackClicked(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Business-view/Business.fxml"));
             Scene scene = new Scene(root);

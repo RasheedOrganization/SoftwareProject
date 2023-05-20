@@ -23,63 +23,63 @@ import java.util.ResourceBundle;
 public class SignUpController implements Initializable {
 
     @FXML
-    private DatePicker Birthdate;
+    private DatePicker bBirthdate;
     @FXML
-    private PasswordField ConfirmPasswordText;
+    private PasswordField cConfirmPasswordText;
 
     @FXML
-    private TextField EmailText;
+    private TextField eEmailText;
 
     @FXML
-    private Label Login;
+    private Label lLogin;
 
     @FXML
-    private TextField NameText;
+    private TextField nNameText;
 
     @FXML
     private PasswordField passwordtext;
 
     @FXML
-    private TextField PhoneText;
+    private TextField pPhoneText;
 
     @FXML
-    private Button SignUpButton;
+    private Button sSignUpButton;
 
     ConnectionDatabase data = ConnectionDatabase.getInstance();
 
     @FXML
-    void LoginClicked(MouseEvent event) {
+    void lLoginClicked(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/hello-view.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) Login.getScene().getWindow();
+            Stage stage = (Stage) lLogin.getScene().getWindow();
             stage.setScene(scene);
         }catch (Exception e) {
-            System.out.println("Exception in LoginClicked");
+            System.out.println("Exception in lLoginClicked");
         }
     }
 
     @FXML
-    void SignUpClicked(ActionEvent event) {
-        if(EmailText.getText().isBlank() || NameText.getText().isBlank() || PhoneText.getText().isBlank() || passwordtext.getText().isBlank() || ConfirmPasswordText.getText().isBlank()) {
+    void sSignUpClicked(ActionEvent event) {
+        if(eEmailText.getText().isBlank() || nNameText.getText().isBlank() || pPhoneText.getText().isBlank() || passwordtext.getText().isBlank() || cConfirmPasswordText.getText().isBlank()) {
             JOptionPane.showMessageDialog(null,"Field is Empty");
             return;
         }
-        String Email = EmailText.getText();
-        String Name = NameText.getText();
-        String Phone = PhoneText.getText();
-        String Pass = passwordtext.getText();
-        String PassCheck = ConfirmPasswordText.getText();
-        if(!Validation.emailPatternMatches(Email)) {
-            JOptionPane.showMessageDialog(null,"Email is not Validation");
+        String emailL = eEmailText.getText();
+        String name = nNameText.getText();
+        String phone = pPhoneText.getText();
+        String pass = passwordtext.getText();
+        String passCheck = cConfirmPasswordText.getText();
+        if(!Validation.emailPatternMatches(emailL)) {
+            JOptionPane.showMessageDialog(null,"emailL is not Validation");
         }
-        else if(!Validation.phonePatternMatches(Phone)) {
-            JOptionPane.showMessageDialog(null,"Phone is not Validation");
+        else if(!Validation.phonePatternMatches(phone)) {
+            JOptionPane.showMessageDialog(null,"phone is not Validation");
         }
-        else if(!Validation.passwordPatternMatches(Pass)) {
+        else if(!Validation.passwordPatternMatches(pass)) {
             JOptionPane.showMessageDialog(null,"Password is not Validation");
         }
-        else if (!Pass.equals(PassCheck)){
+        else if (!pass.equals(passCheck)){
             JOptionPane.showMessageDialog(null,"Password not matches");
         }
         else {
@@ -90,20 +90,20 @@ public class SignUpController implements Initializable {
                 ResultSet rs = stmt.executeQuery(all);
                 while (rs.next()) {
                     String temp = rs.getString(1);
-                    if (temp.equals(Email)) {
-                        JOptionPane.showMessageDialog(null, "Email Duplicate");
+                    if (temp.equals(emailL)) {
+                        JOptionPane.showMessageDialog(null, "emailL Duplicate");
                         return;
                     }
                 }
-                LocalDate date = Birthdate.getValue();
+                LocalDate date = bBirthdate.getValue();
                 String dateFormat = date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
-                all = "insert into user_table values ('" + Name + "',"+"'" + Email + "',"+"'" + Pass + "','"+ dateFormat +"',"+"'false',"+"'"+Phone+"')";
+                all = "insert into user_table values ('" + name + "',"+"'" + emailL + "',"+"'" + pass + "','"+ dateFormat +"',"+"'false',"+"'"+phone+"')";
                 stmt.executeUpdate(all);
                 //con.commit();
                 //con.close();
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
             Scene scene = new Scene(root);
-            Stage stage = (Stage) Login.getScene().getWindow();
+            Stage stage = (Stage) lLogin.getScene().getWindow();
             stage.setScene(scene);
             }
             catch (Exception e)
@@ -116,6 +116,6 @@ public class SignUpController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LocalDate local = LocalDate.of(2003,3,28);
-        Birthdate.setValue(local);
+        bBirthdate.setValue(local);
     }
 }

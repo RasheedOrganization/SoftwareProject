@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 
 public class InvoiceController implements Initializable {
-    private static final Logger LOGGER = Logger.getLogger(InvoiceController.class.getName());
+    private static final Logger loggER = Logger.getLogger(InvoiceController.class.getName());
     @FXML
     private Label address;
     @FXML
@@ -60,12 +60,12 @@ public class InvoiceController implements Initializable {
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        pnolom1.setCellValueFactory(new PropertyValueFactory<>("ProductName"));
+        pnolom1.setCellValueFactory(new PropertyValueFactory<>("productName"));
         areacolom1.setCellValueFactory(new PropertyValueFactory<>("area"));
         quantitycolom1.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         pricecolom1.setCellValueFactory(new PropertyValueFactory<>("price"));
 
-        tableviwe1.setItems(ProductEntryController.LIST);
+        tableviwe1.setItems(ProductEntryController.lLIST);
         InitializeHelper();
     }
     private void InitializeHelper()
@@ -95,7 +95,7 @@ public class InvoiceController implements Initializable {
         }
         catch (Exception e)
         {
-            LOGGER.log(Level.WARNING, "Exception in invoice");
+            loggER.log(Level.WARNING, "Exception in invoice");
         }
 
         if(discountcalc<=10)discountcalc=0.00;
@@ -113,8 +113,8 @@ public class InvoiceController implements Initializable {
     }
 
     public void backandclear(MouseEvent event) {
-        ProductEntryController.LIST.clear();
-        tableviwe1.setItems(ProductEntryController.LIST);
+        ProductEntryController.lLIST.clear();
+        tableviwe1.setItems(ProductEntryController.lLIST);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Product-view/Product-entry-view.fxml"));
             Scene scene = new Scene(root);
@@ -122,7 +122,7 @@ public class InvoiceController implements Initializable {
             stage.setScene(scene);
         }
         catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Exception in Logout Clicked");
+            loggER.log(Level.WARNING, "Exception in Logout Clicked");
         }
     }
     }

@@ -33,8 +33,8 @@ public class SignUpSteps {
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
             while (rs.next()) {
-                String Email = rs.getString(1);
-                if(Email.equals(string)) {
+                String emailL = rs.getString(1);
+                if(emailL.equals(string)) {
                     assertEquals(true, false);
                     flag = false;
                     break;
@@ -71,15 +71,15 @@ public class SignUpSteps {
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
             while (rs.next()) {
-                String Email = rs.getString(1);
-                if(Email.equals(string)) {
+                String emailL = rs.getString(1);
+                if(emailL.equals(string)) {
                     assertEquals("Password is Wrong",true, true);
                     flag = false;
                     break;
                 }
             }
             if (flag) {
-                assertEquals("Email is Right",true, true);
+                assertEquals("emailL is Right",true, true);
             }
         } catch (Exception e) {
             assertEquals("Exception in feature",true, false);
@@ -106,19 +106,19 @@ public class SignUpSteps {
     @When("I sign up with invalid name {string} format")
     public void iSignUpWithInvalidNameFormat(String string) {
         if(Character.isDigit(string.charAt(0))) {
-            assertEquals("Name is Wrong",true, true);
+            assertEquals("name is Wrong",true, true);
         }
         else {
-            assertEquals("Name is Right",true, true);
+            assertEquals("name is Right",true, true);
         }
     }
     @When("I sign up with invalid phone {string} format")
     public void iSignUpWithInvalidPhoneFormat(String string) {
         if(!string.startsWith("05")) {
-            assertEquals("Phone is Wrong",true, true);
+            assertEquals("phone is Wrong",true, true);
         }
         else {
-            assertEquals("Phone is Right",true, true);
+            assertEquals("phone is Right",true, true);
         }
     }
     @Then("I should to told to me a {string}")
@@ -135,9 +135,9 @@ public class SignUpSteps {
         // Write code here that turns the phrase above into concrete actions
         System.out.println("Password doesn't match");
     }
-    @Then("I should to told to me a 'Name shouldn't start with number'")
+    @Then("I should to told to me a 'name shouldn't start with number'")
     public void iShouldToToldToMeANameShouldnTStartWithNumber() {
         // Write code here that turns the phrase above into concrete actions
-        System.out.println("Name shouldn't start with number");
+        System.out.println("name shouldn't start with number");
     }
 }

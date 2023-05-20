@@ -30,15 +30,15 @@ public class SignInSteps {
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
             while (rs.next()) {
-                String Email = rs.getString(1);
-                if(Email.equals(string)) {
-                    assertEquals("Email contain",true, true);
+                String emailL = rs.getString(1);
+                if(emailL.equals(string)) {
+                    assertEquals("emailL contain",true, true);
                     flag = false;
                     break;
                 }
             }
             if (flag) {
-                assertEquals("Email does not contain",true, true);
+                assertEquals("emailL does not contain",true, true);
             }
         } catch (Exception e) {
             assertEquals("Exception in feature",true, false);
@@ -61,7 +61,7 @@ public class SignInSteps {
                 }
             }
             else {
-                assertEquals("Email is Wrong", true, true);
+                assertEquals("emailL is Wrong", true, true);
             }
         } catch (Exception e) {
             assertEquals("Exception in feature",true, false);
@@ -78,11 +78,11 @@ public class SignInSteps {
             ResultSet rs = stmt.executeQuery(all);
             boolean flag = true;
             while (rs.next()) {
-                String Email = rs.getString(1);
+                String emailL = rs.getString(1);
                 String Password = rs.getString(2);
-                if(Email.equals(string)) {
+                if(emailL.equals(string)) {
                     if(Password.equals(string2)) {
-                        assertEquals("Email and Password correct",true, true);
+                        assertEquals("emailL and Password correct",true, true);
                         flag = false;
                         break;
                     }
@@ -92,7 +92,7 @@ public class SignInSteps {
                 }
             }
             if (flag) {
-                assertEquals("Email does not contain",true, true);
+                assertEquals("emailL does not contain",true, true);
             }
         } catch (Exception e) {
             assertEquals("Exception in feature",true, false);

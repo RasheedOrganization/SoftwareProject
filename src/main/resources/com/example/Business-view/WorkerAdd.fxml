@@ -16,17 +16,17 @@
             <Image url="@../Image/cleaning-service.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfid1" layoutX="58.0" layoutY="98.0" prefHeight="34.0" prefWidth="211.0" promptText="ID" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfid1" layoutX="58.0" layoutY="98.0" prefHeight="34.0" prefWidth="211.0" promptText="id" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfname" layoutX="58.0" layoutY="142.0" prefHeight="34.0" prefWidth="211.0" promptText="Name" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfname" layoutX="58.0" layoutY="142.0" prefHeight="34.0" prefWidth="211.0" promptText="name" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="tfpn1" layoutX="58.0" layoutY="189.0" prefHeight="34.0" prefWidth="211.0" promptText="Phone number" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
+      <TextField fx:id="tfpn1" layoutX="58.0" layoutY="189.0" prefHeight="34.0" prefWidth="211.0" promptText="phone number" styleClass="text-field-gray" stylesheets="@../Style/Style.css">
          <font>
             <Font size="13.0" />
          </font>
@@ -37,7 +37,7 @@
          </cursor>
       </Button>
       <Circle fill="DODGERBLUE" layoutX="3.0" layoutY="3.0" radius="53.0" stroke="BLACK" strokeType="INSIDE" />
-      <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="14.0" layoutY="306.0" onMouseClicked="#WorkerBackClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="34.0" fitWidth="36.0" layoutX="14.0" layoutY="306.0" onMouseClicked="#workerBackClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/reply.png" />
          </image>

@@ -31,11 +31,11 @@ public class Product_Enter_Steps {
     public void i_should_see_a_message_expressing_validation(String string) {
         System.out.println(string);
     }
-    @When("I enter an invalid Phone number {string} format")
+    @When("I enter an invalid phone number {string} format")
     public void i_enter_an_invalid_phone_number_format(String string) {
             if(string.length()!=12 || (string.charAt(0)!='9' && string.charAt(0)!='7'))
             {
-                assertEquals("Please enter a valid Phone Number",true,false);
+                assertEquals("Please enter a valid phone Number",true,false);
             }
             else {
                 assertEquals(true,true);
@@ -47,7 +47,7 @@ public class Product_Enter_Steps {
             {
                 if(Character.isDigit(string.charAt(i)))
                 {
-                    assertEquals("Name can't contain digits",true,false);
+                    assertEquals("name can't contain digits",true,false);
                     break;
                 }
             }

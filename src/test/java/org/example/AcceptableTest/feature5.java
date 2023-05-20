@@ -22,7 +22,7 @@ public class feature5 {
     @When("he fill in {string} with {string}")
     public void heFillInWith(String string, String string2) {
         boolean flag=false;
-        if(string.equals("Name")){
+        if(string.equals("name")){
             int flag2= TESTINPUT.ordernameTest(string2);
             if(flag2!=0) assertEquals(true,true);
             else assertEquals(false,false);

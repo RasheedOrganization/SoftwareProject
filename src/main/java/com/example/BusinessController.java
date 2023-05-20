@@ -28,9 +28,9 @@ import java.util.logging.Logger;
 
 
 public class BusinessController implements Initializable {
-    private static final String DELETEDSUCCESSFULLY = "Deleted successfully";
-    private static final String NOTHINGDELETED = "Nothing deleted";
-    private static final Logger LOGGER = Logger.getLogger(BusinessController.class.getName());
+    private static final String deletedSUCCESSFULLY = "Deleted successfully";
+    private static final String nothingGDELETED = "Nothing deleted";
+    private static final Logger loggER = Logger.getLogger(BusinessController.class.getName());
     @FXML
     private TableView<Customer> customertv;
 
@@ -101,15 +101,15 @@ public class BusinessController implements Initializable {
     private ConnectionDatabase data;
 
     public void initialize(URL url, ResourceBundle resourceBundle){
-        tvcustomername.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        tvcustomeremail.setCellValueFactory(new PropertyValueFactory<>("Email"));
-        tvcustomerphone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        tvcustomername.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tvcustomeremail.setCellValueFactory(new PropertyValueFactory<>("emailL"));
+        tvcustomerphone.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
 
 
 
-        tvpid.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        tvpname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        tvpid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tvpname.setCellValueFactory(new PropertyValueFactory<>("name"));
         tvparea.setCellValueFactory(new PropertyValueFactory<>("Area"));
         tvpquantity.setCellValueFactory(new PropertyValueFactory<>("Quantity"));
         tvpaddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -119,10 +119,10 @@ public class BusinessController implements Initializable {
 
 
 
-        tvwid.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        tvwname.setCellValueFactory(new PropertyValueFactory<>("Name"));
-        tvwphone.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        tvwflag.setCellValueFactory(new PropertyValueFactory<>("Availability"));
+        tvwid.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tvwname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tvwphone.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        tvwflag.setCellValueFactory(new PropertyValueFactory<>("availability"));
         customerhelper();
         customertv.setVisible(true);
         producttv.setVisible(false);
@@ -173,7 +173,7 @@ public class BusinessController implements Initializable {
 
 
     }
-    private void ProductSearch() {
+    private void productSearch() {
         FilteredList<Product>filter=new FilteredList<>(plist, b ->true);
         tfsearch1.textProperty().addListener((observable,oldval,newval)-> {
             filter.setPredicate(product->{
@@ -261,14 +261,14 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception in Customer Table");
+            loggER.log(Level.WARNING, "Exception in Customer Table");
         }
         customertv.setVisible(true);
         producttv.setVisible(false);
         workertv.setVisible(false);
         customersearch();
     }
-    private void ProductHelper() {
+    private void productHelper() {
         plist.clear();
         try {
             data=ConnectionDatabase.getInstance();
@@ -298,20 +298,20 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception in Product Table");
+            loggER.log(Level.WARNING, "Exception in Product Table");
         }
         customertv.setVisible(false);
         producttv.setVisible(true);
         workertv.setVisible(false);
-        ProductSearch();
+        productSearch();
     }
-    private void WorkerHelper() {
+    private void workerHelper() {
         wlist.clear();
         try {
             data=ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
-            String str="SELECT ID,NAME,PHONENUMBER,WORKFLAG from WORKERS";
+            String str="SELECT id,NAME,PHONENUMBER,WORKFLAG from WORKERS";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(str);
             while(rs.next())
@@ -323,7 +323,7 @@ public class BusinessController implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception in Worker Table");
+            loggER.log(Level.WARNING, "Exception in Worker Table");
         }
         customertv.setVisible(false);
         producttv.setVisible(false);
@@ -333,7 +333,7 @@ public class BusinessController implements Initializable {
 
 
     public void btnpclicked1(ActionEvent actionEvent) {
-        ProductHelper();
+        productHelper();
     }
 
     public void btncclicked1(ActionEvent actionEvent) {
@@ -341,14 +341,14 @@ public class BusinessController implements Initializable {
     }
 
     public void btnwclicked1(ActionEvent actionEvent) {
-        WorkerHelper();
+        workerHelper();
     }
 
     public void isDeleted(int deleted) {
         if(deleted > 0)
-            JOptionPane.showMessageDialog(null , DELETEDSUCCESSFULLY);
+            JOptionPane.showMessageDialog(null , deletedSUCCESSFULLY);
         else
-            JOptionPane.showMessageDialog(null , NOTHINGDELETED);
+            JOptionPane.showMessageDialog(null , nothingGDELETED);
     }
 
     public void btndeleteclicked(ActionEvent actionEvent)
@@ -365,10 +365,10 @@ public class BusinessController implements Initializable {
                 }
                 catch (SQLException e)
                 {
-                    LOGGER.log(Level.WARNING, "Exception in Product delete");
+                    loggER.log(Level.WARNING, "Exception in Product delete");
                 }
 
-                ProductEntryController.StatusHelper();
+                ProductEntryController.sStatusHelper();
 
                 producttv.getItems().removeAll(producttv.getSelectionModel().getSelectedItem());
 
@@ -379,13 +379,13 @@ public class BusinessController implements Initializable {
                 data=ConnectionDatabase.getInstance();
                 Connection con = data.getConnectData();
                 String W_ID=workertv.getSelectionModel().getSelectedItem().getID();
-                String str="DELETE FROM WORKERS WHERE ID='"+W_ID+"'";
+                String str="DELETE FROM WORKERS WHERE id='"+W_ID+"'";
                 Statement stmt = con.createStatement();
                 isDeleted(stmt.executeUpdate(str));
             }
             catch (SQLException e)
             {
-                LOGGER.log(Level.WARNING, "Exception in Worker delete");
+                loggER.log(Level.WARNING, "Exception in Worker delete");
             }
 
             workertv.getItems().removeAll(workertv.getSelectionModel().getSelectedItem());
@@ -402,7 +402,7 @@ public class BusinessController implements Initializable {
             }
             catch (SQLException e)
             {
-                LOGGER.log(Level.WARNING, "Exception in Customer delete");
+                loggER.log(Level.WARNING, "Exception in Customer delete");
             }
 
             customertv.getItems().removeAll(customertv.getSelectionModel().getSelectedItem());
@@ -421,7 +421,7 @@ public class BusinessController implements Initializable {
                 }
                 catch (IOException e)
                 {
-                    LOGGER.log(Level.WARNING, "Exception in Worker add button");
+                    loggER.log(Level.WARNING, "Exception in Worker add button");
                 }
             }
             else if(customertv.isVisible())
@@ -433,7 +433,7 @@ public class BusinessController implements Initializable {
                     stage.setScene(scene);
                 }
                 catch (IOException e) {
-                    LOGGER.log(Level.WARNING, "Exception in Customer add button");
+                    loggER.log(Level.WARNING, "Exception in Customer add button");
                 }
             }
         } else {
@@ -444,7 +444,7 @@ public class BusinessController implements Initializable {
                 stage.setScene(scene);
             }
             catch (IOException e) {
-                LOGGER.log(Level.WARNING, "Exception in Product add button");
+                loggER.log(Level.WARNING, "Exception in Product add button");
             }
         }
     }
@@ -453,7 +453,7 @@ public class BusinessController implements Initializable {
 
 
 
-    public void BTN_LOGOUT_B(MouseEvent event) {
+    public void btnLOGOUTB(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
             Scene scene = new Scene(root);
@@ -462,7 +462,7 @@ public class BusinessController implements Initializable {
             stage.show();
         }
         catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Exception in Logout2 Clicked");
+            loggER.log(Level.WARNING, "Exception in Logout2 Clicked");
         }
     }
 
@@ -475,7 +475,7 @@ public class BusinessController implements Initializable {
             stage.show();
         }
         catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Exception in chart Clicked");
+            loggER.log(Level.WARNING, "Exception in chart Clicked");
         }
     }
 }

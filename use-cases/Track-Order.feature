@@ -7,7 +7,7 @@ Feature: Product-entry
   the worker should see an error message on the screen
 
     Given I filled the product details
-    When I enter an invalid Phone number '<PhoneNumber>' format
+    When I enter an invalid phone number '<PhoneNumber>' format
     And I enter an invalid name '<name>' format
     And I enter an empty '<address>' address
     And I enter an empty '<Area>' Area
@@ -17,10 +17,10 @@ Feature: Product-entry
     Then I should show a warning message '<message>'
     Examples:
       | PhoneNumber | name   | address | Quantity | Area | message                           |
-      | 975684126   | carpet | Nablus  | 1        | 300  | Please enter a valid Phone Number |
+      | 975684126   | carpet | Nablus  | 1        | 300  | Please enter a valid phone Number |
       | 97059251756 | carpet |         | 2        | 200  | address can't be empty            |
       | 97059251711 | carpet | Jenin   |          | 30   | Quantity can't be empty           |
-      | 97059251789 | 14     | Jenin   | 4        | 200  | Name can't contain digits         |
+      | 97059251789 | 14     | Jenin   | 4        | 200  | name can't contain digits         |
       | 97056251744 | carpet | Jenin   | 2        |      | Area can't be empty               |
       | 97056251755 | carpet | Jenin   | a        | 45   | Quantity must contain Digits only |
       | 97056251777 | carpet | Jenin   | 2        | na   | Area must contain Digits only     |

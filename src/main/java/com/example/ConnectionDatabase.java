@@ -7,17 +7,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConnectionDatabase {
-    private static final Logger LOGGER = Logger.getLogger(ConnectionDatabase.class.getName());
-    private static ConnectionDatabase Connect;
-    private Connection ConnectData;
+    private static final Logger loggER = Logger.getLogger(ConnectionDatabase.class.getName());
+    private static ConnectionDatabase connect;
+    private Connection connectData;
     private static boolean status = true;
 
     public Connection getConnectData() {
-        return ConnectData;
+        return connectData;
     }
 
     public void setConnectData(Connection connectData) {
-        ConnectData = connectData;
+        connectData = connectData;
     }
 
     private ConnectionDatabase() {
@@ -26,17 +26,17 @@ public class ConnectionDatabase {
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
             ods.setUser("mohammad");
             ods.setPassword("123456");
-            ConnectData = ods.getConnection();
+            connectData = ods.getConnection();
         }catch (Exception e) {
-            LOGGER.log(Level.WARNING, "Exception");
+            loggER.log(Level.WARNING, "Exception");
         }
     }
 
     public static ConnectionDatabase getInstance() {
-        if(Connect == null) {
-            Connect = new ConnectionDatabase();
+        if(connect == null) {
+            connect = new ConnectionDatabase();
         }
-        return Connect;
+        return connect;
     }
 
     public boolean getConnection() {

@@ -22,26 +22,24 @@ public class Mail
 
 
 
-    public void RasheedEmail(List<String> names) throws MessagingException {
+    public static void rasheedEmail(String names) throws MessagingException {
     Mail mail = new Mail();
     mail.setupServerProperties();
-    mail.draftEmail(new ArrayList<>(names));
+    mail.draftEmail(names);//new ArrayList<>(names)
     mail.sendEmail();
 }
     private void sendEmail() throws MessagingException {
         String fromUser = "rrash22875@gmail.com";
-        String fromUserPassword = "urmfacbmdblyplgb";
+        String fromUserPassword = "xwyrsjoamtfjtcvs";
         String emailHost = "smtp.gmail.com";
         Transport transport = newSession.getTransport("smtp");
         transport.connect(emailHost, fromUser, fromUserPassword);
-        System.out.println("1");
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-        System.out.println("111");
         transport.close();
-        System.out.println("Email successfully sent!!!");
+        System.out.println("emailL successfully sent!!!");
     }
 
-    private MimeMessage draftEmail(ArrayList<String> names) throws MessagingException {
+    private MimeMessage draftEmail(String names) throws MessagingException {
         String emailSubject = "Product Ready for Delivery";
         String emailBody = "Dear Customer...\n" +
                 "\n" +
@@ -56,9 +54,9 @@ public class Mail
                 "Bubble Cleaning";
         mimeMessage = new MimeMessage(newSession);
 
-        for (String name : names) {
-            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(name));
-        }
+        //for (String name : names) {
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(names));
+        //}
         mimeMessage.setSubject(emailSubject);
 
         MimeBodyPart bodyPart = new MimeBodyPart();

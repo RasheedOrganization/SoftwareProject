@@ -2,19 +2,19 @@ package com.example;
 
 public class Worker {
 
-    private String ID,name,phone,Availability;
-    public Worker(String ID, String name, String phone, String Availability) {
-        this.ID = ID;
+    private String id,name,phone,availability;
+    public Worker(String id, String name, String phone, String availability) {
+        this.id = id;
         this.name = name;
         this.phone = phone;
-        this.Availability = Availability;
+        this.availability = availability;
     }
     public String getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -34,11 +34,11 @@ public class Worker {
     }
 
     public String getAvailability() {
-        return this.Availability;
+        return this.availability;
     }
 
-    public void setAvailability(String Availability) {
-        this.Availability = Availability;
+    public void setAvailability(String availability) {
+        this.availability = availability;
     }
 
 

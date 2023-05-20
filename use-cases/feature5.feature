@@ -13,7 +13,7 @@ Feature: Track the orders for customer
 
   Scenario Outline: errors with input
     When user click on insert order and flag is 'true'
-    And he fill in 'Name' with '<Order Number>'
+    And he fill in 'name' with '<Order Number>'
     And he presses 'search' and flag is 'true'
     Then the user should see '<message>'
 

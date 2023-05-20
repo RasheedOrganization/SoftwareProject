@@ -38,8 +38,8 @@
             <TableView fx:id="customertv" layoutX="9.0" layoutY="13.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css" visible="false">
               <columns>
                 <TableColumn fx:id="tvcustomername" prefWidth="165.59997940063477" text="NAME" />
-                  <TableColumn fx:id="tvcustomeremail" prefWidth="236.7999725341797" text="Email" />
-                  <TableColumn fx:id="tvcustomerphone" prefWidth="258.4000244140625" text="Phone" />
+                  <TableColumn fx:id="tvcustomeremail" prefWidth="236.7999725341797" text="emailL" />
+                  <TableColumn fx:id="tvcustomerphone" prefWidth="258.4000244140625" text="phone" />
               </columns>
                <styleClass>
                   <String fx:value="table-view" />
@@ -48,8 +48,8 @@
             </TableView>
             <TableView fx:id="producttv" layoutX="9.0" layoutY="13.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css">
                <columns>
-                  <TableColumn fx:id="tvpid" prefWidth="46.39999771118164" text="ID" />
-                  <TableColumn fx:id="tvpname" prefWidth="127.19998168945312" text="ProductName" />
+                  <TableColumn fx:id="tvpid" prefWidth="46.39999771118164" text="id" />
+                  <TableColumn fx:id="tvpname" prefWidth="127.19998168945312" text="productName" />
                   <TableColumn fx:id="tvparea" prefWidth="99.99998474121094" text="ProductArea" />
                   <TableColumn fx:id="tvpquantity" prefWidth="68.79998779296875" text="Quantity" />
                   <TableColumn fx:id="tvpaddress" prefWidth="70.4000244140625" text="address" />
@@ -64,9 +64,9 @@
             </TableView>
             <TableView fx:id="workertv" layoutX="10.0" layoutY="12.0" prefHeight="206.0" prefWidth="668.0" stylesheets="@../Invoice-view/InvoiceStyle.css" visible="false">
                <columns>
-                  <TableColumn fx:id="tvwid" prefWidth="165.59997940063477" text="ID" />
-                  <TableColumn fx:id="tvwname" prefWidth="158.40000915527344" text="Name" />
-                  <TableColumn fx:id="tvwphone" prefWidth="182.39996337890625" text="Phone" />
+                  <TableColumn fx:id="tvwid" prefWidth="165.59997940063477" text="id" />
+                  <TableColumn fx:id="tvwname" prefWidth="158.40000915527344" text="name" />
+                  <TableColumn fx:id="tvwphone" prefWidth="182.39996337890625" text="phone" />
                   <TableColumn fx:id="tvwflag" prefWidth="160.79998779296875" text="Availablility" />
                </columns>
                <styleClass>
@@ -82,7 +82,7 @@
          </font>
       </Label>
       <Line endX="126.39996337890625" endY="-12.800003051757812" layoutX="580.0" layoutY="88.0" startX="-559.2000122070312" startY="-12.800003051757812" />
-      <ImageView fx:id="BT_LOGOUT" fitHeight="23.0" fitWidth="25.0" layoutX="14.0" layoutY="476.0" onMouseClicked="#BTN_LOGOUT_B" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="BT_LOGOUT" fitHeight="23.0" fitWidth="25.0" layoutX="14.0" layoutY="476.0" onMouseClicked="#btnLOGOUTB" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Image/reply.png" />
          </image>

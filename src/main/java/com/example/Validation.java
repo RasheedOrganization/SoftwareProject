@@ -15,10 +15,10 @@ public class Validation {
                 .matcher(Password)
                 .matches();
     }
-    public static boolean phonePatternMatches(String Phone) {
+    public static boolean phonePatternMatches(String phone) {
         String regexPattern = "^[0-9]{10}$";
         return Pattern.compile(regexPattern)
-                .matcher(Phone)
+                .matcher(phone)
                 .matches();
     }
 }

@@ -1,7 +1,7 @@
 package com.example;
 
 public class Product {
-    private String ID;
+    private String id;
     private double price;
     private String name;
     private String area;
@@ -11,7 +11,7 @@ public class Product {
     private String date;
 
     public Product(String id, double price, String name, String area, String quantity, String address, String status, String date) {
-        this.ID = id;
+        this.id = id;
         this.price = Math.round(price * 1000) / 1000.0;
         this.name = name;
         this.area = area;
@@ -22,11 +22,11 @@ public class Product {
     }
 
     public String getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
+    public void setID(String id) {
+        this.id = id;
     }
 
     public double getPrice() {

@@ -13,7 +13,7 @@ Feature: Sign-In
     Then I should to told to me a '<message>'
     Examples:
       | email                    | password    | message           |
-      | mohammadre1999@gmail.com | 12345678   | Email Not Found    |
+      | mohammadre1999@gmail.com | 12345678   | emailL Not Found    |
       | mohammadre1654@gmail.com | mohammad   | Password not match |
 
   @Successful

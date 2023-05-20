@@ -47,15 +47,14 @@ public class ProductEntryController implements Initializable{
     @FXML
     Button btnentry1;
     @FXML
-    private ComboBox<String> ComboBox_Clothes;
+    private ComboBox<String> comboboxClothes;
 
     @FXML
-    static ObservableList<Invoice> LIST = FXCollections.observableArrayList();
+    static ObservableList<Invoice> lLIST = FXCollections.observableArrayList();
     static String location;
     static double localprice=0;
-    static int DevDate=0;
-    private static int StatusCounter=0;
-    static List<String> MailNames=new ArrayList<>();
+    static int devDate=0;
+    private static int statusCounter=0;
 
     public static double getLocalPrice() {
         return localprice;
@@ -69,15 +68,15 @@ public class ProductEntryController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list= FXCollections.observableArrayList("Pants","Shirt","Jacket","Others");
-        ComboBox_Clothes.setItems(list);
-        StatusHelper();
+        comboboxClothes.setItems(list);
+        sStatusHelper();
     }
 
 
 
-    public static void StatusHelper(){
+    public static void sStatusHelper(){
         try {
-            int WaitToTreatment=0;
+            int waitToTreatment=0;
             String tempDate;
             data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
@@ -94,68 +93,63 @@ public class ProductEntryController implements Initializable{
                 int flag=0;
                 if(rs.getString(2).equals("IN_TREATMENT"))
                 {
-                    String[] SpaceSplit=rs.getString(3).split(" ");
-                    String[] SpaceSplitTemp=tempDate.split(" ");
-                    String[] Split = SpaceSplit[0].split("-");
-                    String[] tempDateSplit = SpaceSplitTemp[0].split("-");
-                    if (Split[1].equals(tempDateSplit[1]))
+                    String[] spaceSplit=rs.getString(3).split(" ");
+                    String[] spaceSplitTemp=tempDate.split(" ");
+                    String[] ssplit = spaceSplit[0].split("-");
+                    String[] tempDateSplit = spaceSplitTemp[0].split("-");
+                    if (ssplit[1].equals(tempDateSplit[1]))
                     {
-                        if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(Split[2]) > 2 ) {flag=1;}}
-                    else {if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(Split[2])) >2 )
+                        if ( Integer.parseInt(tempDateSplit[2])-Integer.parseInt(ssplit[2]) > 2 ) {flag=1;}}
+                    else {if(Integer.parseInt(tempDateSplit[2])+(30-Integer.parseInt(ssplit[2])) >2 )
                             flag=1;}
                     if(flag!=0)
                     {
                         String update="update product set status='" + "COMPLETE'" + "where productID="+rs.getInt(1);
                         Statement stmtUpdate=con.createStatement();
                         stmtUpdate.executeUpdate(update);
-                        if(StatusCounter>=1)StatusCounter--;
-                        WaitToTreatment++;
+                        if(statusCounter>=1)statusCounter--;
+                        waitToTreatment++;
                         int f=1;
-                        WorkerRest(f);
+                        workerRest(f);
                         String updateEmail="update product set EMAIL_FLAG='" + "true'" + "where productID="+rs.getInt(1);
                         stmtUpdate.executeUpdate(updateEmail);
-                        MailNames.add(rs.getString(4));
+                        Mail.rasheedEmail(rs.getString(4));
                     }
-                    else  StatusCounter++;
+                    else  statusCounter++;
                 }
-/*                if (!MailNames.isEmpty()) {
-                    Mail m = new Mail();
-                    m.RasheedEmail(MailNames);
-                    MailNames.clear();
-                }*/
             }
-            ResultSet RS=stmtt.executeQuery(stmt);
-            while(RS.next())
+            ResultSet rssss=stmtt.executeQuery(stmt);
+            while(rssss.next())
             {
-                if(WaitToTreatment==0)break;
-                if(RS.getString(2).equals("WAITING"))
+                if(waitToTreatment==0)break;
+                if(rssss.getString(2).equals("WAITING"))
                 {
-                    String updatee = "update product set status='" + "IN_TREATMENT'" + "where productID="+RS.getInt(1);
+                    String updatee = "update product set status='" + "IN_TREATMENT'" + "where productID="+rssss.getInt(1);
                     Statement stmtUpdate = con.createStatement();
                     stmtUpdate.executeUpdate(updatee);
-                    WaitToTreatment--;
+                    waitToTreatment--;
                     int f=2;
-                    WorkerRest(f);
+                    workerRest(f);
                 }
             }
         }
         catch (Exception e) {System.out.println("iam here in Status Counter idiot");}}
 
-    private static void WorkerRest(int f) {
-        String W_flag="",IDString="";
+    private static void workerRest(int f) {
+        String wwflag="",iddString="";
         if(f==1)
         {
-            W_flag="false";
+            wwflag="false";
         }
         else if(f==2)
         {
-            W_flag="true";
+            wwflag="true";
         }
         try {
             data = ConnectionDatabase.getInstance();
             Connection con = data.getConnectData();
 
-            String s = "SELECT ID,WORKFLAG from WORKERS";
+            String s = "SELECT id,WORKFLAG from WORKERS";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(s);
             while(rs.next())
@@ -163,7 +157,7 @@ public class ProductEntryController implements Initializable{
                 if(f==1) {
                     if (rs.getString(2).equals("false"))
                     {
-                        IDString=rs.getString(1);
+                        iddString=rs.getString(1);
                         break;
                     }
 
@@ -172,12 +166,12 @@ public class ProductEntryController implements Initializable{
                 {
                     if (rs.getString(2).equals("true"))
                     {
-                        IDString=rs.getString(1);
+                        iddString=rs.getString(1);
                         break;
                     }
                 }
             }
-            String update = "UPDATE WORKERS set WORKFLAG='"+W_flag+"' WHERE ID='"+IDString+"'";
+            String update = "UPDATE WORKERS set WORKFLAG='"+wwflag+"' WHERE id='"+iddString+"'";
             Statement stmtt = con.createStatement();
             stmtt.executeUpdate(update);
 
@@ -189,7 +183,7 @@ public class ProductEntryController implements Initializable{
         }
     }
 
-    public void LogoutBtnClicked(MouseEvent mouseEvent) {
+    public void logoutBtnClicked(MouseEvent mouseEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/hello-view.fxml"));
             Scene scene = new Scene(root);
@@ -202,7 +196,7 @@ public class ProductEntryController implements Initializable{
         }
     }
 
-    public void BTN_EnterClicked(MouseEvent mouseEvent) {
+    public void bTNnEnterClicked(MouseEvent mouseEvent) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Invoice-view/invoice.fxml"));
             Scene scene = new Scene(root);
@@ -215,15 +209,15 @@ public class ProductEntryController implements Initializable{
                 tfpphonenumber1.setText("");
                 checkuse1.setSelected(false);
                 checktreatment1.setSelected(false);
-                ComboBox_Clothes.setVisible(false);
+                comboboxClothes.setVisible(false);
         }
         catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void AddProductClicked(MouseEvent mouseEvent) {
-        StatusHelper();
+    public void aAddProductClicked(MouseEvent mouseEvent) {
+        sStatusHelper();
         try {
             String   name=tfpname1.getText()
                     ,area=tfparea1.getText()
@@ -270,14 +264,14 @@ public class ProductEntryController implements Initializable{
             }
             if(phone.length()!=12 || (phone.charAt(0)!='9' && phone.charAt(1)!='7')) {
                 JFrame f=new JFrame();
-                JOptionPane.showMessageDialog(f,"Please enter a valid Phone Number");
+                JOptionPane.showMessageDialog(f,"Please enter a valid phone Number");
                 flag=false;
             }
             for(int i=0;i<name.length();i++) {
                 if(Character.isDigit(name.charAt(i)))
                 {
                     JFrame f=new JFrame();
-                    JOptionPane.showMessageDialog(f,"Name can't contain digits");
+                    JOptionPane.showMessageDialog(f,"name can't contain digits");
                     flag=false;
                     break;
                 }
@@ -289,15 +283,15 @@ public class ProductEntryController implements Initializable{
                 Connection con = data.getConnectData();
                 String    useFlag = null
                         , clothType = null
-                        , WellCleaned = null
+                        , wWellCleaned = null
                         , Customer_email = HelloController.getGmailCounter();
 
                 if (checktreatment1.isSelected())
-                    WellCleaned = "true";
-                else WellCleaned = "false";
+                    wWellCleaned = "true";
+                else wWellCleaned = "false";
                 if (checkuse1.isSelected()) {
                     useFlag = "true";
-                    clothType = ComboBox_Clothes.getSelectionModel().getSelectedItem().toString();
+                    clothType = comboboxClothes.getSelectionModel().getSelectedItem().toString();
                 }
                 else {
                     useFlag = "false";
@@ -305,27 +299,27 @@ public class ProductEntryController implements Initializable{
                 }
 
 
-                String WhatIsStatus=null,CurrentDate;
+                String wWhatIsStatus=null,CurrentDate;
                 String str="SELECT SYSDATE from USER_TABLE";
                 Statement stmtt = con.createStatement();
                 ResultSet rss = stmtt.executeQuery(str);
                 rss.next();
                 CurrentDate=rss.getString(1);
 
-                if(StatusCounter<10)
+                if(statusCounter<10)
                 {
-                    WhatIsStatus="IN_TREATMENT";
-                    StatusCounter++;
+                    wWhatIsStatus="IN_TREATMENT";
+                    statusCounter++;
                 }
-                else WhatIsStatus="WAITING";
+                else wWhatIsStatus="WAITING";
 
 
 
                 double price = 0;
                 if (checkuse1.isSelected()) {
-                    if (ComboBox_Clothes.getValue().equals("Pants")) price = Double.parseDouble(quantity) * 5;
-                    else if (ComboBox_Clothes.getValue().equals("Shirt")) price = Double.parseDouble(quantity) * 5;
-                    else if (ComboBox_Clothes.getValue().equals("Jacket")) price = Double.parseDouble(quantity) * 10;
+                    if (comboboxClothes.getValue().equals("Pants")) price = Double.parseDouble(quantity) * 5;
+                    else if (comboboxClothes.getValue().equals("Shirt")) price = Double.parseDouble(quantity) * 5;
+                    else if (comboboxClothes.getValue().equals("Jacket")) price = Double.parseDouble(quantity) * 10;
                     else price = Double.parseDouble(quantity) * 1;
                 } else
                     price = Double.parseDouble(quantity) * Double.parseDouble(area) * 0.45;
@@ -337,11 +331,11 @@ public class ProductEntryController implements Initializable{
 
                 addLocalPrice(price);
 
-                LIST.add(
+                lLIST.add(
                         new Invoice(name, Double.parseDouble(area), Double.parseDouble(quantity), price)
                 );
                 String all = "INSERT INTO Product values(Prouct_ID_sequence.NEXTVAL," + "'" + name + "'," + "'" + area + "'," + "'" + quantity + "',"
-                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + WellCleaned + "'," + "'" + Customer_email + "'," + "'"+WhatIsStatus+"',"+price+",'"+"false"+"',"+"'"+CurrentDate+"')";
+                        + "'" + address + "'," + "'" + phone + "'," + "'" + useFlag + "'," + "'" + clothType + "'," + "'" + wWellCleaned + "'," + "'" + Customer_email + "'," + "'"+wWhatIsStatus+"',"+price+",'"+"false"+"',"+"'"+CurrentDate+"')";
                 Statement stmt = con.createStatement();
                 stmt.executeUpdate(all);
                 tfparea1.setText("");
@@ -349,7 +343,7 @@ public class ProductEntryController implements Initializable{
                 tfpquantity1.setText("");
                 checkuse1.setSelected(false);
                 checktreatment1.setSelected(false);
-                ComboBox_Clothes.setVisible(false);
+                comboboxClothes.setVisible(false);
             }
 
         }
@@ -361,14 +355,14 @@ public class ProductEntryController implements Initializable{
 
     }
 
-    public void CheckUseClicked1(ActionEvent actionEvent) {
+    public void cCheckUseClicked1(ActionEvent actionEvent) {
         if(checkuse1.isSelected())
         {
-            ComboBox_Clothes.setVisible(true);
+            comboboxClothes.setVisible(true);
         }
         else
         {
-            ComboBox_Clothes.setVisible(false);
+            comboboxClothes.setVisible(false);
         }
     }
 

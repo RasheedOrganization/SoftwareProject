@@ -64,7 +64,7 @@ public class feature9 {
 
     @Given("the email service is not available")
     public void theEmailServiceIsNotAvailable() {
-        System.out.println("Email service not available");
+        System.out.println("emailL service not available");
     }
     @Given("a customer with an empty email address")
     public void aCustomerWithAnEmptyEmailAddress() {

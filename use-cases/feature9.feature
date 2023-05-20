@@ -21,12 +21,12 @@ Feature: Notify the customer by sending email when the order is complete.
     Then the message "Order not yet complete" should be displayed
     And the email should not be sent
 
-  Scenario: Email service not available
+  Scenario: emailL service not available
     Given a customer with a valid email address
     And an order that has been completed
     And the email service is not available
     When a request is made to send an email notification to the customer
-    Then the message "Email service not available" should be displayed
+    Then the message "emailL service not available" should be displayed
     And the email should not be sent
 
 

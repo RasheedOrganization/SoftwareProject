@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 
 
 public class Chart implements Initializable {
-    private static final Logger LOGGER = Logger.getLogger(Chart.class.getName());
+    private static final Logger loggER = Logger.getLogger(Chart.class.getName());
     @FXML
     private PieChart cchart;
 
@@ -42,10 +42,10 @@ public class Chart implements Initializable {
         pw=pi=pc=0;
         CountHelp();
         PriceHelp();
-        ObservableList<PieChart.data> ItemChart=FXCollections.observableArrayList(
-                new PieChart.data("Complete",c),
-                new PieChart.data("In_Treatment",i),
-                new PieChart.data("Waiting",w)
+        ObservableList<PieChart.Data> ItemChart=FXCollections.observableArrayList(
+                new PieChart.Data("Complete",c),
+                new PieChart.Data("In_Treatment",i),
+                new PieChart.Data("Waiting",w)
         );
 
         ichart.getData().addAll(ItemChart);
@@ -55,10 +55,10 @@ public class Chart implements Initializable {
 
 
 
-        ObservableList<PieChart.data> CashChart=FXCollections.observableArrayList(
-                new PieChart.data("Near Income",pi),
-                new PieChart.data("Budget",pc),
-                new PieChart.data("Far Income",pw)
+        ObservableList<PieChart.Data> CashChart=FXCollections.observableArrayList(
+                new PieChart.Data("Near Income",pi),
+                new PieChart.Data("Budget",pc),
+                new PieChart.Data("Far Income",pw)
         );
 
 
@@ -91,7 +91,7 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception in PriceHelp");
+            loggER.log(Level.WARNING, "Exception in PriceHelp");
         }
     }
 
@@ -115,7 +115,7 @@ public class Chart implements Initializable {
         }
         catch (SQLException e)
         {
-            LOGGER.log(Level.WARNING, "Exception in CountHelp");
+            loggER.log(Level.WARNING, "Exception in CountHelp");
         }
     }
 
@@ -127,7 +127,7 @@ public class Chart implements Initializable {
             stage.setScene(scene);
         }
         catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Exception in BackFromChart");
+            loggER.log(Level.WARNING, "Exception in BackFromChart");
         }
     }
 }

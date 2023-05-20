@@ -1,24 +1,24 @@
 package com.example;
 
 public class Invoice {
-private String ProductName;
+private String productName;
 private double area;
 private double quantity;
 private double price;
 
     public Invoice(String productName, double area, double quantity, double price) {
-        ProductName = productName;
+        this.productName = productName;
         this.area = Math.round(area * 1000) / 1000.0;
         this.quantity = Math.round(quantity * 1000) / 1000.0;
         this.price = Math.round(price * 1000) / 1000.0;
     }
 
     public String getProductName() {
-        return ProductName;
+        return productName;
     }
 
     public void setProductName(String productName) {
-        ProductName = productName;
+        productName = productName;
     }
 
     public double getArea() {

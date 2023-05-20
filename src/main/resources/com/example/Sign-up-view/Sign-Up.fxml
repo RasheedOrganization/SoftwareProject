@@ -17,7 +17,7 @@
             <Font name="Calibri Bold" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="SignUpButton" layoutX="74.0" layoutY="343.0" mnemonicParsing="false" onAction="#SignUpClicked" prefHeight="34.0" prefWidth="211.0" styleClass="button-blue" text="Sign Up" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="343.0">
+      <Button fx:id="sSignUpButton" layoutX="74.0" layoutY="343.0" mnemonicParsing="false" onAction="#sSignUpClicked" prefHeight="34.0" prefWidth="211.0" styleClass="button-blue" text="Sign Up" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="343.0">
          <font>
             <Font name="Calibri Bold" size="13.0" />
          </font>
@@ -28,7 +28,7 @@
       <AnchorPane layoutY="392.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="60.0" prefWidth="356.0" style="-fx-background-color: #e3e3e3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="392.0">
          <children>
             <Label layoutX="113.0" layoutY="24.0" text="ALready Member?" />
-            <Label fx:id="Login" layoutX="214.0" layoutY="24.0" onMouseClicked="#LoginClicked" text="Login" textFill="#3c9ae2">
+            <Label fx:id="lLogin" layoutX="214.0" layoutY="24.0" onMouseClicked="#lLoginClicked" text="lLogin" textFill="#3c9ae2">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -36,22 +36,22 @@
          </children>
       </AnchorPane>
       <PasswordField fx:id="passwordtext" layoutX="74.0" layoutY="254.0" prefHeight="34.0" prefWidth="211.0" promptText="Password" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="254.0" />
-      <TextField fx:id="EmailText" layoutX="74.0" layoutY="70.0" prefHeight="34.0" prefWidth="211.0" promptText="Email" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="70.0">
+      <TextField fx:id="eEmailText" layoutX="74.0" layoutY="70.0" prefHeight="34.0" prefWidth="211.0" promptText="emailL" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="70.0">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="ConfirmPasswordText" layoutX="74.0" layoutY="299.0" prefHeight="34.0" prefWidth="211.0" promptText="Confirm Password" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="299.0" />
-      <TextField fx:id="NameText" layoutX="74.0" layoutY="116.0" prefHeight="34.0" prefWidth="211.0" promptText="Name" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="116.0">
+      <PasswordField fx:id="cConfirmPasswordText" layoutX="74.0" layoutY="299.0" prefHeight="34.0" prefWidth="211.0" promptText="Confirm Password" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="299.0" />
+      <TextField fx:id="nNameText" layoutX="74.0" layoutY="116.0" prefHeight="34.0" prefWidth="211.0" promptText="name" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="116.0">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="PhoneText" layoutX="74.0" layoutY="162.0" prefHeight="34.0" prefWidth="211.0" promptText="Phone" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="162.0">
+      <TextField fx:id="pPhoneText" layoutX="74.0" layoutY="162.0" prefHeight="34.0" prefWidth="211.0" promptText="phone" styleClass="text-field-gray" AnchorPane.leftAnchor="74.0" AnchorPane.rightAnchor="70.80000000000001" AnchorPane.topAnchor="162.0">
          <font>
             <Font size="13.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="Birthdate" layoutX="74.0" layoutY="208.0" prefHeight="34.0" prefWidth="211.0" promptText="Birthdate" styleClass="text-field-gray" />
+      <DatePicker fx:id="bBirthdate" layoutX="74.0" layoutY="208.0" prefHeight="34.0" prefWidth="211.0" promptText="bBirthdate" styleClass="text-field-gray" />
    </children>
 </AnchorPane>

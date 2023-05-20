@@ -21,7 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class HelloController {
-    private static final Logger LOGGER = Logger.getLogger(HelloController.class.getName());
+    private static final Logger loggER = Logger.getLogger(HelloController.class.getName());
 
     @FXML
     private Label createanaccount;
@@ -32,7 +32,7 @@ public class HelloController {
     @FXML
     private TextField usernametext;
     private static String gmailcounter;
-    private static String UserNamee;
+    private static String userNamee;
 
     private ConnectionDatabase data = ConnectionDatabase.getInstance();
 
@@ -40,33 +40,33 @@ public class HelloController {
         return gmailcounter;
     }
     static String getUserNamee() {
-        return UserNamee;
+        return userNamee;
     }
     static void setGmailCounter(String gmail){
         gmailcounter = gmail;
     }
     static void setUserNamee(String namee){
-        UserNamee = namee;
+        userNamee = namee;
     }
     @FXML
-    void CreateAnAccountClicked(MouseEvent event) {
+    void createAnAccountClicked(MouseEvent event) {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Sign-Up.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) createanaccount.getScene().getWindow();
             stage.setScene(scene);
         }catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Exception");
+            loggER.log(Level.WARNING, "Exception");
         }
     }
 
     @FXML
-    void ForgotClicked(MouseEvent event) {
+    void forgotClicked(MouseEvent event) {
             JOptionPane.showMessageDialog(null,"احلف انك ناسي ... على كلن فش تفوت على حسابك روح على مغسلة تانية");
     }
 
     @FXML
-    void SignInClicked(ActionEvent event) {
+    void signInClicked(ActionEvent event) {
         try {
             Connection con = data.getConnectData();
             String all = "select email_user, password,NAME_USER,ADMIN_FLAG from user_table";
@@ -74,17 +74,17 @@ public class HelloController {
             ResultSet rs = stmt.executeQuery(all);
             String string = usernametext.getText();
             while (rs.next()) {
-                String Email = rs.getString(1);
-                if(Email.equals(string)) {
+                String emailL = rs.getString(1);
+                if(emailL.equals(string)) {
                     String Password = rs.getString(2);
                     if(Password.equals(passwordtext.getText())) {
-                        String WhereToGo;
+                        String whereToGo;
                         setGmailCounter(rs.getString(1));
                         setUserNamee(rs.getString(3));
                         if(rs.getString(4).equals("true"))
-                            WhereToGo="Sign-up-view/Reports.fxml";
-                        else WhereToGo="Product-view/Product-entry-view.fxml";
-                        Parent root = FXMLLoader.load(getClass().getResource(WhereToGo));
+                            whereToGo="Sign-up-view/Reports.fxml";
+                        else whereToGo="Product-view/Product-entry-view.fxml";
+                        Parent root = FXMLLoader.load(getClass().getResource(whereToGo));
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) usernametext.getScene().getWindow();
                         stage.setScene(scene);
@@ -94,9 +94,9 @@ public class HelloController {
                     return;
                 }
             }
-            JOptionPane.showMessageDialog(null,"Wrong Email");
+            JOptionPane.showMessageDialog(null,"Wrong emailL");
         } catch (SQLException | IOException e) {
-            LOGGER.log(Level.WARNING, "Exception");
+            loggER.log(Level.WARNING, "Exception");
         }
     }
 }
