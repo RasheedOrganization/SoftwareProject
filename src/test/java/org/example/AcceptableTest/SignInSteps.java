@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class SignInSteps {
     private ConnectionDatabase data;
@@ -16,9 +17,8 @@ public class SignInSteps {
     @Given("I have chosen to sign in")
     public void iHaveChosenToSignIn() {
         data = ConnectionDatabase.getInstance();
-        boolean status = false;
-        if(data.getConnection()) status = true;
-        assertEquals(true, status);
+        boolean status = data.getConnection();
+        assertTrue(status);
     }
     @When("I sign in with an email address does not contain {string}")
     public void iSignInWithAnEmailAddressDoesNotContain(String string) {
@@ -32,16 +32,16 @@ public class SignInSteps {
             while (rs.next()) {
                 String emailL = rs.getString(1);
                 if(emailL.equals(string)) {
-                    assertEquals("emailL contain",true, true);
+                    assertTrue("emailL contain", true);
                     flag = false;
                     break;
                 }
             }
             if (flag) {
-                assertEquals("emailL does not contain",true, true);
+                assertTrue("emailL does not contain", true);
             }
         } catch (Exception e) {
-            assertEquals("Exception in feature",true, false);
+            assertTrue("Exception in feature", false);
         }
     }
     @When("I sign in with invalid password {string} and valid email {string}")
@@ -55,16 +55,16 @@ public class SignInSteps {
             if(rs.next()) {
                 boolean flag = true;
                 if (!rs.getString(1).equals(string)) {
-                    assertEquals("Password is Wrong", true, true);
+                    assertTrue("Password is Wrong", true);
                 } else {
-                    assertEquals("Password is Right", true, true);
+                    assertTrue("Password is Right", true);
                 }
             }
             else {
-                assertEquals("emailL is Wrong", true, true);
+                assertTrue("emailL is Wrong", true);
             }
         } catch (Exception e) {
-            assertEquals("Exception in feature",true, false);
+            assertTrue("Exception in feature", false);
         }
     }
 
@@ -82,20 +82,20 @@ public class SignInSteps {
                 String Password = rs.getString(2);
                 if(emailL.equals(string)) {
                     if(Password.equals(string2)) {
-                        assertEquals("emailL and Password correct",true, true);
+                        assertTrue("emailL and Password correct", true);
                         flag = false;
                         break;
                     }
                     else {
-                        assertEquals("Password not correct",true, true);
+                        assertTrue("Password not correct", true);
                     }
                 }
             }
             if (flag) {
-                assertEquals("emailL does not contain",true, true);
+                assertTrue("emailL does not contain", true);
             }
         } catch (Exception e) {
-            assertEquals("Exception in feature",true, false);
+            assertTrue("Exception in feature", false);
         }
     }
 }

@@ -1,4 +1,5 @@
 package com.example;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,24 +9,27 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.*;
+import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ProductEntryController implements Initializable{
     private static ConnectionDatabase data;
+    private static final Logger loggER = Logger.getLogger(ProductEntryController.class.getName());
     @FXML
     TextField tfpname1;
     @FXML
@@ -133,7 +137,7 @@ public class ProductEntryController implements Initializable{
                 }
             }
         }
-        catch (Exception e) {System.out.println("iam here in Status Counter idiot");}}
+        catch (Exception e) { loggER.log(Level.WARNING, "iam here in Status Counter idiot");}}
 
     private static void workerRest(int f) {
         String wwflag="",iddString="";
@@ -179,7 +183,7 @@ public class ProductEntryController implements Initializable{
         }
         catch (Exception e)
         {
-            System.out.println("Exception in worker flag method");
+            loggER.log(Level.WARNING, "Exception in worker flag method");
         }
     }
 
@@ -192,7 +196,7 @@ public class ProductEntryController implements Initializable{
             stage.show();
         }
         catch (Exception e) {
-            System.out.println("Exception in Logout Clicked");
+            loggER.log(Level.WARNING, "Exception in Logout Clicked");
         }
     }
 
@@ -291,7 +295,7 @@ public class ProductEntryController implements Initializable{
                 else wWellCleaned = "false";
                 if (checkuse1.isSelected()) {
                     useFlag = "true";
-                    clothType = comboboxClothes.getSelectionModel().getSelectedItem().toString();
+                    clothType = comboboxClothes.getSelectionModel().getSelectedItem();
                 }
                 else {
                     useFlag = "false";
@@ -356,14 +360,7 @@ public class ProductEntryController implements Initializable{
     }
 
     public void cCheckUseClicked1(ActionEvent actionEvent) {
-        if(checkuse1.isSelected())
-        {
-            comboboxClothes.setVisible(true);
-        }
-        else
-        {
-            comboboxClothes.setVisible(false);
-        }
+        comboboxClothes.setVisible(checkuse1.isSelected());
     }
 
 }

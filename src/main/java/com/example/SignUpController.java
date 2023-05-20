@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import animatefx.animation.*;
 
 import javax.swing.*;
 import java.net.URL;
@@ -19,9 +18,11 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SignUpController implements Initializable {
-
+    private static final Logger loggER = Logger.getLogger(SignUpController.class.getName());
     @FXML
     private DatePicker bBirthdate;
     @FXML
@@ -55,7 +56,7 @@ public class SignUpController implements Initializable {
             Stage stage = (Stage) lLogin.getScene().getWindow();
             stage.setScene(scene);
         }catch (Exception e) {
-            System.out.println("Exception in lLoginClicked");
+            loggER.log(Level.WARNING,"Exception in lLoginClicked");
         }
     }
 
@@ -99,8 +100,7 @@ public class SignUpController implements Initializable {
                 String dateFormat = date.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
                 all = "insert into user_table values ('" + name + "',"+"'" + emailL + "',"+"'" + pass + "','"+ dateFormat +"',"+"'false',"+"'"+phone+"')";
                 stmt.executeUpdate(all);
-                //con.commit();
-                //con.close();
+
             Parent root = FXMLLoader.load(getClass().getResource("Sign-up-view/Reports.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) lLogin.getScene().getWindow();

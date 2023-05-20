@@ -1,8 +1,5 @@
 package com.example;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -11,11 +8,14 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Mail
 {
-
+    private static final Logger loggER = Logger.getLogger(Mail.class.getName());
     Session newSession = null;
     MimeMessage mimeMessage = null;
 
@@ -36,7 +36,7 @@ public class Mail
         transport.connect(emailHost, fromUser, fromUserPassword);
         transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
         transport.close();
-        System.out.println("emailL successfully sent!!!");
+        loggER.log(Level.WARNING,"emailL successfully sent!!!");
     }
 
     private MimeMessage draftEmail(String names) throws MessagingException {
@@ -54,9 +54,7 @@ public class Mail
                 "Bubble Cleaning";
         mimeMessage = new MimeMessage(newSession);
 
-        //for (String name : names) {
-            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(names));
-        //}
+        mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(names));
         mimeMessage.setSubject(emailSubject);
 
         MimeBodyPart bodyPart = new MimeBodyPart();

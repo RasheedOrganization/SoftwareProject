@@ -3,41 +3,44 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class feature9 {
     @Given("a customer with a valid email address")
     public void aCustomerWithAValidEmailAddress() {
-        String string = new String("Gmail");
+        String string = "Gmail";
         if(string.equals("Gmail")) {
-            String string2 = new String("Gmail");
-            if (Character.isDigit(string2.charAt(0)) || string2.length() == 17) assertEquals(false, false);
+            String string2 = "Gmail";
+            if (Character.isDigit(string2.charAt(0)) || string2.length() == 17) assertFalse(false);
             else {
                 boolean flag = false;
                 for (int i = 1; i < string2.length(); i++) {
-                    if (string2.charAt(i) == '@') flag = true;
+                    if (string2.charAt(i) == '@') {
+                        flag = true;
+                        break;
+                    }
                 }
-                if (flag == false) assertEquals(false, false);
-                else assertEquals(true, true);
+                if (!flag) assertFalse(false);
+                else assertTrue(true);
             }
         }
     }
     @Given("an order that has been completed")
     public void anOrderThatHasBeenCompleted() {
-        String string = new String("status");
+        String string = "status";
         if(string.equals("status")) {
-            String string2 = new String("status");
+            String string2 = "status";
             if(string.equals("status")== string2.equals("completed")) {
                 boolean flag = false;
-                if (flag == false) assertEquals(false, false);
-                else assertEquals(true, true);
+                if (!flag) assertFalse(false);
+                else assertTrue(true);
             }
         }
-        assertEquals(true,true);
+        assertTrue(true);
     }
     @When("a request is made to send an email notification to the customer")
     public void aRequestIsMadeToSendAnEmailNotificationToTheCustomer() {
-        assertEquals(true,true);
+        assertTrue(true);
     }
     @Then("the email should be sent successfully")
     public void theEmailShouldBeSentSuccessfully() {
@@ -45,12 +48,12 @@ public class feature9 {
     }
     @Then("the customer should receive an email confirming that their order is complete")
     public void theCustomerShouldReceiveAnEmailConfirmingThatTheirOrderIsComplete() {
-        assertEquals(true,true);
+        assertTrue(true);
     }
 
     @Given("a customer with an invalid email address")
     public void aCustomerWithAnInvalidEmailAddress() {
-        assertEquals(true,true);
+        assertTrue(true);
     }
     @Then("the email should not be sent")
     public void theEmailShouldNotBeSent() {

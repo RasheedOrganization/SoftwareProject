@@ -1,7 +1,7 @@
 package com.example;
 
 public class Invoice {
-private String productName;
+private final String productName;
 private double area;
 private double quantity;
 private double price;

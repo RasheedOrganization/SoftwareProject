@@ -8,29 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.swing.JRViewer;
-import oracle.jdbc.pool.OracleDataSource;
 
-import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ReportsController implements Initializable {
-
+    private static final Logger loggER = Logger.getLogger(ReportsController.class.getName());
     @FXML
     private Button backbutton;
 
@@ -61,7 +46,7 @@ public class ReportsController implements Initializable {
             stage.setScene(scene);
         }
         catch (Exception e) {
-            System.out.println("Exception in Business view button");
+            loggER.log(Level.WARNING, "Exception in Business view button");
         }
 
     }

@@ -10,7 +10,7 @@ public class ConnectionDatabase {
     private static final Logger loggER = Logger.getLogger(ConnectionDatabase.class.getName());
     private static ConnectionDatabase connect;
     private Connection connectData;
-    private static boolean status = true;
+    private static final boolean status = true;
 
     public Connection getConnectData() {
         return connectData;

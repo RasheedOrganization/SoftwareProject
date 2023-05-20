@@ -1,5 +1,5 @@
 package com.example;
-import com.example.ConnectionDatabase;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +12,11 @@ import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class WorkerController {
+    private static final Logger loggER = Logger.getLogger(WorkerController.class.getName());
     @FXML
     private TextField tfpn1;
     @FXML
@@ -35,7 +38,7 @@ public class WorkerController {
         }
         catch (Exception e)
         {
-            System.out.println("Exception in Insert");
+            loggER.log(Level.WARNING,"Exception in Insert");
         }
 
     }
@@ -49,7 +52,7 @@ public class WorkerController {
             stage.show();
         }
         catch (Exception e) {
-            System.out.println("Exception in Logout2 Clicked");
+            loggER.log(Level.WARNING,"Exception in Logout2 Clicked");
         }
     }
 }

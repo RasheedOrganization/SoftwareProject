@@ -105,9 +105,9 @@ public class InvoiceController implements Initializable {
         else discountcalc=ProductEntryController.localprice*0.2;
 
         if(ProductEntryController.getLocalPrice()>=1000)discountcalc=ProductEntryController.getLocalPrice()*0.02;
-        discount.setText(Double.toString(discountcalc)+"$");
-        totalprice1.setText(Double.toString(ProductEntryController.getLocalPrice()-discountcalc)+"$");
-        localprice.setText(Double.toString(ProductEntryController.getLocalPrice())+"$");
+        discount.setText(discountcalc +"$");
+        totalprice1.setText(ProductEntryController.getLocalPrice() - discountcalc +"$");
+        localprice.setText(ProductEntryController.getLocalPrice() +"$");
         ProductEntryController.setZeroLocalPrice();
         discountcalc=0;
     }

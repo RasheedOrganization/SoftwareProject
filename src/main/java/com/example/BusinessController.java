@@ -11,10 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -358,8 +361,8 @@ public class BusinessController implements Initializable {
                 try{
                     data=ConnectionDatabase.getInstance();
                     Connection con = data.getConnectData();
-                    String P_ID=producttv.getSelectionModel().getSelectedItem().getID();
-                    String str="DELETE FROM Product WHERE PRODUCTID='"+P_ID+"'";
+                    String pPID=producttv.getSelectionModel().getSelectedItem().getID();
+                    String str="DELETE FROM Product WHERE PRODUCTID='"+pPID+"'";
                     Statement stmt = con.createStatement();
                     isDeleted(stmt.executeUpdate(str));
                 }
@@ -378,8 +381,8 @@ public class BusinessController implements Initializable {
             try{
                 data=ConnectionDatabase.getInstance();
                 Connection con = data.getConnectData();
-                String W_ID=workertv.getSelectionModel().getSelectedItem().getID();
-                String str="DELETE FROM WORKERS WHERE id='"+W_ID+"'";
+                String wWID=workertv.getSelectionModel().getSelectedItem().getID();
+                String str="DELETE FROM WORKERS WHERE id='"+wWID+"'";
                 Statement stmt = con.createStatement();
                 isDeleted(stmt.executeUpdate(str));
             }
@@ -395,8 +398,8 @@ public class BusinessController implements Initializable {
             try{
                 data=ConnectionDatabase.getInstance();
                 Connection con = data.getConnectData();
-                String C_Email=customertv.getSelectionModel().getSelectedItem().getEmail();
-                String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+C_Email+"'";
+                String ccCEmail=customertv.getSelectionModel().getSelectedItem().getEmail();
+                String str="DELETE FROM USER_TABLE WHERE EMAIL_USER='"+ccCEmail+"'";
                 Statement stmt = con.createStatement();
                 isDeleted(stmt.executeUpdate(str));
             }

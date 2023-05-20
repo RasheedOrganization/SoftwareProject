@@ -1,6 +1,5 @@
 package com.example;
 
-import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -34,7 +34,7 @@ public class HelloController {
     private static String gmailcounter;
     private static String userNamee;
 
-    private ConnectionDatabase data = ConnectionDatabase.getInstance();
+    private final ConnectionDatabase data = ConnectionDatabase.getInstance();
 
     static String getGmailCounter() {
         return gmailcounter;

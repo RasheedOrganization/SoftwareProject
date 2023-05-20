@@ -1,5 +1,4 @@
 package com.example;
-import javafx.css.Size;
 
 public class TESTINPUT {
     public static boolean idTest(String id) {
@@ -11,8 +10,7 @@ public class TESTINPUT {
                     break;
                 }
             }
-            if (flag == true) return true;
-            else return false;
+            return flag;
         }
         return false;
     }
@@ -26,8 +24,7 @@ public class TESTINPUT {
                     break;
                 }
             }
-            if (flag == true) return true;
-            else return false;
+            return flag;
         }
         return false;
     }
@@ -37,10 +34,12 @@ public class TESTINPUT {
         else {
             boolean flag = false;
             for (int i = 1; i < gmail.length(); i++) {
-                if (gmail.charAt(i) == '@') flag = true;
+                if (gmail.charAt(i) == '@') {
+                    flag = true;
+                    break;
+                }
             }
-            if (flag == false) return false;
-            else return true;
+            return flag;
         }
     }
 
@@ -53,8 +52,7 @@ public class TESTINPUT {
                 else if(Character.isUpperCase(password.charAt(i))) flagc=true;
                 else if (Character.isDigit(password.charAt(i))) flagn=true;
             }
-            if(flags==true && flagc==true && flagn==true) return true;
-            else return false;
+            return flags && flagc && flagn;
         }
     }
     public static int  ordernameTest(String name) {
@@ -74,8 +72,7 @@ public class TESTINPUT {
                     break;
                 }
             }
-            if(flag == true)return true;
-            else return false;
+            return flag;
         }
         return false;
     }
@@ -91,12 +88,10 @@ public class TESTINPUT {
                 break;
             }
         }
-        if (flag == true) return true;
-        else return false;
+        return flag;
     }
 
     public static boolean orderPictureTest(String Picture) {
-        if(Picture.indexOf(".png")!=-1 || Picture.indexOf(".jpg")!=-1) return true;
-        else return false;
+        return Picture.indexOf(".png") != -1 || Picture.indexOf(".jpg") != -1;
     }
 }
